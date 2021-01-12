@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 8 ene. 2021 9:15:50 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="euskomet_db" dynamic-insert="false" dynamic-update="false" mutable="true" name="CalidadAire" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="calidad_aire">
+        <id name="fechaHora" type="timestamp">
+            <column length="19" name="fecha_hora"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Municipio" embed-xml="true" fetch="select" insert="true" name="municipio" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="cod_muni" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="no2" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="NO2"/>
+        </property>
+        <property generated="never" lazy="false" name="no2Txt" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="NO2_txt"/>
+        </property>
+        <property generated="never" lazy="false" name="pm10" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="PM10"/>
+        </property>
+        <property generated="never" lazy="false" name="pm10Txt" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="PM10_txt"/>
+        </property>
+        <property generated="never" lazy="false" name="so2" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="SO2"/>
+        </property>
+        <property generated="never" lazy="false" name="so2Txt" optimistic-lock="true" type="string" unique="false">
+            <column length="40" name="SO2_txt"/>
+        </property>
+        <property generated="never" lazy="false" name="media" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="MEDIA" precision="22" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

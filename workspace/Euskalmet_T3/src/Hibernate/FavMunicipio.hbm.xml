@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 8 ene. 2021 9:15:50 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="euskomet_db" dynamic-insert="false" dynamic-update="false" mutable="true" name="FavMunicipio" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="fav_municipio">
+        <composite-id class="FavMunicipioId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="codMuni" type="int">
+                <column name="cod_muni"/>
+            </key-property>
+            <key-property name="codUsuario" type="int">
+                <column name="cod_usuario"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Municipio" embed-xml="true" fetch="select" insert="false" name="municipio" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="cod_muni" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Usuario" embed-xml="true" fetch="select" insert="false" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="cod_usuario" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
