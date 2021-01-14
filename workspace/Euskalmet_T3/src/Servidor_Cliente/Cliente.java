@@ -21,7 +21,7 @@ public class Cliente {
 			entrada = new ObjectInputStream(cliente.getInputStream());
 			salida = new ObjectOutputStream (cliente.getOutputStream());
 			
-			salida.writeObject("SELECT nombre from municipio");
+			salida.writeObject("SELECT nombre FROM municipio WHERE cod_muni = 1");
 			
 			resultado = entrada.readObject().toString();
 			
