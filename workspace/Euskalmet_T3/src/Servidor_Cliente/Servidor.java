@@ -104,8 +104,10 @@ private final int PUERTO = 5000;
 			System.out.println("Fin servidor");
 		}
 	}
+	
 	public static void main(String[] args) {
 		Servidor s1 = new Servidor();
 		s1.iniciar();
 	}
+	
 }
