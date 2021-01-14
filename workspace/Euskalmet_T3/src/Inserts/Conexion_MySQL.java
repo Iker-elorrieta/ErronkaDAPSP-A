@@ -8,8 +8,8 @@ public class Conexion_MySQL {
 	private static Conexion_MySQL ourInstance = new Conexion_MySQL();
 	
 	private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/euskomet_db";
-	private static final String USERNAME = "root";
+	private static final String DATABASE_URL = "jdbc:mysql://192.168.106.28:3306/euskomet_db";
+	private static final String USERNAME = "user1";
 	private static final String PASSWORD = "";
 	
 	private Connection conexion;
