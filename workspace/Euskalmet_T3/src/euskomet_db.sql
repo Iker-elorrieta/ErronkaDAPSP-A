@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `espacios_naturales`;
 CREATE TABLE `espacios_naturales` (
   `cod_enatural` int(20) NOT NULL,
   `nombre` varchar(40) DEFAULT NULL,
-  `descripcion` varchar(800) DEFAULT NULL,
+  `descripcion` varchar(10000) DEFAULT NULL,
   `tipo` varchar(100) DEFAULT NULL,
   `latitud` double DEFAULT NULL,
   `longitud` double DEFAULT NULL,
@@ -127,7 +127,7 @@ DROP TABLE IF EXISTS `municipio`;
 CREATE TABLE `municipio` (
   `cod_muni` int(20) NOT NULL,
   `nombre` varchar(40) DEFAULT NULL,
-  `descripcion` varchar(1000) DEFAULT NULL,
+  `descripcion` varchar(10000) DEFAULT NULL,
   `cod_prov` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -174,6 +174,26 @@ CREATE TABLE `usuario` (
 --
 
 --
+-- Indices de la tabla `provincia`
+--
+ALTER TABLE `provincia`
+  ADD PRIMARY KEY (`cod_prov`);
+
+--
+-- Indices de la tabla `municipio`
+--
+ALTER TABLE `municipio`
+  ADD PRIMARY KEY (`cod_muni`),
+  ADD KEY `FK_PROV` (`cod_prov`);
+
+--
+-- Indices de la tabla `estaciones`
+--
+ALTER TABLE `estaciones`
+  ADD PRIMARY KEY (`cod_estacion`),
+  ADD KEY `FK_MUNI_ESTACION` (`cod_muni`);
+
+--
 -- Indices de la tabla `calidad_aire`
 --
 ALTER TABLE `calidad_aire`
@@ -187,11 +207,18 @@ ALTER TABLE `espacios_naturales`
   ADD PRIMARY KEY (`cod_enatural`);
 
 --
--- Indices de la tabla `estaciones`
+-- Indices de la tabla `muni_espacios`
 --
-ALTER TABLE `estaciones`
-  ADD PRIMARY KEY (`cod_estacion`),
-  ADD KEY `FK_MUNI_ESTACION` (`cod_muni`);
+ALTER TABLE `muni_espacios`
+  ADD PRIMARY KEY (`cod_muni`,`cod_enatural`),
+  ADD KEY `FK_MUNI_MUNIESPACIOS` (`cod_muni`),
+  ADD KEY `FK_ENATURALES_MUNIESPACIOS` (`cod_enatural`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`cod_usuario`);
 
 --
 -- Indices de la tabla `fav_espacios`
@@ -214,33 +241,6 @@ ALTER TABLE `fav_municipio`
 --
 ALTER TABLE `hash`
   ADD PRIMARY KEY (`cod_hash`);
-
---
--- Indices de la tabla `municipio`
---
-ALTER TABLE `municipio`
-  ADD PRIMARY KEY (`cod_muni`),
-  ADD KEY `FK_PROV` (`cod_prov`);
-
---
--- Indices de la tabla `muni_espacios`
---
-ALTER TABLE `muni_espacios`
-  ADD PRIMARY KEY (`cod_muni`,`cod_enatural`),
-  ADD KEY `FK_MUNI_MUNIESPACIOS` (`cod_muni`),
-  ADD KEY `FK_ENATURALES_MUNIESPACIOS` (`cod_enatural`);
-
---
--- Indices de la tabla `provincia`
---
-ALTER TABLE `provincia`
-  ADD PRIMARY KEY (`cod_prov`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`cod_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
