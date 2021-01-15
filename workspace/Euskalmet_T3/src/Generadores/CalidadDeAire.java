@@ -39,6 +39,12 @@ import com.google.gson.JsonParser;
 
 public class CalidadDeAire {
 	public static void main(String[] args) throws IOException {
+		principal();
+	}
+	
+	public static boolean principal() throws IOException {
+		boolean terminado=false;
+	
 		String nomArchivo = "0_CalidadAire";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/index.json", nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO JSON");
@@ -46,6 +52,9 @@ public class CalidadDeAire {
 		System.out.println(nomArchivo + " -> LIMPIADO \n");
 		recorrerJSON(nomArchivo);
 		System.out.println("-> FINALIZADO <-");
+		terminado = true;
+		
+		return terminado;
 	}
 	
 	private static void generarJSON(String urlStr, String nomArchivo){
@@ -157,6 +166,7 @@ public class CalidadDeAire {
 						Element e = (Element) n;
 						if (e.getElementsByTagName("nombre").item(0).getTextContent().equals(nomArchivo)) {
 							cod_estacion.appendChild(doc.createTextNode(e.getElementsByTagName("cod_estacion").item(0).getTextContent()));
+							break;
 						}
 					}
 				}

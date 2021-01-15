@@ -30,8 +30,13 @@ import org.w3c.dom.Element;
 import com.google.gson.*;
 
 public class Municipios {
-
+	
 	public static void main(String[] args) throws IOException {
+		principal();
+	}
+	
+	public static boolean principal() throws IOException {
+		boolean terminado=false;
 		String nomArchivo = "municipios";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/pueblos_euskadi_turismo/opendata/herriak.json", nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO");
@@ -40,6 +45,8 @@ public class Municipios {
 		generarXML(nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO XML \n");
 		System.out.println("-> FINALIZADO <-");
+		terminado = true;
+		return terminado;
 	}
 	
 	private static void generarJSON(String urlStr, String nomArchivo){

@@ -28,10 +28,17 @@ import com.google.gson.JsonParser;
 
 public class MuniEspacios {
 	public static void main(String[] args) throws IOException {
+		principal();
+	}
+	
+	public static boolean principal() throws IOException {
+		boolean terminado=false;
 		String nomArchivo = "muni_espacios";
 		generarXML(nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO XML \n");
 		System.out.println("-> FINALIZADO <-");
+		terminado = true;
+		return terminado;
 	}
 	
 	private static void generarXML(String nomArchivo) throws IOException {

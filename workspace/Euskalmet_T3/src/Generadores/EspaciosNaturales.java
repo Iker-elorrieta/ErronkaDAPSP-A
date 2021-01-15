@@ -34,6 +34,12 @@ import com.google.gson.JsonParser;
 
 public class EspaciosNaturales {
 	public static void main(String[] args) throws IOException {
+		principal();
+	}
+	
+	public static boolean principal() throws IOException {
+		boolean terminado=false;
+		
 		String nomArchivo = "espacios_naturales";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/playas_de_euskadi/opendata/espacios-naturales.json", nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO JSON");
@@ -42,6 +48,9 @@ public class EspaciosNaturales {
 		generarXML(nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO XML \n");
 		System.out.println("-> FINALIZADO <-");
+		terminado = true;
+		
+		return terminado;
 	}
 	
 	private static void generarJSON(String urlStr, String nomArchivo){

@@ -33,6 +33,11 @@ import com.google.gson.JsonParser;
 
 public class Estaciones {
 	public static void main(String[] args) throws IOException {
+		principal();
+	}
+ 
+	public static boolean principal() throws IOException {
+		boolean terminado=false;
 		String nomArchivo = "estaciones";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/estaciones.json", nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO");
@@ -41,6 +46,8 @@ public class Estaciones {
 		generarXML(nomArchivo);
 		System.out.println(nomArchivo + " -> GENERADO XML \n");
 		System.out.println("-> FINALIZADO <-");
+		terminado = true;
+		return terminado;
 	}
 	
 	private static void generarJSON(String urlStr, String nomArchivo){

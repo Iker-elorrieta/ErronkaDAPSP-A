@@ -20,9 +20,13 @@ import org.xml.sax.SAXException;
 public class LlenarBBDD {
 	private static Conexion_MySQL conn = Conexion_MySQL.getInstance();
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
+		principal();
+	}
+	
+	public static boolean principal() throws IOException, SQLException {
+		boolean terminado=false;
 		Connection conexion = conn.conectar();
-		
 		provincias(conexion);
 		System.out.println("provincia -> COMPLETADO \n");
 		municipios(conexion);
@@ -36,8 +40,10 @@ public class LlenarBBDD {
 		calidad_aire(conexion, nomEstaciones);
 		System.out.println("calidad_aire -> COMPLETADO \n");
 		System.out.println("-> FINALIZADO <-");
-		
 		conexion.close(); conn.desconectar();
+		terminado = true;
+		
+		return terminado;
 	}
 	
 	private static ArrayList<ArrayList<String>> recorrerXML(String nomCarpeta, String nomArchivo) {
