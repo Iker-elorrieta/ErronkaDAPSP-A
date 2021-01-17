@@ -16,13 +16,13 @@ public class Servidor {
 
 private final int PUERTO = 5000;
 	
-	public void iniciar() {
+	public boolean iniciar() {
 		ServerSocket servidor = null;
 		Socket cliente = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
-		boolean continuar = true;
-		
+		//boolean continuar = true;
+	
 		try {
 			servidor = new ServerSocket(PUERTO);
 			System.out.println("Esperando conexiones del cliente...");
@@ -61,7 +61,7 @@ private final int PUERTO = 5000;
 					rs.close();
 					stmt.close();
 					MDK.desconectar();
-				} catch (SQLException se) {
+				} catch (SQLException se) { 
 					// JDBC erroreak
 					se.printStackTrace();
 				} catch (Exception e) {
@@ -103,6 +103,7 @@ private final int PUERTO = 5000;
 			}
 			System.out.println("Fin servidor");
 		}
+		return true;
 	}
 	
 	public static void main(String[] args) {

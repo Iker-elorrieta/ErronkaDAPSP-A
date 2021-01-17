@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 public class VentanaCliente extends JFrame {
 
 	private JPanel contentPane;
+	private JLabel lblDato;
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class VentanaCliente extends JFrame {
 				}
 			}
 		});
-	}
+	}  
 
 	/**
 	 * Create the frame.
@@ -39,15 +40,14 @@ public class VentanaCliente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblDato = new JLabel("New label");
+		lblDato = new JLabel("New label");
 		lblDato.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDato.setBounds(142, 86, 116, 36);
 		contentPane.add(lblDato);
-		
-		Cliente c1 = new Cliente();
-		c1.iniciar();
-		
-		lblDato.setText(c1.getResultado());
+	}
+	
+	public JLabel getLblDato() {
+		return lblDato;
 	}
 	
 }

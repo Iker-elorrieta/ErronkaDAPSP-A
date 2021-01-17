@@ -8,10 +8,14 @@ import java.net.Socket;
 public class Cliente {
 
 	private final int PUERTO = 5000;
-	private final String IP = "192.168.106.28";
+	//private final String IP = "192.168.106.28";
+	private final String IP = "192.168.1.136";
 	private String resultado ="";
 
-	public void iniciar() {
+	public boolean iniciar() {
+		VentanaCliente v = new VentanaCliente();
+		v.setVisible(true);
+	
 		Socket cliente = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
@@ -25,8 +29,10 @@ public class Cliente {
 			
 			resultado = entrada.readObject().toString();
 			
+			v.getLblDato().setText(resultado);
 			
-		} catch (IOException e) {
+			
+		} catch (IOException e) { 
 			System.out.println("Error: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -43,6 +49,7 @@ public class Cliente {
 			}
 			System.out.println("Fin cliente");
 		}
+		return true;
 	}
 	public static void main(String[] args) {
 		Cliente c1 = new Cliente();
