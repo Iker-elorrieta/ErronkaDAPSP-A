@@ -8,8 +8,8 @@ import java.net.Socket;
 public class Cliente {
 
 	private final int PUERTO = 5000;
-	//private final String IP = "192.168.106.28";
-	private final String IP = "192.168.1.136";
+	private final String IP = "192.168.106.28";
+	//private final String IP = "192.168.1.136";
 	private String resultado ="";
 
 	public boolean iniciar() {

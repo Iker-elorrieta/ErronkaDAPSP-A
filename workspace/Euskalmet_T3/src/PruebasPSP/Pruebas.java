@@ -8,11 +8,12 @@ import Servidor_Cliente.Cliente;
 import Servidor_Cliente.Servidor;
 
 class Pruebas {
+	
+	Servidor s = new Servidor();
+	Cliente c = new Cliente();
 
 	@Test
 	public void servidorPrueba() {
-		Servidor s = new Servidor();
-		Cliente c = new Cliente();
 		s.iniciar();
 		boolean conexion=c.iniciar(); 
 		

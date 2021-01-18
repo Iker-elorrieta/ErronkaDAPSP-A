@@ -54,7 +54,7 @@ private final int PUERTO = 5000;
 						salida.writeObject(nombre);
 
 						// Emaitzak pantailaratu
-						System.out.print("Nombre: " + nombre);
+						System.out.println("Nombre: " + nombre);
 					}
 
 					// Garbiketa
