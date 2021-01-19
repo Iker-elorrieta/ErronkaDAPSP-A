@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 19 ene. 2021 10:34:52 by Hibernate Tools 5.4.21.Final
+// Generated 19 ene. 2021 13:22:22 by Hibernate Tools 5.4.21.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +17,6 @@ public class Estaciones implements java.io.Serializable {
 	private Double coordY;
 	private Double latitud;
 	private Double longitud;
-	private String foto;
 	private Set calidadAires = new HashSet(0);
 
 	public Estaciones() {
@@ -29,7 +28,7 @@ public class Estaciones implements java.io.Serializable {
 	}
 
 	public Estaciones(int codEstacion, Municipio municipio, String nombre, String direccion, Double coordX,
-			Double coordY, Double latitud, Double longitud, String foto, Set calidadAires) {
+			Double coordY, Double latitud, Double longitud, Set calidadAires) {
 		this.codEstacion = codEstacion;
 		this.municipio = municipio;
 		this.nombre = nombre;
@@ -38,7 +37,6 @@ public class Estaciones implements java.io.Serializable {
 		this.coordY = coordY;
 		this.latitud = latitud;
 		this.longitud = longitud;
-		this.foto = foto;
 		this.calidadAires = calidadAires;
 	}
 
@@ -104,14 +102,6 @@ public class Estaciones implements java.io.Serializable {
 
 	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
-	}
-
-	public String getFoto() {
-		return this.foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public Set getCalidadAires() {
