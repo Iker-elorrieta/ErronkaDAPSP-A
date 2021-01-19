@@ -1,4 +1,5 @@
 package Generadores;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -141,6 +142,8 @@ public class Municipios {
 					cod_prov.appendChild(doc.createTextNode("2"));
 				else if (entrada.get("territory").getAsString().contains("Araba")) 
 					cod_prov.appendChild(doc.createTextNode("3"));
+				
+				Element foto = doc.createElement("foto"); municipio.appendChild(foto);
 				
 				knt++;
 			}

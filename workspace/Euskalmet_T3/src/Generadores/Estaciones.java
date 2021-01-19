@@ -1,4 +1,5 @@
 package Generadores;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -136,8 +137,6 @@ public class Estaciones {
 				Element longitud = doc.createElement("longitud"); estacion.appendChild(longitud);
 				String longitudStr = entrada.get("Longitude").getAsString();
 				longitud.appendChild(doc.createTextNode(longitudStr));
-				
-				Element foto = doc.createElement("foto"); estacion.appendChild(foto);
 				
 				Element cod_muni = doc.createElement("cod_muni"); estacion.appendChild(cod_muni);
 				Iterator<JsonElement> iter2 = datos2.iterator();

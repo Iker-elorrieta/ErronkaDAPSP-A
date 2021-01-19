@@ -1,11 +1,11 @@
 package Inserts;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 
@@ -22,6 +22,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Hibernate.CalidadAire;
+import Hibernate.CalidadAireId;
+import Hibernate.EspaciosNaturales;
+import Hibernate.Estaciones;
+import Hibernate.MuniEspacios;
+import Hibernate.MuniEspaciosId;
+import Hibernate.Municipio;
 import Hibernate.Provincia;
 
 public class LlenarBBDD {
@@ -35,18 +42,18 @@ public class LlenarBBDD {
 	public static boolean principal() throws IOException, SQLException {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
-		provincias(/*conexion*/);
-		System.out.println("provincia -> COMPLETADO \n");
-		municipios(/*conexion*/);
-		System.out.println("municipio -> COMPLETADO \n");
-		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
-		System.out.println("estaciones -> COMPLETADO \n");
-		espacios_naturales(/*conexion*/);
-		System.out.println("espacios_naturales -> COMPLETADO \n");
+//		provincias(/*conexion*/);
+//		System.out.println("provincia -> COMPLETADO \n");
+//		municipios(/*conexion*/);
+//		System.out.println("municipio -> COMPLETADO \n");
+//		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
+//		System.out.println("estaciones -> COMPLETADO \n");
+//		espacios_naturales(/*conexion*/);
+//		System.out.println("espacios_naturales -> COMPLETADO \n");
 		muni_espacios(/*conexion*/);
 		System.out.println("muni_espacios -> COMPLETADO \n");
-		calidad_aire(/*conexion, */nomEstaciones);
-		System.out.println("calidad_aire -> COMPLETADO \n");
+//		calidad_aire(/*conexion, */nomEstaciones);
+//		System.out.println("calidad_aire -> COMPLETADO \n");
 		System.out.println("-> FINALIZADO <-");
 //		conexion.close(); conn.desconectar();
 		sf.close();
@@ -123,10 +130,10 @@ public class LlenarBBDD {
 				Provincia prov = new Provincia();
 				prov.setCodProv(Integer.parseInt(provincias[i][0]));
 				prov.setNombre(provincias[i][1]);
-				sesion.save(prov);
-				tx.commit();
+				
+				sesion.save(prov); tx.commit(); lineas++;
+				
 				sesion.close();
-				lineas++;
 //			} catch (SQLException e) {
 //				if (e.getErrorCode() != 1062) {
 //					e.printStackTrace();
@@ -155,20 +162,39 @@ public class LlenarBBDD {
 				Session sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
-//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov) VALUES(?,?,?,?)";
+//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,foto) VALUES(?,?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
 //				query.setInt(1, Integer.parseInt(municipios.get(i).get(0)));
 //				query.setString(2, municipios.get(i).get(1));
 //				query.setString(3, municipios.get(i).get(2));
 //				query.setInt(4, Integer.parseInt(municipios.get(i).get(3)));
+//				query.setString(5, municipios.get(i).get(4));
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
-			} catch (SQLException e) {
+				
+				Municipio muni = new Municipio();
+				muni.setCodMuni(Integer.parseInt(municipios.get(i).get(0)));
+				muni.setNombre(municipios.get(i).get(1));
+				muni.setDescripcion(municipios.get(i).get(2));
+				Provincia prov = new Provincia(Integer.parseInt(municipios.get(i).get(3)));
+				muni.setProvincia(prov);
+				muni.setFoto(municipios.get(i).get(4));
+				
+				sesion.save(muni); tx.commit(); lineas++;
+				
+				sesion.close();
+//				} catch (SQLException e) {
+//				if (e.getErrorCode() != 1062) {
+//					e.printStackTrace();
+//				}
+			} catch (ConstraintViolationException e) {
 				if (e.getErrorCode() != 1062) {
 					e.printStackTrace();
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		
@@ -185,7 +211,10 @@ public class LlenarBBDD {
 		int lineas = 0;
 		for (int i = 0; i < estaciones.size(); i++) {
 			try {
-//				sql = "INSERT INTO estaciones(cod_estacion,nombre,direccion,coord_x,coord_y,latitud,longitud,foto,cod_muni) VALUES(?,?,?,?,?,?,?,?,?)";
+				Session sesion = sf.openSession();
+				Transaction tx = sesion.beginTransaction();
+				
+//				sql = "INSERT INTO estaciones(cod_estacion,nombre,direccion,coord_x,coord_y,latitud,longitud,cod_muni) VALUES(?,?,?,?,?,?,?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
 //				query.setInt(1, Integer.parseInt(estaciones.get(i).get(0)));
@@ -199,15 +228,46 @@ public class LlenarBBDD {
 //						query.setNull(j+1, Types.NULL);
 //					}
 //				}
-//				query.setString(8, estaciones.get(i).get(7));
-//				query.setInt(9, Integer.parseInt(estaciones.get(i).get(8)));
+//				query.setInt(8, Integer.parseInt(estaciones.get(i).get(7)));
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
-			} catch (SQLException e) {
+				
+				Estaciones estacion = new Estaciones();
+				estacion.setCodEstacion(Integer.parseInt(estaciones.get(i).get(0)));
+				estacion.setNombre(estaciones.get(i).get(1));
+				estacion.setDireccion(estaciones.get(i).get(2));
+				for (int j = 3; j < 7; j++) {
+					String dato = estaciones.get(i).get(j).replaceAll("\\,", "\\.");
+					if (dato.length() != 0) {
+						if (j == 3) {
+							estacion.setCoordX(Double.parseDouble(dato));
+						} else if (j == 4) {
+							estacion.setCoordY(Double.parseDouble(dato));
+						} else if (j == 5) {
+							estacion.setLatitud(Double.parseDouble(dato));
+						} else if (j == 6) {
+							estacion.setLongitud(Double.parseDouble(dato));
+						}
+					}
+				}
+				Municipio muni = new Municipio();
+					muni.setCodMuni(Integer.parseInt(estaciones.get(i).get(7)));
+				estacion.setMunicipio(muni);
+				
+				sesion.save(estacion); tx.commit(); lineas++;
+				
+				sesion.close();
+//				} catch (SQLException e) {
+//				if (e.getErrorCode() != 1062) {
+//					e.printStackTrace();
+//				}
+			} catch (ConstraintViolationException e) {
 				if (e.getErrorCode() != 1062) {
 					e.printStackTrace();
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			nomEstaciones.add(estaciones.get(i).get(1));
 		}
@@ -248,10 +308,37 @@ public class LlenarBBDD {
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
-			} catch (SQLException e) {
+				
+				EspaciosNaturales eNatural = new EspaciosNaturales();
+				eNatural.setCodEnatural(Integer.parseInt(espacios_naturales.get(i).get(0)));
+				eNatural.setNombre(espacios_naturales.get(i).get(1));
+				eNatural.setDescripcion(espacios_naturales.get(i).get(2));
+				eNatural.setTipo(espacios_naturales.get(i).get(3));
+				for (int j = 4; j < 6; j++) {
+					String dato = espacios_naturales.get(i).get(j).replaceAll("\\,", "\\.");
+					if (dato.length() != 0) {
+						if (j == 4) {
+							eNatural.setLatitud(Double.parseDouble(dato));
+						} else if (j == 5) {
+							eNatural.setLongitud(Double.parseDouble(dato));
+						}
+					}
+				}
+				eNatural.setFoto(espacios_naturales.get(i).get(6));
+
+				sesion.save(eNatural); tx.commit(); lineas++;
+				
+				sesion.close();
+//				} catch (SQLException e) {
+//				if (e.getErrorCode() != 1062) {
+//					e.printStackTrace();
+//				}
+			} catch (ConstraintViolationException e) {
 				if (e.getErrorCode() != 1062) {
 					e.printStackTrace();
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		
@@ -278,10 +365,34 @@ public class LlenarBBDD {
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
-			} catch (SQLException e) {
+				
+				int cod_muni = Integer.parseInt(muni_espacios.get(i).get(0)), cod_enatural = Integer.parseInt(muni_espacios.get(i).get(1));
+				boolean exists = sesion.createQuery("FROM muni_espacios WHERE cod_muni = "+cod_muni+" AND cod_enatual = "+cod_enatural).setMaxResults(1).uniqueResult() != null;
+//				if (!exists) {
+//					MuniEspacios muni_esp = new MuniEspacios();
+//					MuniEspaciosId muni_espID = new MuniEspaciosId(cod_muni, cod_enatural);
+//					muni_esp.setId(muni_espID);
+//					Municipio muni = new Municipio();
+//						muni.setCodMuni(cod_muni);
+//					muni_esp.setMunicipio(muni);
+//					EspaciosNaturales eNatural = new EspaciosNaturales();
+//						eNatural.setCodEnatural(cod_enatural);
+//					muni_esp.setEspaciosNaturales(eNatural);
+//					
+//					sesion.save(muni); tx.commit(); lineas++;
+//				}
+				System.out.println(exists);
+				sesion.close();
+//				} catch (SQLException e) {
+//				if (e.getErrorCode() != 1062) {
+//					e.printStackTrace();
+//				}
+			} catch (ConstraintViolationException e) {
 				if (e.getErrorCode() != 1062) {
 					e.printStackTrace();
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		
@@ -310,10 +421,30 @@ public class LlenarBBDD {
 //					
 //					lineas += query.executeUpdate();
 //					query.close();
-				} catch (SQLException e) {
+					
+					CalidadAire cAire = new CalidadAire();
+					CalidadAireId cAireID = new CalidadAireId();
+						cAireID.setFechaHora(Timestamp.valueOf(calidad_aire.get(i).get(0)));
+						cAireID.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(2)));
+					cAire.setId(cAireID);
+					cAire.setCalidad(calidad_aire.get(i).get(1));
+					Estaciones estacion = new Estaciones();
+						estacion.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(2)));
+					cAire.setEstaciones(estacion);
+					
+					sesion.save(cAire); tx.commit(); lineas++;
+					
+					sesion.close();
+//					} catch (SQLException e) {
+//					if (e.getErrorCode() != 1062) {
+//						e.printStackTrace();
+//					}
+				} catch (ConstraintViolationException e) {
 					if (e.getErrorCode() != 1062) {
 						e.printStackTrace();
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 			
