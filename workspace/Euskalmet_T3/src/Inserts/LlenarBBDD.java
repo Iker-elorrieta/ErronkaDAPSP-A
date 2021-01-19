@@ -44,13 +44,13 @@ public class LlenarBBDD {
 //		Connection conexion = conn.conectar();
 //		provincias(/*conexion*/);
 //		System.out.println("provincia -> COMPLETADO \n");
-//		municipios(/*conexion*/);
-//		System.out.println("municipio -> COMPLETADO \n");
+		ArrayList<Municipio> munis = municipios(/*conexion*/);
+		System.out.println("municipio -> COMPLETADO \n");
 //		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
 //		System.out.println("estaciones -> COMPLETADO \n");
 //		espacios_naturales(/*conexion*/);
 //		System.out.println("espacios_naturales -> COMPLETADO \n");
-		muni_espacios(/*conexion*/);
+		muni_espacios(/*conexion, */munis);
 		System.out.println("muni_espacios -> COMPLETADO \n");
 //		calidad_aire(/*conexion, */nomEstaciones);
 //		System.out.println("calidad_aire -> COMPLETADO \n");
@@ -150,7 +150,8 @@ public class LlenarBBDD {
 		System.out.println("provincias -> Lineas afectadas: " + lineas);
 	}
 	
-	private static void municipios(/*Connection conexion*/) {
+	private static ArrayList<Municipio> municipios(/*Connection conexion*/) {
+		ArrayList<Municipio> munis = new ArrayList<Municipio>();
 //		PreparedStatement query;
 //		String sql;
 		
@@ -185,6 +186,8 @@ public class LlenarBBDD {
 				sesion.save(muni); tx.commit(); lineas++;
 				
 				sesion.close();
+				
+				munis.add(muni);
 //				} catch (SQLException e) {
 //				if (e.getErrorCode() != 1062) {
 //					e.printStackTrace();
@@ -199,6 +202,8 @@ public class LlenarBBDD {
 		}
 		
 		System.out.println("municipio -> Lineas afectadas: " + lineas);
+		
+		return munis;
 	}
 	
 	private static ArrayList<String> estaciones(/*Connection conexion*/) {
@@ -345,7 +350,7 @@ public class LlenarBBDD {
 		System.out.println("espacios_naturales -> Lineas afectadas: " + lineas);
 	}
 	
-	private static void muni_espacios(/*Connection conexion*/) {
+	private static void muni_espacios(/*Connection conexion, */ArrayList<Municipio> munis) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -367,21 +372,26 @@ public class LlenarBBDD {
 //				query.close();
 				
 				int cod_muni = Integer.parseInt(muni_espacios.get(i).get(0)), cod_enatural = Integer.parseInt(muni_espacios.get(i).get(1));
-				boolean exists = sesion.createQuery("FROM muni_espacios WHERE cod_muni = "+cod_muni+" AND cod_enatual = "+cod_enatural).setMaxResults(1).uniqueResult() != null;
-//				if (!exists) {
-//					MuniEspacios muni_esp = new MuniEspacios();
-//					MuniEspaciosId muni_espID = new MuniEspaciosId(cod_muni, cod_enatural);
-//					muni_esp.setId(muni_espID);
-//					Municipio muni = new Municipio();
-//						muni.setCodMuni(cod_muni);
-//					muni_esp.setMunicipio(muni);
-//					EspaciosNaturales eNatural = new EspaciosNaturales();
-//						eNatural.setCodEnatural(cod_enatural);
-//					muni_esp.setEspaciosNaturales(eNatural);
-//					
-//					sesion.save(muni); tx.commit(); lineas++;
-//				}
-				System.out.println(exists);
+				MuniEspaciosId muni_espID = new MuniEspaciosId(cod_muni, cod_enatural);
+				boolean exists = sesion.createQuery("FROM MuniEspacios WHERE id = "+muni_espID.getClass()).setMaxResults(1).uniqueResult() != null;
+				if (!exists) {
+					MuniEspacios muni_esp = new MuniEspacios();
+					muni_esp.setId(muni_espID);
+					Municipio muni = null;
+					for (int j = 0; j < munis.size(); j++) {
+						if (munis.get(j).getCodMuni() == cod_muni) {
+							muni = munis.get(j);
+							break;
+						}
+					}
+					muni_esp.setMunicipio(muni);
+					EspaciosNaturales eNatural = new EspaciosNaturales();
+						eNatural.setCodEnatural(cod_enatural);
+					muni_esp.setEspaciosNaturales(eNatural);
+					
+					sesion.save(muni); tx.commit(); lineas++;
+				}
+				
 				sesion.close();
 //				} catch (SQLException e) {
 //				if (e.getErrorCode() != 1062) {
