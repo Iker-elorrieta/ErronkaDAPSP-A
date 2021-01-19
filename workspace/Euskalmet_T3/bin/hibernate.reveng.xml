@@ -3,113 +3,55 @@
 
 <hibernate-reverse-engineering>
 	<type-mapping>
-		<sql-type jdbc-type="TIMESTAMP" hibernate-type="timestamp"
-			length="19" not-null="true">
-		</sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
-		<sql-type jdbc-type="INTEGER" hibernate-type="int"
-			not-null="true">
-		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
-	<table-filter match-name="calidad_aire"
-		match-catalog="euskomet_db">
-	</table-filter>
-	<table-filter match-name="espacios_naturales"
-		match-catalog="euskomet_db">
-	</table-filter>
-	<table-filter match-name="estaciones" match-catalog="euskomet_db"></table-filter>
-	<table-filter match-name="fav_espacios"
-		match-catalog="euskomet_db">
-	</table-filter>
-	<table-filter match-name="fav_municipio"
-		match-catalog="euskomet_db">
-	</table-filter>
-	<table-filter match-name="hash" match-catalog="euskomet_db"></table-filter>
-	<table-filter match-name="muni_espacios"
-		match-catalog="euskomet_db">
-	</table-filter>
-	<table-filter match-name="municipio" match-catalog="euskomet_db"></table-filter>
-	<table-filter match-name="provincia" match-catalog="euskomet_db"></table-filter>
-	<table-filter match-name="usuario" match-catalog="euskomet_db"></table-filter>
 	<table catalog="euskomet_db" name="calidad_aire">
-		<column name="fecha_hora"></column>
-		<column name="cod_estacion"></column>
 		<column name="fecha_hora"></column>
 		<column name="cod_estacion"></column>
 		<column name="calidad"></column>
 	</table>
 	<table catalog="euskomet_db" name="espacios_naturales">
 		<column name="cod_enatural"></column>
-		<column name="descripcion"></column>
-		<column name="nombre"></column>
-		<column name="foto"></column>
-		<column name="latitud"></column>
 		<column name="longitud"></column>
 		<column name="tipo"></column>
+		<column name="foto"></column>
+		<column name="nombre"></column>
+		<column name="descripcion"></column>
+		<column name="latitud"></column>
 	</table>
 	<table catalog="euskomet_db" name="estaciones">
 		<column name="cod_estacion"></column>
-		<column name="coord_x"></column>
-		<column name="coord_y"></column>
-		<column name="latitud"></column>
-		<column name="cod_muni"></column>
-		<column name="nombre"></column>
-		<column name="foto"></column>
-		<column name="longitud"></column>
 		<column name="direccion"></column>
-	</table>
-	<table catalog="euskomet_db" name="fav_espacios">
-		<column name="cod_enatural"></column>
-		<column name="cod_usuario"></column>
-		<column name="cod_enatural"></column>
-		<column name="cod_usuario"></column>
-	</table>
-	<table catalog="euskomet_db" name="fav_municipio">
+		<column name="latitud"></column>
+		<column name="foto"></column>
+		<column name="coord_y"></column>
+		<column name="longitud"></column>
+		<column name="coord_x"></column>
+		<column name="nombre"></column>
 		<column name="cod_muni"></column>
-		<column name="cod_usuario"></column>
-		<column name="cod_muni"></column>
-		<column name="cod_usuario"></column>
 	</table>
 	<table catalog="euskomet_db" name="hash">
 		<column name="cod_hash"></column>
-		<column name="hash"></column>
 		<column name="nombre"></column>
+		<column name="hash"></column>
 		<column name="url"></column>
 	</table>
 	<table catalog="euskomet_db" name="muni_espacios">
 		<column name="cod_muni"></column>
 		<column name="cod_enatural"></column>
-		<column name="cod_muni"></column>
-		<column name="cod_enatural"></column>
 	</table>
 	<table catalog="euskomet_db" name="municipio">
 		<column name="cod_muni"></column>
+		<column name="cod_prov"></column>
 		<column name="nombre"></column>
 		<column name="descripcion"></column>
-		<column name="cod_prov"></column>
 	</table>
 	<table catalog="euskomet_db" name="provincia">
 		<column name="cod_prov"></column>
@@ -118,7 +60,7 @@
 	<table catalog="euskomet_db" name="usuario">
 		<column name="cod_usuario"></column>
 		<column name="nombre"></column>
-		<column name="p_clave"></column>
 		<column name="contraseña"></column>
+		<column name="p_clave"></column>
 	</table>
 </hibernate-reverse-engineering>

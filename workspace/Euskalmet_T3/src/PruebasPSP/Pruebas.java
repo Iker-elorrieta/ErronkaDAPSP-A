@@ -14,7 +14,7 @@ class Pruebas {
 
 	@Test
 	public void servidorPrueba() {
-		s.iniciar();
+		s.run();
 		boolean conexion=c.iniciar(); 
 		
 		assertTrue(conexion);

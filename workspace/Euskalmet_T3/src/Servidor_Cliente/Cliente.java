@@ -15,7 +15,7 @@ public class Cliente {
 	public boolean iniciar() {
 		VentanaCliente v = new VentanaCliente();
 		v.setVisible(true);
-	
+
 		Socket cliente = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;

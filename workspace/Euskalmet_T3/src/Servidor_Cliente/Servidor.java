@@ -12,17 +12,17 @@ import java.sql.Statement;
 
 import Inserts.Conexion_MySQL;
 
-public class Servidor {
+public class Servidor extends Thread {
 
 private final int PUERTO = 5000;
 	
-	public boolean iniciar() {
+	public void run() {
 		ServerSocket servidor = null;
 		Socket cliente = null;
 		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
 		//boolean continuar = true;
-	
+
 		try {
 			servidor = new ServerSocket(PUERTO);
 			System.out.println("Esperando conexiones del cliente...");
@@ -103,12 +103,11 @@ private final int PUERTO = 5000;
 			}
 			System.out.println("Fin servidor");
 		}
-		return true;
 	}
 	
 	public static void main(String[] args) {
 		Servidor s1 = new Servidor();
-		s1.iniciar();
+		s1.run();
 	}
 	
 }
