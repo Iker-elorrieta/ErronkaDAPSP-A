@@ -9,13 +9,11 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
-        <mapping resource="Municipio.hbm.xml"/>
-        <mapping resource="Usuario.hbm.xml"/>
-        <mapping resource="Estaciones.hbm.xml"/>
-        <mapping resource="CalidadAire.hbm.xml"/>
-        <mapping resource="MuniEspacios.hbm.xml"/>
-        <mapping resource="Hash.hbm.xml"/>
-        <mapping resource="EspaciosNaturales.hbm.xml"/>
-        <mapping resource="Provincia.hbm.xml"/>
+        <mapping resource="Hibernate/EspaciosNaturales.hbm.xml"/>
+        <mapping resource="Hibernate/Municipio.hbm.xml"/>
+        <mapping resource="Hibernate/CalidadAire.hbm.xml"/>
+        <mapping resource="Hibernate/MuniEspacios.hbm.xml"/>
+        <mapping resource="Hibernate/Estaciones.hbm.xml"/>
+        <mapping resource="Hibernate/Provincia.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -11,7 +11,21 @@
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
+	<table-filter match-name="usuario" match-catalog="euskomet_db"
+		exclude="true">
+	</table-filter>
+	<table-filter match-name="fav_municipio" match-catalog="euskomet_db"
+		exclude="true">
+	</table-filter>
+	<table-filter match-name="fav_espacios" match-catalog="euskomet_db"
+		exclude="true">
+	</table-filter>
+	<table-filter match-name="hash" match-catalog="euskomet_db"
+		exclude="true">
+	</table-filter>
 	<table catalog="euskomet_db" name="calidad_aire">
 		<column name="fecha_hora"></column>
 		<column name="cod_estacion"></column>
@@ -19,38 +33,46 @@
 	</table>
 	<table catalog="euskomet_db" name="espacios_naturales">
 		<column name="cod_enatural"></column>
-		<column name="longitud"></column>
-		<column name="tipo"></column>
-		<column name="foto"></column>
-		<column name="nombre"></column>
 		<column name="descripcion"></column>
+		<column name="nombre"></column>
+		<column name="longitud"></column>
+		<column name="foto"></column>
 		<column name="latitud"></column>
+		<column name="tipo"></column>
 	</table>
 	<table catalog="euskomet_db" name="estaciones">
 		<column name="cod_estacion"></column>
 		<column name="direccion"></column>
+		<column name="cod_muni"></column>
+		<column name="nombre"></column>
 		<column name="latitud"></column>
 		<column name="foto"></column>
 		<column name="coord_y"></column>
 		<column name="longitud"></column>
 		<column name="coord_x"></column>
-		<column name="nombre"></column>
+	</table>
+	<table catalog="euskomet_db" name="fav_espacios">
+		<column name="cod_usuario"></column>
+		<column name="cod_enatural"></column>
+	</table>
+	<table catalog="euskomet_db" name="fav_municipio">
+		<column name="cod_usuario"></column>
 		<column name="cod_muni"></column>
 	</table>
 	<table catalog="euskomet_db" name="hash">
 		<column name="cod_hash"></column>
-		<column name="nombre"></column>
 		<column name="hash"></column>
+		<column name="nombre"></column>
 		<column name="url"></column>
 	</table>
 	<table catalog="euskomet_db" name="muni_espacios">
-		<column name="cod_muni"></column>
 		<column name="cod_enatural"></column>
+		<column name="cod_muni"></column>
 	</table>
 	<table catalog="euskomet_db" name="municipio">
 		<column name="cod_muni"></column>
-		<column name="cod_prov"></column>
 		<column name="nombre"></column>
+		<column name="cod_prov"></column>
 		<column name="descripcion"></column>
 	</table>
 	<table catalog="euskomet_db" name="provincia">
