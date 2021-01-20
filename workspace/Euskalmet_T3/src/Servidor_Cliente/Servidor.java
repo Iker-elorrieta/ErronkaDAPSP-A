@@ -12,102 +12,43 @@ import java.sql.Statement;
 
 import Inserts.Conexion_MySQL;
 
-public class Servidor extends Thread {
+public class Servidor {
 
-private final int PUERTO = 5000;
-	
-	public void run() {
+	private final static int PUERTO = 5000;
+
+	public static void main(String args[]) throws IOException  {
 		ServerSocket servidor = null;
 		Socket cliente = null;
-		ObjectInputStream entrada = null;
-		ObjectOutputStream salida = null;
 		//boolean continuar = true;
 
 		try {
 			servidor = new ServerSocket(PUERTO);
 			System.out.println("Esperando conexiones del cliente...");
-			cliente = servidor.accept();
-			System.out.println("Cliente conectado");
-			salida = new ObjectOutputStream (cliente.getOutputStream());
-			entrada = new ObjectInputStream(cliente.getInputStream());
 
 			//while (continuar) {
-				String sql = entrada.readObject().toString();
-				Connection conn = null;
-				Statement stmt = null;
-				try {
+			cliente = new Socket();
+			cliente = servidor.accept();
+			System.out.println("Cliente conectado");
 
-					// Konexioa Ireki
-					System.out.println("Datubasera konektatzen...");
-					Conexion_MySQL MDK = Conexion_MySQL.getInstance();
-					conn = MDK.conectar();
-
-					// query edo SQL sententzia egikaritu
-					System.out.println(" Statementa.sortzen..");
-					stmt = conn.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
-
-					// Erantzunetik informazioa erauzi
-					while (rs.next()) {
-						// Bueltatu zutabeen izenen arabera
-						String nombre = rs.getString("nombre");
-						salida.writeObject(nombre);
-
-						// Emaitzak pantailaratu
-						System.out.println("Nombre: " + nombre);
-					}
-
-					// Garbiketa
-					rs.close();
-					stmt.close();
-					MDK.desconectar();
-				} catch (SQLException se) { 
-					// JDBC erroreak
-					se.printStackTrace();
-				} catch (Exception e) {
-					// Class.forName errorea
-					e.printStackTrace();
-				} finally {
-					// itxi erabilitako errekurtsoak
-					try {
-						if (stmt != null)
-							stmt.close();
-					} catch (SQLException se2) {
-					}
-					try {
-						if (conn != null)
-							conn.close();
-					} catch (SQLException se) {
-						se.printStackTrace();
-					}
-				}
-			//}
-			
-			
+			HiloServidor hilo = new HiloServidor(cliente);
+			hilo.start();
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
-		} finally {
-			try {
-				if (servidor != null)
-					servidor.close();
-				if (cliente != null)
-					cliente.close();
-				if (entrada != null)
-					entrada.close();
-				if (salida != null)
-					salida.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Fin servidor");
+		}finally {
+
+			if (servidor != null)
+				servidor.close();
+			if (cliente != null)
+				cliente.close();
 		}
+		System.out.println("El servidor se ha terminado");
 	}
-	
-	public static void main(String[] args) {
-		Servidor s1 = new Servidor();
-		s1.run();
-	}
-	
+
+	//	public static void main(String[] args) {
+	//		Servidor s1 = new Servidor();
+	//		s1.run();
+	//	}
+
 }
