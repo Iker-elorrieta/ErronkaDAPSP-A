@@ -84,10 +84,14 @@ public class MuniEspacios {
 								JsonObject objeto2 = iter2.next().getAsJsonObject();
 								
 								if (ayMuni[i].equalsIgnoreCase(objeto2.get("municipality").getAsString())) {
+									String cod_muniStr = objeto2.get("municipalitycode").getAsString();
+									
 									Element entrada = doc.createElement("entrada"); muni_espacios.appendChild(entrada); entrada.setAttribute("id", ""+knt+"");
 									
+									Element cod_muni_espacios = doc.createElement("cod_muni_espacios"); entrada.appendChild(cod_muni_espacios);
+									cod_muni_espacios.appendChild(doc.createTextNode(cod_muniStr+cod_enaturalStr));
+									
 									Element cod_muni = doc.createElement("cod_muni"); entrada.appendChild(cod_muni);
-									String cod_muniStr = objeto2.get("municipalitycode").getAsString();
 									cod_muni.appendChild(doc.createTextNode(cod_muniStr));
 									
 									Element cod_enatural = doc.createElement("cod_enatural"); entrada.appendChild(cod_enatural);
@@ -106,10 +110,14 @@ public class MuniEspacios {
 						JsonObject objeto2 = iter2.next().getAsJsonObject();
 						
 						if (muni.equalsIgnoreCase(objeto2.get("municipality").getAsString())) {
+							String cod_muniStr = objeto2.get("municipalitycode").getAsString();
+							
 							Element entrada = doc.createElement("entrada"); muni_espacios.appendChild(entrada); entrada.setAttribute("id", ""+knt+"");
 							
+							Element cod_muni_espacios = doc.createElement("cod_muni_espacios"); entrada.appendChild(cod_muni_espacios);
+							cod_muni_espacios.appendChild(doc.createTextNode(cod_muniStr+cod_enaturalStr));
+							
 							Element cod_muni = doc.createElement("cod_muni"); entrada.appendChild(cod_muni);
-							String cod_muniStr = objeto2.get("municipalitycode").getAsString();
 							cod_muni.appendChild(doc.createTextNode(cod_muniStr));
 							
 							Element cod_enatural = doc.createElement("cod_enatural"); entrada.appendChild(cod_enatural);

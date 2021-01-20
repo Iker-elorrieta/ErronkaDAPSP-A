@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 19 ene. 2021 14:14:10 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20 ene. 2021 10:06:17 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="euskomet_db" dynamic-insert="false" dynamic-update="false" mutable="true" name="Hibernate.MuniEspacios" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="muni_espacios">
-        <composite-id class="Hibernate.MuniEspaciosId" mapped="false" name="id" unsaved-value="undefined">
-            <key-property name="codMuni" type="int">
-                <column name="cod_muni"/>
-            </key-property>
-            <key-property name="codEnatural" type="int">
-                <column name="cod_enatural"/>
-            </key-property>
-        </composite-id>
-        <many-to-one class="Hibernate.EspaciosNaturales" embed-xml="true" fetch="select" insert="false" name="espaciosNaturales" not-found="exception" optimistic-lock="true" unique="false" update="false">
+        <id name="codMuniEspacios" type="int">
+            <column name="cod_muni_espacios"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Hibernate.EspaciosNaturales" embed-xml="true" fetch="select" insert="true" name="espaciosNaturales" not-found="exception" optimistic-lock="true" unique="false" update="true">
             <column name="cod_enatural" not-null="true"/>
         </many-to-one>
-        <many-to-one class="Hibernate.Municipio" embed-xml="true" fetch="select" insert="false" name="municipio" not-found="exception" optimistic-lock="true" unique="false" update="false">
+        <many-to-one class="Hibernate.Municipio" embed-xml="true" fetch="select" insert="true" name="municipio" not-found="exception" optimistic-lock="true" unique="false" update="true">
             <column name="cod_muni" not-null="true"/>
         </many-to-one>
     </class>

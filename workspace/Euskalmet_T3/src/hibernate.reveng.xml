@@ -11,17 +11,28 @@
 		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	</type-mapping>
 
-
-	<table-filter match-name="usuario" match-catalog="euskomet_db"
+	<table-filter match-name="calidad_aire"
+		match-catalog="euskomet_db">
+	</table-filter>
+	<table-filter match-name="espacios_naturales"
+		match-catalog="euskomet_db">
+	</table-filter>
+	<table-filter match-name="estaciones" match-catalog="euskomet_db"></table-filter>
+	<table-filter match-name="fav_espacios" match-catalog="euskomet_db"
 		exclude="true">
 	</table-filter>
 	<table-filter match-name="fav_municipio" match-catalog="euskomet_db"
 		exclude="true">
 	</table-filter>
-	<table-filter match-name="fav_espacios" match-catalog="euskomet_db"
+	<table-filter match-name="hash" match-catalog="euskomet_db"
 		exclude="true">
 	</table-filter>
-	<table-filter match-name="hash" match-catalog="euskomet_db"
+	<table-filter match-name="muni_espacios"
+		match-catalog="euskomet_db">
+	</table-filter>
+	<table-filter match-name="municipio" match-catalog="euskomet_db"></table-filter>
+	<table-filter match-name="provincia" match-catalog="euskomet_db"></table-filter>
+	<table-filter match-name="usuario" match-catalog="euskomet_db"
 		exclude="true">
 	</table-filter>
 	<table catalog="euskomet_db" name="calidad_aire">
@@ -31,33 +42,36 @@
 	</table>
 	<table catalog="euskomet_db" name="espacios_naturales">
 		<column name="cod_enatural"></column>
-		<column name="tipo"></column>
 		<column name="latitud"></column>
+		<column name="longitud"></column>
+		<column name="foto"></column>
+		<column name="tipo"></column>
 		<column name="nombre"></column>
 		<column name="descripcion"></column>
-		<column name="foto"></column>
-		<column name="longitud"></column>
 	</table>
 	<table catalog="euskomet_db" name="estaciones">
 		<column name="cod_estacion"></column>
-		<column name="coord_y"></column>
-		<column name="longitud"></column>
-		<column name="cod_muni"></column>
-		<column name="latitud"></column>
-		<column name="coord_x"></column>
 		<column name="nombre"></column>
+		<column name="coord_x"></column>
+		<column name="latitud"></column>
+		<column name="cod_muni"></column>
+		<column name="longitud"></column>
+		<column name="coord_y"></column>
 		<column name="direccion"></column>
 	</table>
 	<table catalog="euskomet_db" name="muni_espacios">
-		<column name="cod_muni"></column>
+		<column name="cod_muni_espacios"></column>
 		<column name="cod_enatural"></column>
+		<column name="cod_muni"></column>
 	</table>
 	<table catalog="euskomet_db" name="municipio">
 		<column name="cod_muni"></column>
-		<column name="foto"></column>
-		<column name="descripcion"></column>
-		<column name="cod_prov"></column>
 		<column name="nombre"></column>
+		<column name="cod_prov"></column>
+		<column name="descripcion"></column>
+		<column name="longitud"></column>
+		<column name="latitud"></column>
+		<column name="foto"></column>
 	</table>
 	<table catalog="euskomet_db" name="provincia">
 		<column name="cod_prov"></column>

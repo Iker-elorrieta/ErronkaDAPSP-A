@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,34 +29,38 @@ import Hibernate.CalidadAireId;
 import Hibernate.EspaciosNaturales;
 import Hibernate.Estaciones;
 import Hibernate.MuniEspacios;
-import Hibernate.MuniEspaciosId;
 import Hibernate.Municipio;
 import Hibernate.Provincia;
 
 public class LlenarBBDD {
 //	private static Conexion_MySQL conn = Conexion_MySQL.getInstance();
-	private static SessionFactory sf = HibernateUtil.getSessionFactory();
+	private static SessionFactory sf;
+	private static Logger log = Logger.getLogger("org.hibernate");
 	
 	public static void main(String[] args) throws SQLException, IOException {
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
 		principal();
 	}
 	
 	public static boolean principal() throws IOException, SQLException {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
-//		provincias(/*conexion*/);
-//		System.out.println("provincia -> COMPLETADO \n");
-		ArrayList<Municipio> munis = municipios(/*conexion*/);
+		
+		provincias(/*conexion*/);
+		System.out.println("provincia -> COMPLETADO \n");
+		municipios(/*conexion*/);
 		System.out.println("municipio -> COMPLETADO \n");
-//		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
-//		System.out.println("estaciones -> COMPLETADO \n");
-//		espacios_naturales(/*conexion*/);
-//		System.out.println("espacios_naturales -> COMPLETADO \n");
-		muni_espacios(/*conexion, */munis);
+		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
+		System.out.println("estaciones -> COMPLETADO \n");
+		espacios_naturales(/*conexion*/);
+		System.out.println("espacios_naturales -> COMPLETADO \n");
+		muni_espacios(/*conexion, */);
 		System.out.println("muni_espacios -> COMPLETADO \n");
-//		calidad_aire(/*conexion, */nomEstaciones);
-//		System.out.println("calidad_aire -> COMPLETADO \n");
+		calidad_aire(/*conexion, */nomEstaciones);
+		System.out.println("calidad_aire -> COMPLETADO \n");
 		System.out.println("-> FINALIZADO <-");
+		
 //		conexion.close(); conn.desconectar();
 		sf.close();
 		terminado = true;
@@ -150,8 +156,7 @@ public class LlenarBBDD {
 		System.out.println("provincias -> Lineas afectadas: " + lineas);
 	}
 	
-	private static ArrayList<Municipio> municipios(/*Connection conexion*/) {
-		ArrayList<Municipio> munis = new ArrayList<Municipio>();
+	private static void municipios(/*Connection conexion*/) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -163,7 +168,7 @@ public class LlenarBBDD {
 				Session sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
-//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,foto) VALUES(?,?,?,?)";
+//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,foto,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
 //				query.setInt(1, Integer.parseInt(municipios.get(i).get(0)));
@@ -171,23 +176,38 @@ public class LlenarBBDD {
 //				query.setString(3, municipios.get(i).get(2));
 //				query.setInt(4, Integer.parseInt(municipios.get(i).get(3)));
 //				query.setString(5, municipios.get(i).get(4));
-//				
+//				for (int j = 5; j < 7; j++) {
+//					String dato = municipios.get(i).get(j).replaceAll("\\,", "\\.");
+//					if (dato.length() != 0) {
+//						query.setDouble(j+1, Double.parseDouble(dato));
+//					} else {
+//						query.setNull(j+1, Types.NULL);
+//					}
+//				}
+				
 //				lineas += query.executeUpdate();
 //				query.close();
-				
 				Municipio muni = new Municipio();
 				muni.setCodMuni(Integer.parseInt(municipios.get(i).get(0)));
 				muni.setNombre(municipios.get(i).get(1));
 				muni.setDescripcion(municipios.get(i).get(2));
-				Provincia prov = new Provincia(Integer.parseInt(municipios.get(i).get(3)));
+				Provincia prov = sesion.get(Provincia.class, Integer.parseInt(municipios.get(i).get(3)));
 				muni.setProvincia(prov);
 				muni.setFoto(municipios.get(i).get(4));
+				for (int j = 5; j < 7; j++) {
+					String dato = municipios.get(i).get(j).replaceAll("\\,", "\\.");
+					if (dato.length() != 0) {
+						if (j == 5) {
+							muni.setLatitud(Double.parseDouble(dato));
+						} else if (j == 6) {
+							muni.setLongitud(Double.parseDouble(dato));
+						}
+					}
+				}
 				
 				sesion.save(muni); tx.commit(); lineas++;
 				
 				sesion.close();
-				
-				munis.add(muni);
 //				} catch (SQLException e) {
 //				if (e.getErrorCode() != 1062) {
 //					e.printStackTrace();
@@ -202,8 +222,6 @@ public class LlenarBBDD {
 		}
 		
 		System.out.println("municipio -> Lineas afectadas: " + lineas);
-		
-		return munis;
 	}
 	
 	private static ArrayList<String> estaciones(/*Connection conexion*/) {
@@ -256,8 +274,7 @@ public class LlenarBBDD {
 						}
 					}
 				}
-				Municipio muni = new Municipio();
-					muni.setCodMuni(Integer.parseInt(estaciones.get(i).get(7)));
+				Municipio muni = sesion.get(Municipio.class, Integer.parseInt(estaciones.get(i).get(7)));
 				estacion.setMunicipio(muni);
 				
 				sesion.save(estacion); tx.commit(); lineas++;
@@ -350,7 +367,7 @@ public class LlenarBBDD {
 		System.out.println("espacios_naturales -> Lineas afectadas: " + lineas);
 	}
 	
-	private static void muni_espacios(/*Connection conexion, */ArrayList<Municipio> munis) {
+	private static void muni_espacios(/*Connection conexion, */) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -362,35 +379,24 @@ public class LlenarBBDD {
 				Session sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
-//				sql = "INSERT INTO muni_espacios(cod_muni,cod_enatural) VALUES(?,?)";
+//				sql = "INSERT INTO muni_espacios(cod_muni,cod_enatural,cod_muni_espacios) VALUES(?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
-//				query.setInt(1, Integer.parseInt(muni_espacios.get(i).get(0)));
-//				query.setInt(2, Integer.parseInt(muni_espacios.get(i).get(1)));
+//				query.setInt(1, Integer.parseInt(muni_espacios.get(i).get(1)));
+//				query.setInt(2, Integer.parseInt(muni_espacios.get(i).get(2)));
+//				query.setInt(3, Integer.parseInt(muni_espacios.get(i).get(0)));
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
 				
-				int cod_muni = Integer.parseInt(muni_espacios.get(i).get(0)), cod_enatural = Integer.parseInt(muni_espacios.get(i).get(1));
-				MuniEspaciosId muni_espID = new MuniEspaciosId(cod_muni, cod_enatural);
-				boolean exists = sesion.createQuery("FROM MuniEspacios WHERE id = "+muni_espID.getClass()).setMaxResults(1).uniqueResult() != null;
-				if (!exists) {
-					MuniEspacios muni_esp = new MuniEspacios();
-					muni_esp.setId(muni_espID);
-					Municipio muni = null;
-					for (int j = 0; j < munis.size(); j++) {
-						if (munis.get(j).getCodMuni() == cod_muni) {
-							muni = munis.get(j);
-							break;
-						}
-					}
-					muni_esp.setMunicipio(muni);
-					EspaciosNaturales eNatural = new EspaciosNaturales();
-						eNatural.setCodEnatural(cod_enatural);
-					muni_esp.setEspaciosNaturales(eNatural);
-					
-					sesion.save(muni); tx.commit(); lineas++;
-				}
+				MuniEspacios muni_esp = new MuniEspacios();
+				muni_esp.setCodMuniEspacios(Integer.parseInt(muni_espacios.get(i).get(0)));
+				Municipio muni = sesion.get(Municipio.class, Integer.parseInt(muni_espacios.get(i).get(1)));
+				muni_esp.setMunicipio(muni);
+				EspaciosNaturales eNatural = sesion.get(EspaciosNaturales.class, Integer.parseInt(muni_espacios.get(i).get(2)));
+				muni_esp.setEspaciosNaturales(eNatural);
+				
+				sesion.save(muni_esp); tx.commit(); lineas++;
 				
 				sesion.close();
 //				} catch (SQLException e) {
@@ -438,8 +444,7 @@ public class LlenarBBDD {
 						cAireID.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(2)));
 					cAire.setId(cAireID);
 					cAire.setCalidad(calidad_aire.get(i).get(1));
-					Estaciones estacion = new Estaciones();
-						estacion.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(2)));
+					Estaciones estacion = sesion.get(Estaciones.class, Integer.parseInt(calidad_aire.get(i).get(2)));
 					cAire.setEstaciones(estacion);
 					
 					sesion.save(cAire); tx.commit(); lineas++;

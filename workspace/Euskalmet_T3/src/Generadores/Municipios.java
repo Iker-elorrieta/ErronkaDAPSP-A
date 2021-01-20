@@ -145,6 +145,14 @@ public class Municipios {
 				
 				Element foto = doc.createElement("foto"); municipio.appendChild(foto);
 				
+				Element latitud = doc.createElement("latitud"); municipio.appendChild(latitud);
+				String latitudStr = entrada.get("latwgs84").getAsString();
+				latitud.appendChild(doc.createTextNode(latitudStr));
+				
+				Element longitud = doc.createElement("longitud"); municipio.appendChild(longitud);
+				String longitudStr = entrada.get("lonwgs84").getAsString();
+				longitud.appendChild(doc.createTextNode(longitudStr));
+				
 				knt++;
 			}
 			
