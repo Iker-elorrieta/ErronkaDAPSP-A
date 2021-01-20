@@ -1,4 +1,4 @@
-package Inserts;
+package Hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
