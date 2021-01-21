@@ -34,7 +34,7 @@ public class Util {
 			for (int i = 0; i < ay.size(); i++) {
 				Session session = sf.openSession();
 				EspaciosNaturales espN = (EspaciosNaturales) ay.get(i);
-				
+				List<EspaciosNaturales> lEspN = session.createQuery("SELECT e FROM EspaciosNaturales e INNER JOIN ");
 				if (espN.getCodEnatural() == )
 				ayStr.add(ay.get(i));
 			}
