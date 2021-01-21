@@ -7,7 +7,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bezero frame = new Bezero();
+					AppCliente frame = new AppCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

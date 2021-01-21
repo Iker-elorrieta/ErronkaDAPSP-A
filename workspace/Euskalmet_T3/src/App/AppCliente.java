@@ -23,9 +23,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
-public class Bezero extends JFrame implements ActionListener, ListSelectionListener {
-	private static SessionFactory sf;
-	private static Logger log = Logger.getLogger("org.hibernate");
+public class AppCliente extends JFrame implements ActionListener, ListSelectionListener {
+	private SessionFactory sf;
+	private Logger log;
+	
+	private Contenedor arrays;
 	
 	private JPanel JPnl_Menu;
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnSalir;
@@ -36,13 +38,15 @@ public class Bezero extends JFrame implements ActionListener, ListSelectionListe
 	private JList<String> P2_listLista;
 	private JButton P2_btnAtras, P2_btnSalir;
 	
-	public Bezero() {
-		log.setLevel(Level.OFF);
-		sf = HibernateUtil.getSessionFactory();
+	public AppCliente() {
+		arrays = new Contenedor();
+		sf = arrays.getSf();
+		log = arrays.getLog();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
 		getContentPane().setLayout(null);
+		
 		frame();
 	}
 	

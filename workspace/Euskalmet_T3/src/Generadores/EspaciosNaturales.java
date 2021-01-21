@@ -105,7 +105,10 @@ public class EspaciosNaturales {
         texto = texto.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("<strong>", "").replaceAll("</strong>", "");
         texto = texto.replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("<ul>", "\n").replaceAll("</ul>", "");
         texto = texto.replaceAll("<li>", "\u2022\t").replaceAll("</li>", "\n").replaceAll("</a>", "");
-        texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n").replaceAll("&ntilde ", "ñ");
+        texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n");
+        texto = texto.replaceAll("&aacute ", "á").replaceAll("&Aacute ", "Á").replaceAll("&eacute ", "é").replaceAll("&Eacute ", "É");
+        texto = texto.replaceAll("&iacute ", "í").replaceAll("&Iacute ", "Í").replaceAll("&oacute ", "ó").replaceAll("&Oacute ", "Ó");
+        texto = texto.replaceAll("&uacute ", "ú").replaceAll("&Uacute ", "Ú").replaceAll("&ntilde ", "ñ");
         texto = Pattern.compile("<a (.*?)>", Pattern.DOTALL).matcher(texto).replaceAll("");
         
         FileWriter fw = new FileWriter("src/ArchivosJSON/"+nomArchivo+".json");

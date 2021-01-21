@@ -10,40 +10,37 @@ import org.hibernate.SessionFactory;
 
 public class Util {
 	
-	@SuppressWarnings("unchecked")
-	public static String[] cmbxProvincias(SessionFactory sf) {
+	public static String[] cmbxProvincias(ArrayList<Provincia> ay) {
 		ArrayList<String> ayProv = new ArrayList<String>();
 		
-		Session session = sf.openSession();
-		List<Provincia> lProv = session.createQuery("FROM Provincia").list();
-		for (int i = 0; i < lProv.size(); i++) {
-			Provincia prov = lProv.get(i);
+		for (int i = 0; i < ay.size(); i++) {
+			Provincia prov = ay.get(i);
 			ayProv.add(prov.getNombre());
 		}
 		
 		return (String[]) ayProv.toArray();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static String[] lista(SessionFactory sf, String tipoLista, String prov) {
-		ArrayList<String> ay = new ArrayList<String>();
+	public static String[] lista(SessionFactory sf, ArrayList<Object> ay, String tipoLista, String prov) {
+		ArrayList<String> ayStr = new ArrayList<String>();
 		
-		Session session = sf.openSession();
 		if (tipoLista.equals("municipios")) {
-			List<Municipio> lMuni = session.createQuery("FROM Municipio WHERE provincia.getNombre()='"+prov+"'").list();
-			for (int i = 0; i < lMuni.size(); i++) {
-				Municipio muni = lMuni.get(i);
-				ay.add(muni.getNombre());
+			for (int i = 0; i < ay.size(); i++) {
+				Municipio muni = (Municipio) ay.get(i);
+				if (muni.getProvincia().getNombre().equals(prov))
+					ayStr.add(muni.getNombre());
 			}
 		} else if (tipoLista.equals("espaciosN")) {
-			List<String> lMuni = session.createQuery("SELECT e.nombre FROM EspaciosNaturales AS e, Municipio AS m, MuniEspacios AS me "
-					+ "WHERE e.codEnatural=me.espacioNaturales.getCodEnatural() AND m.codMuni=me.municipio.getCodMuni() AND m.provincia.getNombre()='"+prov+"'").list();
-			for (int i = 0; i < lMuni.size(); i++) {
-				ay.add(lMuni.get(i));
+			for (int i = 0; i < ay.size(); i++) {
+				Session session = sf.openSession();
+				EspaciosNaturales espN = (EspaciosNaturales) ay.get(i);
+				
+				if (espN.getCodEnatural() == )
+				ayStr.add(ay.get(i));
 			}
 		}
 		
-		return (String[]) ay.toArray();
+		return (String[]) ayStr.toArray();
 	}
 	
 }
