@@ -8,6 +8,7 @@ import java.net.Socket;
 public class Cliente {
 
 	private final int PUERTO = 5000;
+	//private final String IP = "localhost";
 	private final String IP = "192.168.106.28";
 	//private final String IP = "192.168.1.136";
 	private String resultado ="";
@@ -15,22 +16,20 @@ public class Cliente {
 	public boolean iniciar() {
 		VentanaCliente v = new VentanaCliente();
 		v.setVisible(true);
-
 		Socket cliente = null;
-		ObjectInputStream entrada = null;
 		ObjectOutputStream salida = null;
+		ObjectInputStream entrada = null;
 		try {
 			cliente = new Socket(IP, PUERTO);
 			System.out.println("Conexion realizada con servidor");
-			entrada = new ObjectInputStream(cliente.getInputStream());
 			salida = new ObjectOutputStream (cliente.getOutputStream());
+			entrada = new ObjectInputStream(cliente.getInputStream());
 			
-			salida.writeObject("FROM Municipio m WHERE cod_muni = :cod_muni "); //SELECT nombre FROM municipio WHERE cod_muni = 1
-			
+			salida.writeObject("FROM Municipio as m WHERE m.codMuni = :cod "); //SELECT nombre FROM municipio WHERE cod_muni = 1
 			resultado = entrada.readObject().toString();
 			
-			v.getLblDato().setText(resultado);
-			
+			//v.getLblDato().setText(resultado);
+			v.lblDato.setText(resultado);
 			
 		} catch (IOException e) { 
 			System.out.println("Error: " + e.getMessage());

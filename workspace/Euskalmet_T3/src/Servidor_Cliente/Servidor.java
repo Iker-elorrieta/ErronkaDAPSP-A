@@ -1,22 +1,24 @@
 package Servidor_Cliente;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import Inserts.Conexion_MySQL;
-
-public class Servidor {
+public class Servidor extends Thread{
 
 	private final static int PUERTO = 5000;
 
-	public static void main(String args[]) throws IOException  {
+	public Servidor() {}
+
+	public Servidor(int puerto) {
+		try {
+			ServerSocket s = new ServerSocket(puerto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
 		ServerSocket servidor = null;
 		Socket cliente = null;
 		//boolean continuar = true;
@@ -25,13 +27,14 @@ public class Servidor {
 			servidor = new ServerSocket(PUERTO);
 			System.out.println("Esperando conexiones del cliente...");
 
-			//while (continuar) {
+			//while (true) {
 			cliente = new Socket();
 			cliente = servidor.accept();
 			System.out.println("Cliente conectado");
 
 			HiloServidor hilo = new HiloServidor(cliente);
 			hilo.start();
+			//}
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		} catch (Exception e) {
@@ -39,16 +42,20 @@ public class Servidor {
 		}finally {
 
 			if (servidor != null)
-				servidor.close();
-			if (cliente != null)
-				cliente.close();
+				try {
+					servidor.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			//			if (cliente != null)
+			//				cliente.close();
 		}
 		System.out.println("El servidor se ha terminado");
 	}
 
-	//	public static void main(String[] args) {
-	//		Servidor s1 = new Servidor();
-	//		s1.run();
-	//	}
+	public static void main(String[] args) {
+		Servidor s1 = new Servidor();
+		s1.run();
+	}
 
 }

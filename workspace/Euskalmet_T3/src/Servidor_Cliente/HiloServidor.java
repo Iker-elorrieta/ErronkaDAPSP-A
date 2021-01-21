@@ -2,37 +2,33 @@ package Servidor_Cliente;
 
 import java.io.*;
 import java.net.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.JLabel;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
-import Inserts.Conexion_MySQL;
+import Hibernate.Municipio;
 import Inserts.HibernateUtil;
 
 public class HiloServidor extends Thread{
 
-	BufferedReader fentrada;
-	PrintWriter fsalida;
+	ObjectInputStream fentrada;
+	ObjectOutputStream fsalida;
 	Socket socket = null;
-	JLabel lbl = VentanaCliente.lblDato;
 
-	public HiloServidor(Socket s) throws IOException{
+	public HiloServidor(Socket s){
 		socket=s;
-		fsalida = new PrintWriter(socket.getOutputStream(), true);
-		fentrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		try {
+			fsalida = new ObjectOutputStream(socket.getOutputStream());
+			fentrada = new ObjectInputStream((socket.getInputStream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void run() {
-
+		System.out.println("Empieza el hilo servidor");
 		SessionFactory sesioa = HibernateUtil.getSessionFactory();
 		Session session = sesioa.openSession();
 		Transaction tx = session.beginTransaction();
@@ -40,13 +36,21 @@ public class HiloServidor extends Thread{
 		String hql=null;
 
 		try {
-			hql = fentrada.readLine().toString();
+			hql = fentrada.readObject().toString();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		Query q = session.createQuery(hql);
-		q.setParameter("cod_muni", 1);
-		String nombre = (String) q.uniqueResult();
+		q.setParameter("cod", 1);
+		try {
+			Hibernate.Municipio muni = (Municipio) q.uniqueResult();
+			fsalida.writeObject(muni.getNombre());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		try {
 			tx.commit();	
 		}catch(ConstraintViolationException e) {
@@ -55,9 +59,8 @@ public class HiloServidor extends Thread{
 			System.out.printf("ERROR SQL: %s%n",e.getSQLException().getMessage());
 		}
 		session.close();
-		lbl.setText(nombre);
-		
-		
+
+
 		//		Connection conn = null;
 		//		Statement stmt = null;
 		//		try {

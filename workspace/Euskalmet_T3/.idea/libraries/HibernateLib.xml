@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="HibernateLib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/jboss-logging-3.3.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/antlr-2.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/classmate-1.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/jaxb-api-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/jaxb-impl-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/hibernate-core-5.1.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/slf4j-simple-1.7.25-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/hibernate-jpa-2.1-api-1.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/activation-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/hibernate-commons-annotations-5.0.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/istack-commons-runtime-4.0.0-M3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/HibernateLib/javassist-3.20.0-GA.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
