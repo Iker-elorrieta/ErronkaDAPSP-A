@@ -1,32 +1,22 @@
 package App;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.hibernate.SessionFactory;
-
-import Hibernate.HibernateUtil;
-import App.Util;
-
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
-
+@SuppressWarnings("serial")
 public class AppCliente extends JFrame implements ActionListener, ListSelectionListener {
-	private SessionFactory sf;
-	private Logger log;
-	
 	private Contenedor arrays;
 	
 	private JPanel JPnl_Menu;
@@ -40,8 +30,6 @@ public class AppCliente extends JFrame implements ActionListener, ListSelectionL
 	
 	public AppCliente() {
 		arrays = new Contenedor();
-		sf = arrays.getSf();
-		log = arrays.getLog();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
@@ -51,8 +39,8 @@ public class AppCliente extends JFrame implements ActionListener, ListSelectionL
 	}
 	
 	private void frame() {
-//		PnlMenu();
-//		getContentPane().add(JPnl_Menu);
+		PnlMenu();
+		getContentPane().add(JPnl_Menu);
 		PnlLista();
 		getContentPane().add(JPnl_Lista);
 	}
@@ -101,7 +89,7 @@ public class AppCliente extends JFrame implements ActionListener, ListSelectionL
 		P2_lblProvincias.setBounds(45, 11, 100, 17);
 		JPnl_Lista.add(P2_lblProvincias);
 		
-		P2_cmbxProvincias = new JComboBox<String>(Util.cmbxProvincias(sf));
+		P2_cmbxProvincias = new JComboBox<String>(Util.cmbxProvincias(arrays.getAyProv()));
 		P2_cmbxProvincias.setSelectedIndex(0);
 		P2_cmbxProvincias.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		P2_cmbxProvincias.setMaximumRowCount(3);
@@ -149,10 +137,12 @@ public class AppCliente extends JFrame implements ActionListener, ListSelectionL
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "municipios";
+			P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyMuni(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
 		} else if (e.getSource() == P1_btnEspaciosN) {
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "espaciosN";
+			P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyEspN(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
 		} else {
 			System.exit(0);;
 		}
@@ -160,13 +150,17 @@ public class AppCliente extends JFrame implements ActionListener, ListSelectionL
 	
 	private void actionLista(ActionEvent e) {
 		if (e.getSource() == P2_cmbxProvincias) {
-			
+			if (P2_tipoLista.equals("municipios")) {
+				P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyMuni(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+			} else if (P2_tipoLista.equals("espaciosN")) {
+				P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyEspN(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+			}
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);
 			P2_tipoLista = "";
 		} else {
-			sf.close();
+			arrays.getSf().close();
 			System.exit(0);
 		}
 	}

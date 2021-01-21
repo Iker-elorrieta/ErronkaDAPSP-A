@@ -21,7 +21,8 @@ public class Util {
 		return (String[]) ayProv.toArray();
 	}
 	
-	public static String[] lista(SessionFactory sf, ArrayList<Object> ay, String tipoLista, String prov) {
+	@SuppressWarnings("unchecked")
+	public static String[] lista(SessionFactory sf, ArrayList<?> ay, String tipoLista, String prov) {
 		ArrayList<String> ayStr = new ArrayList<String>();
 		
 		if (tipoLista.equals("municipios")) {
@@ -34,9 +35,12 @@ public class Util {
 			for (int i = 0; i < ay.size(); i++) {
 				Session session = sf.openSession();
 				EspaciosNaturales espN = (EspaciosNaturales) ay.get(i);
-				List<EspaciosNaturales> lEspN = session.createQuery("SELECT e FROM EspaciosNaturales e INNER JOIN ");
-				if (espN.getCodEnatural() == )
-				ayStr.add(ay.get(i));
+				List<EspaciosNaturales> lEspN = session.createQuery("SELECT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = '"+prov+"'").list();
+				for (int j = 0; j < lEspN.size(); j++) {
+					EspaciosNaturales espN2 = lEspN.get(j);
+					if (espN.getCodEnatural() == espN2.getCodEnatural()) 
+						ayStr.add(espN.getNombre());
+				}
 			}
 		}
 		

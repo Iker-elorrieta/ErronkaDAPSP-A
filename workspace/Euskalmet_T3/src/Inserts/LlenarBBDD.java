@@ -45,16 +45,16 @@ public class LlenarBBDD {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
 		
-//		provincias(/*conexion*/);
-//		System.out.println("provincia -> COMPLETADO \n");
-//		municipios(/*conexion*/);
-//		System.out.println("municipio -> COMPLETADO \n");
+		provincias(/*conexion*/);
+		System.out.println("provincia -> COMPLETADO \n");
+		municipios(/*conexion*/);
+		System.out.println("municipio -> COMPLETADO \n");
 		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
 		System.out.println("estaciones -> COMPLETADO \n");
-//		espacios_naturales(/*conexion*/);
-//		System.out.println("espacios_naturales -> COMPLETADO \n");
-//		muni_espacios(/*conexion, */);
-//		System.out.println("muni_espacios -> COMPLETADO \n");
+		espacios_naturales(/*conexion*/);
+		System.out.println("espacios_naturales -> COMPLETADO \n");
+		muni_espacios(/*conexion, */);
+		System.out.println("muni_espacios -> COMPLETADO \n");
 		calidad_aire(/*conexion, */nomEstaciones);
 		System.out.println("calidad_aire -> COMPLETADO \n");
 		System.out.println("-> FINALIZADO <-");

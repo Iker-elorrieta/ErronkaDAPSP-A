@@ -8,8 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 
-import Hibernate.Municipio;
-import Inserts.HibernateUtil;
+import Hibernate.*;
 
 public class HiloServidor extends Thread{
 
