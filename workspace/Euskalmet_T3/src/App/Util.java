@@ -54,4 +54,37 @@ public class Util {
 		return ayStr.toArray(new String[ayStr.size()]);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static String texto(SessionFactory sf, ArrayList<?> ay, String tipoDato, String dato) {
+		String texto = "";
+		
+		if (tipoDato.equals("municipios")) {
+			for (int i = 0; i < ay.size(); i++) {
+				Session session = sf.openSession();
+				Municipio muni = (Municipio) ay.get(i);
+				List<Municipio> lMuni = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.nombre = '"+dato+"'").list();
+				for (int j = 0; j < lMuni.size(); j++) {
+					Municipio muni2 = lMuni.get(j);
+					if (muni.getCodMuni() == muni2.getCodMuni()) 
+						texto = muni.getDescripcion();
+				}
+				session.close();
+			}
+		} else if (tipoDato.equals("espaciosN")) {
+			for (int i = 0; i < ay.size(); i++) {
+				Session session = sf.openSession();
+				EspaciosNaturales espN = (EspaciosNaturales) ay.get(i);
+				List<EspaciosNaturales> lEspN = session.createQuery("SELECT DISTINCT e FROM EspaciosNaturales AS e WHERE e.nombre = '"+dato+"'").list();
+				for (int j = 0; j < lEspN.size(); j++) {
+					EspaciosNaturales espN2 = lEspN.get(j);
+					if (espN.getCodEnatural() == espN2.getCodEnatural()) 
+						texto = espN.getDescripcion();
+				}
+				session.close();
+			}
+		}
+		
+		return texto;
+	}
+	
 }
