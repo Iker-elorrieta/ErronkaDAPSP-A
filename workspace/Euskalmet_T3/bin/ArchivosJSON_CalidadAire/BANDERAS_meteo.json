@@ -1,60 +1,1212 @@
 [ {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "24:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "23:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "22:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "21:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "20:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "19:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "18:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "17:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "16:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "15:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "14:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "13:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "12:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "11:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "10:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "09:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "08:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "07:00"
 }, {
-  "Date" : "15/01/2021",
+  "Date" : "21/01/2021",
   "Hour" : "06:00"
+}, {
+  "Date" : "21/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "221",
+  "H" : "68",
+  "TC" : "13,4",
+  "Vvienms" : "11,2",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "21/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "224",
+  "H" : "67",
+  "TC" : "13,6",
+  "Vvienms" : "12,46",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "21/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "221",
+  "H" : "67",
+  "TC" : "13,6",
+  "Vvienms" : "13,52",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "21/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "218",
+  "H" : "67",
+  "TC" : "13,6",
+  "Vvienms" : "13,07",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "21/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "218",
+  "H" : "66",
+  "TC" : "13,9",
+  "Vvienms" : "12,78",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "218",
+  "H" : "66",
+  "TC" : "14",
+  "Vvienms" : "12,28",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "218",
+  "H" : "65",
+  "TC" : "13,9",
+  "Vvienms" : "13,28",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "217",
+  "H" : "65",
+  "TC" : "14",
+  "Vvienms" : "12,54",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "214",
+  "H" : "65",
+  "TC" : "14,3",
+  "Vvienms" : "13,75",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "210",
+  "H" : "65",
+  "TC" : "14,2",
+  "Vvienms" : "11,42",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "208",
+  "H" : "64",
+  "TC" : "14,2",
+  "Vvienms" : "12,75",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "208",
+  "H" : "62",
+  "TC" : "14,4",
+  "Vvienms" : "14,37",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "211",
+  "H" : "58",
+  "TC" : "15,1",
+  "Vvienms" : "13,4",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "208",
+  "H" : "55",
+  "TC" : "15,3",
+  "Vvienms" : "14,49",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "211",
+  "H" : "55",
+  "TC" : "14,9",
+  "Vvienms" : "14,32",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "207",
+  "H" : "54",
+  "TC" : "14,8",
+  "Vvienms" : "11,31",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "210",
+  "H" : "55",
+  "TC" : "14,4",
+  "Vvienms" : "10,68",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "148",
+  "H" : "57",
+  "TC" : "13,1",
+  "Vvienms" : "4,1",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "127",
+  "H" : "59",
+  "TC" : "12",
+  "Vvienms" : "6,99",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "199",
+  "H" : "56",
+  "TC" : "12,1",
+  "Vvienms" : "9,77",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "193",
+  "H" : "58",
+  "TC" : "11,3",
+  "Vvienms" : "7,82",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "165",
+  "H" : "57",
+  "TC" : "10,6",
+  "Vvienms" : "2,96",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "200",
+  "H" : "56",
+  "TC" : "10,9",
+  "Vvienms" : "4,74",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "206",
+  "H" : "58",
+  "TC" : "10,6",
+  "Vvienms" : "6,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "157",
+  "H" : "59",
+  "TC" : "10,2",
+  "Vvienms" : "3,34",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "183",
+  "H" : "56",
+  "TC" : "10,8",
+  "Vvienms" : "4,85",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "202",
+  "H" : "51",
+  "TC" : "11,8",
+  "Vvienms" : "6,11",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "205",
+  "H" : "47",
+  "TC" : "12,5",
+  "Vvienms" : "7,2",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "20/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "203",
+  "H" : "46",
+  "TC" : "12,9",
+  "Vvienms" : "7,19",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "205",
+  "H" : "44",
+  "TC" : "13,2",
+  "Vvienms" : "8,63",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "204",
+  "H" : "44",
+  "TC" : "13,2",
+  "Vvienms" : "11,22",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "206",
+  "H" : "45",
+  "TC" : "13,4",
+  "Vvienms" : "13,66",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "208",
+  "H" : "45",
+  "TC" : "13,4",
+  "Vvienms" : "11,27",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "207",
+  "H" : "42",
+  "TC" : "13,5",
+  "Vvienms" : "14,75",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "205",
+  "H" : "42",
+  "TC" : "13,4",
+  "Vvienms" : "13,49",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "207",
+  "H" : "43",
+  "TC" : "13,7",
+  "Vvienms" : "11,7",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "209",
+  "H" : "44",
+  "TC" : "13,9",
+  "Vvienms" : "7,73",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "214",
+  "H" : "44",
+  "TC" : "14,6",
+  "Vvienms" : "10,14",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "215",
+  "H" : "48",
+  "TC" : "14,4",
+  "Vvienms" : "12,43",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "215",
+  "H" : "51",
+  "TC" : "13,9",
+  "Vvienms" : "10,98",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "213",
+  "H" : "51",
+  "TC" : "13,3",
+  "Vvienms" : "8,49",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "206",
+  "H" : "57",
+  "TC" : "12,8",
+  "Vvienms" : "3,94",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "209",
+  "H" : "63",
+  "TC" : "11,6",
+  "Vvienms" : "5,33",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "209",
+  "H" : "68",
+  "TC" : "10,5",
+  "Vvienms" : "8,62",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "210",
+  "H" : "68",
+  "TC" : "10,4",
+  "Vvienms" : "10,22",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "209",
+  "H" : "69",
+  "TC" : "10,1",
+  "Vvienms" : "8,41",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "206",
+  "H" : "69",
+  "TC" : "9,9",
+  "Vvienms" : "6,13",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "189",
+  "H" : "71",
+  "TC" : "9,5",
+  "Vvienms" : "2,68",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "199",
+  "H" : "70",
+  "TC" : "9,9",
+  "Vvienms" : "4",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "205",
+  "H" : "70",
+  "TC" : "9,9",
+  "Vvienms" : "5,1",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "154",
+  "H" : "77",
+  "TC" : "8,7",
+  "Vvienms" : "2,18",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "153",
+  "H" : "79",
+  "TC" : "8,7",
+  "Vvienms" : "1,93",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "19/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "167",
+  "H" : "82",
+  "TC" : "8,2",
+  "Vvienms" : "1,74",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "164",
+  "H" : "83",
+  "TC" : "8,4",
+  "Vvienms" : "1,89",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "164",
+  "H" : "85",
+  "TC" : "8,4",
+  "Vvienms" : "1,96",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "147",
+  "H" : "87",
+  "TC" : "8,3",
+  "Vvienms" : "2,05",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "132",
+  "H" : "95",
+  "TC" : "7,6",
+  "Vvienms" : "2,74",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "128",
+  "H" : "94",
+  "TC" : "8",
+  "Vvienms" : "3,14",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "231",
+  "H" : "91",
+  "TC" : "8,5",
+  "Vvienms" : "0,19",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "296",
+  "H" : "89",
+  "TC" : "9",
+  "Vvienms" : "2,51",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "315",
+  "H" : "87",
+  "TC" : "10,1",
+  "Vvienms" : "1,58",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "14",
+  "H" : "86",
+  "TC" : "10,3",
+  "Vvienms" : "1,32",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "19",
+  "H" : "87",
+  "TC" : "10,1",
+  "Vvienms" : "1,28",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "8",
+  "H" : "89",
+  "TC" : "10",
+  "Vvienms" : "0,8",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "67",
+  "H" : "88",
+  "TC" : "9,8",
+  "Vvienms" : "0,05",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "94",
+  "H" : "92",
+  "TC" : "8,7",
+  "Vvienms" : "1,15",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "135",
+  "H" : "94",
+  "TC" : "8",
+  "Vvienms" : "1,3",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "129",
+  "H" : "95",
+  "TC" : "7,3",
+  "Vvienms" : "1,63",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "132",
+  "H" : "97",
+  "TC" : "7,1",
+  "Vvienms" : "1,86",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "95",
+  "H" : "96",
+  "TC" : "6,9",
+  "Vvienms" : "3,05",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "78",
+  "H" : "98",
+  "TC" : "6,9",
+  "Vvienms" : "3,08",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "23",
+  "H" : "98",
+  "TC" : "7,2",
+  "Vvienms" : "1,82",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "66",
+  "H" : "98",
+  "TC" : "7,1",
+  "Vvienms" : "0,91",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "267",
+  "H" : "99",
+  "TC" : "7,2",
+  "Vvienms" : "0,73",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "136",
+  "H" : "98",
+  "TC" : "7,1",
+  "Vvienms" : "1,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "124",
+  "H" : "98",
+  "TC" : "7,5",
+  "Vvienms" : "2,22",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "18/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "135",
+  "H" : "98",
+  "TC" : "7,5",
+  "Vvienms" : "1,64",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "117",
+  "H" : "98",
+  "TC" : "7,6",
+  "Vvienms" : "1,82",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "80",
+  "H" : "98",
+  "TC" : "7,5",
+  "Vvienms" : "3,72",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "72",
+  "H" : "98",
+  "TC" : "7,9",
+  "Vvienms" : "1,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "75",
+  "H" : "98",
+  "TC" : "8,1",
+  "Vvienms" : "2,16",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "59",
+  "H" : "98",
+  "TC" : "8,4",
+  "Vvienms" : "1,71",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "42",
+  "H" : "98",
+  "TC" : "8,7",
+  "Vvienms" : "2,1",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "310",
+  "H" : "97",
+  "TC" : "9,2",
+  "Vvienms" : "2,21",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "296",
+  "H" : "97",
+  "TC" : "9,3",
+  "Vvienms" : "2,76",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "282",
+  "H" : "97",
+  "TC" : "9,5",
+  "Vvienms" : "3,63",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "263",
+  "H" : "97",
+  "TC" : "9,4",
+  "Vvienms" : "4,01",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "256",
+  "H" : "96",
+  "TC" : "9,1",
+  "Vvienms" : "2,3",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "238",
+  "H" : "95",
+  "TC" : "9",
+  "Vvienms" : "2,64",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "210",
+  "H" : "95",
+  "TC" : "8,3",
+  "Vvienms" : "2,85",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "211",
+  "H" : "91",
+  "TC" : "8,2",
+  "Vvienms" : "4,03",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "218",
+  "H" : "84",
+  "TC" : "8,8",
+  "Vvienms" : "4,07",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "224",
+  "H" : "78",
+  "TC" : "9,3",
+  "Vvienms" : "5,89",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "216",
+  "H" : "77",
+  "TC" : "8,3",
+  "Vvienms" : "5,7",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "215",
+  "H" : "76",
+  "TC" : "7,7",
+  "Vvienms" : "4,93",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "228",
+  "H" : "75",
+  "TC" : "8,3",
+  "Vvienms" : "4,87",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "217",
+  "H" : "71",
+  "TC" : "8,2",
+  "Vvienms" : "2,12",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "160",
+  "H" : "67",
+  "TC" : "7,7",
+  "Vvienms" : "0,9",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "223",
+  "H" : "70",
+  "TC" : "8,4",
+  "Vvienms" : "1,82",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "250",
+  "H" : "67",
+  "TC" : "8,4",
+  "Vvienms" : "0,63",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "17/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "267",
+  "H" : "65",
+  "TC" : "8,3",
+  "Vvienms" : "0,93",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "200",
+  "H" : "70",
+  "TC" : "7,7",
+  "Vvienms" : "1,26",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "145",
+  "H" : "78",
+  "TC" : "7,4",
+  "Vvienms" : "1,88",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "155",
+  "H" : "79",
+  "TC" : "7,9",
+  "Vvienms" : "1,05",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "189",
+  "H" : "83",
+  "TC" : "8,4",
+  "Vvienms" : "0,97",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "280",
+  "H" : "84",
+  "TC" : "8,7",
+  "Vvienms" : "1,56",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "301",
+  "H" : "83",
+  "TC" : "8,5",
+  "Vvienms" : "2,81",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "295",
+  "H" : "83",
+  "TC" : "8,7",
+  "Vvienms" : "2,62",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "290",
+  "H" : "78",
+  "TC" : "9,4",
+  "Vvienms" : "1,43",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "307",
+  "H" : "76",
+  "TC" : "9,8",
+  "Vvienms" : "2,75",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "290",
+  "H" : "67",
+  "TC" : "11",
+  "Vvienms" : "2,73",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "297",
+  "H" : "63",
+  "TC" : "10,8",
+  "Vvienms" : "1,19",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "229",
+  "H" : "69",
+  "TC" : "9,7",
+  "Vvienms" : "0,85",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "187",
+  "H" : "74",
+  "TC" : "8,3",
+  "Vvienms" : "0,99",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "191",
+  "H" : "80",
+  "TC" : "6,7",
+  "Vvienms" : "1,49",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "193",
+  "H" : "82",
+  "TC" : "5,8",
+  "Vvienms" : "2,04",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "147",
+  "H" : "88",
+  "TC" : "5,5",
+  "Vvienms" : "1,33",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "178",
+  "H" : "85",
+  "TC" : "5,8",
+  "Vvienms" : "0,99",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "182",
+  "H" : "85",
+  "TC" : "6,3",
+  "Vvienms" : "0,86",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "189",
+  "H" : "84",
+  "TC" : "6,8",
+  "Vvienms" : "1,06",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "181",
+  "H" : "87",
+  "TC" : "6,6",
+  "Vvienms" : "0,69",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "215",
+  "H" : "86",
+  "TC" : "7,3",
+  "Vvienms" : "1,81",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "245",
+  "H" : "85",
+  "TC" : "7,6",
+  "Vvienms" : "2,77",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "254",
+  "H" : "84",
+  "TC" : "7,8",
+  "Vvienms" : "2,53",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "16/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "256",
+  "H" : "85",
+  "TC" : "7,8",
+  "Vvienms" : "2,35",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "276",
+  "H" : "84",
+  "TC" : "7,9",
+  "Vvienms" : "2,2",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "274",
+  "H" : "83",
+  "TC" : "8,1",
+  "Vvienms" : "4,01",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "270",
+  "H" : "84",
+  "TC" : "8",
+  "Vvienms" : "3,77",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "275",
+  "H" : "84",
+  "TC" : "8,2",
+  "Vvienms" : "3,33",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "286",
+  "H" : "82",
+  "TC" : "8,3",
+  "Vvienms" : "3,48",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "269",
+  "H" : "82",
+  "TC" : "8,4",
+  "Vvienms" : "4",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "286",
+  "H" : "80",
+  "TC" : "8,7",
+  "Vvienms" : "3,88",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "312",
+  "H" : "78",
+  "TC" : "9,1",
+  "Vvienms" : "5,13",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "324",
+  "H" : "82",
+  "TC" : "9,3",
+  "Vvienms" : "6,55",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "305",
+  "H" : "79",
+  "TC" : "9,7",
+  "Vvienms" : "6,42",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "293",
+  "H" : "81",
+  "TC" : "9,6",
+  "Vvienms" : "6,33",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "291",
+  "H" : "82",
+  "TC" : "9,7",
+  "Vvienms" : "7,07",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "286",
+  "H" : "86",
+  "TC" : "9,2",
+  "Vvienms" : "5,88",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "277",
+  "H" : "88",
+  "TC" : "8,7",
+  "Vvienms" : "5,44",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "275",
+  "H" : "91",
+  "TC" : "8,1",
+  "Vvienms" : "4,28",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "280",
+  "H" : "92",
+  "TC" : "7,7",
+  "Vvienms" : "4,23",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "277",
+  "H" : "92",
+  "TC" : "8,3",
+  "Vvienms" : "6,29",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "274",
+  "H" : "91",
+  "TC" : "7,9",
+  "Vvienms" : "5,44",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "15/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "270",
+  "H" : "93",
+  "TC" : "7,8",
+  "Vvienms" : "5,89",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "15/01/2021",
   "Hour" : "05:00",
