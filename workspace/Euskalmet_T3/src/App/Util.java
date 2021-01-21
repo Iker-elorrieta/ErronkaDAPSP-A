@@ -18,7 +18,7 @@ public class Util {
 			ayProv.add(prov.getNombre());
 		}
 		
-		return (String[]) ayProv.toArray();
+		return ayProv.toArray(new String[ayProv.size()]);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -27,24 +27,31 @@ public class Util {
 		
 		if (tipoLista.equals("municipios")) {
 			for (int i = 0; i < ay.size(); i++) {
+				Session session = sf.openSession();
 				Municipio muni = (Municipio) ay.get(i);
-				if (muni.getProvincia().getNombre().equals(prov))
-					ayStr.add(muni.getNombre());
+				List<Municipio> lMuni = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = '"+prov+"'").list();
+				for (int j = 0; j < lMuni.size(); j++) {
+					Municipio muni2 = lMuni.get(j);
+					if (muni.getCodMuni() == muni2.getCodMuni()) 
+						ayStr.add(muni.getNombre());
+				}
+				session.close();
 			}
 		} else if (tipoLista.equals("espaciosN")) {
 			for (int i = 0; i < ay.size(); i++) {
 				Session session = sf.openSession();
 				EspaciosNaturales espN = (EspaciosNaturales) ay.get(i);
-				List<EspaciosNaturales> lEspN = session.createQuery("SELECT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = '"+prov+"'").list();
+				List<EspaciosNaturales> lEspN = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = '"+prov+"'").list();
 				for (int j = 0; j < lEspN.size(); j++) {
 					EspaciosNaturales espN2 = lEspN.get(j);
 					if (espN.getCodEnatural() == espN2.getCodEnatural()) 
 						ayStr.add(espN.getNombre());
 				}
+				session.close();
 			}
 		}
 		
-		return (String[]) ayStr.toArray();
+		return ayStr.toArray(new String[ayStr.size()]);
 	}
 	
 }
