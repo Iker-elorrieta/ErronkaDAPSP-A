@@ -17,19 +17,21 @@ import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class Datos extends JFrame implements ActionListener {
+	
 	private AppCliente App;
 	private Contenedor arrays;
 	
 	private JPanel JPnl_Info;
-	private String P3_dato;
+	private String P3_dato, P3_tipoDato;
 	private JLabel P3_lblNombre;
 	private JTextArea P3_txtInfo;
 	private JButton P3_btnHistorico, P3_btnCerrar, P3_btnSalir;
 	
-	public Datos(AppCliente App, String P3_dato) {
+	public Datos(AppCliente App, String P3_dato, String P3_tipoDato) {
 		this.App = App;
 		arrays = this.App.getContenedor();
 		this.P3_dato = P3_dato;
+		this.P3_tipoDato = P3_tipoDato;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -60,11 +62,17 @@ public class Datos extends JFrame implements ActionListener {
 		P3_lblNombre.setBounds(53, 23, 572, 29);
 		JPnl_Info.add(P3_lblNombre);
 		
-		P3_txtInfo = new JTextArea(Util.texto(arrays.getSf(), arrays.getAyMuni(), "municipios", P3_dato));
+		P3_txtInfo = new JTextArea();
 		P3_txtInfo.setLineWrap(true);
 		P3_txtInfo.setWrapStyleWord(true);
 		P3_txtInfo.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		P3_txtInfo.setBounds(45, 66, 342, 248);
+		
+		if (P3_tipoDato.equals("municipios")) {
+			P3_txtInfo.setText(Util.texto(arrays.getSf(), P3_tipoDato, P3_dato));
+		} else if (P3_tipoDato.equals("espaciosN")) {
+			P3_txtInfo.setText(Util.texto(arrays.getSf(), P3_tipoDato, P3_dato));
+		}
 		P3_txtInfo.setCaretPosition(0);
 		
 		JScrollPane P3_scrollPane = new JScrollPane(P3_txtInfo);
@@ -97,6 +105,7 @@ public class Datos extends JFrame implements ActionListener {
 		if (e.getSource() == P3_btnHistorico) {
 			
 		} else if (e.getSource() == P3_btnCerrar) {
+			App.getAyDatos().remove(this);
 			this.dispose();
 		} else {
 			arrays.getSf().close();
