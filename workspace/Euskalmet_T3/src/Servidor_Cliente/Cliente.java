@@ -38,9 +38,16 @@ public class Cliente {
 		System.out.println("Fin cliente");
 		return true;
 	}
-	public static void main(String[] args) throws ClassNotFoundException, IOException {
+	
+	public static boolean clienteMain() throws ClassNotFoundException, IOException {
 		Cliente c1 = new Cliente();
 		c1.iniciar();
+		return true;
 	}
+	
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		clienteMain();
+	}
+	
 
 }

@@ -2,6 +2,9 @@ package Servidor_Cliente;
 
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,8 +25,12 @@ public class HiloServidor extends Thread{
 		fentrada = new ObjectInputStream((socket.getInputStream()));
 	}
 
+	public HiloServidor() {}
+
 	public void run() {
 		System.out.println("Empieza el hilo servidor");
+		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+		LogManager.getLogManager().getLogger("").setLevel(Level.OFF);
 		SessionFactory sesioa = HibernateUtil.getSessionFactory();
 		Session session = sesioa.openSession();
 		Transaction tx = session.beginTransaction();
@@ -44,7 +51,7 @@ public class HiloServidor extends Thread{
 			e1.printStackTrace();
 		}
 		try {
-			tx.commit();	
+			tx.commit();
 		}catch(ConstraintViolationException e) {
 			System.out.printf("Mezua: %s%n",e.getMessage());
 			System.out.printf("COD ERROR: %d%n",e.getErrorCode());
