@@ -30,7 +30,6 @@ public class HiloServidor extends Thread{
 	public void run() {
 		System.out.println("Empieza el hilo servidor");
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
-		LogManager.getLogManager().getLogger("").setLevel(Level.OFF);
 		SessionFactory sesioa = HibernateUtil.getSessionFactory();
 		Session session = sesioa.openSession();
 		Transaction tx = session.beginTransaction();
@@ -45,7 +44,7 @@ public class HiloServidor extends Thread{
 		Query q = session.createQuery(hql);
 		q.setParameter("cod", 1);
 		try {
-			Hibernate.Municipio muni = (Municipio) q.uniqueResult();
+			Municipio muni = (Municipio) q.uniqueResult();
 			fsalida.writeObject(muni.getNombre());
 		} catch (IOException e1) {
 			e1.printStackTrace();

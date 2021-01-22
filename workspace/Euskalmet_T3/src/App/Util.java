@@ -21,29 +21,17 @@ public class Util {
 		return ayProv.toArray(new String[ayProv.size()]);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static String[] lista(SessionFactory sf, String tipoLista, String prov) {
+	public static String[] lista(List<Object> lista, String tipoLista) {
 		ArrayList<String> ayStr = new ArrayList<String>();
 		
-		if (tipoLista.equals("municipios")) {
-			Session session = sf.openSession();
-			
-			List<Municipio> lMuni = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = '"+prov+"' ORDER BY m.nombre").list();
-			for (int i = 0; i < lMuni.size(); i++) {
-				Municipio muni = lMuni.get(i);
+		for (int i = 0; i < lista.size(); i++) {
+			if (tipoLista.equals("municipios")) {
+				Municipio muni = (Municipio) lista.get(i);
 				ayStr.add(muni.getNombre());
-			}
-			session.close();
-		} else if (tipoLista.equals("espaciosN")) {
-			Session session = sf.openSession();
-			
-			List<EspaciosNaturales> lEspN = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = '"+prov+"' "
-					+ "ORDER BY me.espaciosNaturales.nombre").list();
-			for (int i = 0; i < lEspN.size(); i++) {
-				EspaciosNaturales espN = lEspN.get(i);
+			} else if (tipoLista.equals("espaciosN")) {
+				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
 				ayStr.add(espN.getNombre());
 			}
-			session.close();
 		}
 		
 		return ayStr.toArray(new String[ayStr.size()]);
