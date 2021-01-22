@@ -41,6 +41,7 @@ public class HiloCliente extends Thread {
 					try {
 						fsalida.writeObject(hql);
 						resultado = (List<Object>) fentrada.readObject();
+						frame.setDatos(resultado);
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (ClassNotFoundException e) {

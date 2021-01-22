@@ -19,19 +19,16 @@ import java.awt.Rectangle;
 public class Datos extends JFrame implements ActionListener {
 	
 	private AppCliente App;
-	private Contenedor arrays;
 	
 	private JPanel JPnl_Info;
-	private String P3_dato, P3_tipoDato;
+	private String P3_dato;
 	private JLabel P3_lblNombre;
 	private JTextArea P3_txtInfo;
 	private JButton P3_btnHistorico, P3_btnCerrar, P3_btnSalir;
 	
-	public Datos(AppCliente App, String P3_dato, String P3_tipoDato) {
+	public Datos(AppCliente App, String P3_dato) {
 		this.App = App;
-		arrays = this.App.getContenedor();
 		this.P3_dato = P3_dato;
-		this.P3_tipoDato = P3_tipoDato;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -68,13 +65,6 @@ public class Datos extends JFrame implements ActionListener {
 		P3_txtInfo.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		P3_txtInfo.setBounds(45, 66, 342, 248);
 		
-		if (P3_tipoDato.equals("municipios")) {
-			P3_txtInfo.setText(Util.texto(arrays.getSf(), P3_tipoDato, P3_dato));
-		} else if (P3_tipoDato.equals("espaciosN")) {
-			P3_txtInfo.setText(Util.texto(arrays.getSf(), P3_tipoDato, P3_dato));
-		}
-		P3_txtInfo.setCaretPosition(0);
-		
 		JScrollPane P3_scrollPane = new JScrollPane(P3_txtInfo);
 		P3_scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		P3_scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -108,9 +98,17 @@ public class Datos extends JFrame implements ActionListener {
 			App.getAyDatos().remove(this);
 			this.dispose();
 		} else {
-			arrays.getSf().close();
-			System.exit(0);
+			App.salir();
 		}
+	}
+	
+	public void setTexto(String texto) {
+		P3_txtInfo.setText(texto);
+		P3_txtInfo.setCaretPosition(0);
+	}
+	
+	public String getTexto() {
+		return P3_txtInfo.getText();
 	}
 	
 }

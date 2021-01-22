@@ -17,8 +17,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import Servidor_Cliente.HiloCliente;
+
 @SuppressWarnings("serial")
 public class AppCliente extends JFrame implements ActionListener {
+	
+	private HiloCliente hC;
 	
 	private Contenedor arrays;
 	
@@ -34,6 +38,9 @@ public class AppCliente extends JFrame implements ActionListener {
 	private ArrayList<Datos> ayDatos = new ArrayList<Datos>();
 	
 	public AppCliente() {
+		hC = new HiloCliente(this);
+		hC.run();
+		
 		arrays = new Contenedor();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,8 +55,6 @@ public class AppCliente extends JFrame implements ActionListener {
 		getContentPane().add(JPnl_Menu);
 		PnlLista();
 		getContentPane().add(JPnl_Lista);
-//		PnlDatos();
-//		getContentPane().add(JPnl_Datos);
 	}
 	
 	private void PnlMenu() {
@@ -166,8 +171,7 @@ public class AppCliente extends JFrame implements ActionListener {
 					+ "ORDER BY me.espaciosNaturales.nombre";
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		} else {
-			arrays.getSf().close();
-			System.exit(0);;
+			salir();
 		}
 	}
 	
@@ -181,30 +185,33 @@ public class AppCliente extends JFrame implements ActionListener {
 			}
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
+			JPnl_Lista.setVisible(false);
+			
 			if (P2_tipoLista.equals("municipios")) {
 				List<String> lMuni = P2_listLista.getSelectedValuesList();
 				for (int i = 0; i < lMuni.size(); i++) {
-					Datos datos = new Datos(this, lMuni.get(i), P2_tipoLista);
-					datos.setVisible(true);
+					P2_hql = "SELECT DISTINCT m FROM Municipio AS m WHERE m.nombre = '"+lMuni.get(i)+"' ORDER BY m.nombre";
+					Datos datos = new Datos(this, lMuni.get(i));
+					datos.setVisible(false);
 					ayDatos.add(datos);
+					while (datos.getTexto().length() == 0);
 				}
 			} else if (P2_tipoLista.equals("espaciosN")) {
-				Datos datos = new Datos(this, P2_listLista.getSelectedValue(), P2_tipoLista);
-				datos.setVisible(true);
+				P2_hql = "SELECT DISTINCT e FROM EspaciosNaturales AS e WHERE e.nombre = '"+P2_listLista.getSelectedValue()+"' ORDER BY e.nombre";
+				Datos datos = new Datos(this, P2_listLista.getSelectedValue());
+				datos.setVisible(false);
 				ayDatos.add(datos);
 			}
+			
+			while (ayDatos.size() != 0);
+			JPnl_Lista.setVisible(true);
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);
 			P2_tipoLista = "";
 		} else {
-			arrays.getSf().close();
-			System.exit(0);
+			salir();
 		}
-	}
-	
-	public Contenedor getContenedor() {
-		return this.arrays;
 	}
 	
 	public ArrayList<Datos> getAyDatos() {
@@ -217,9 +224,25 @@ public class AppCliente extends JFrame implements ActionListener {
 		return hql;
 	}
 	
-	public void setLista(List<Object> lista) {
-		P2_listLista.setListData(Util.lista(lista, P2_tipoLista));
-		P2_listLista.ensureIndexIsVisible(0);
+	public void setDatos(List<Object> lista) {
+		if (JPnl_Lista.isVisible()) {
+			P2_listLista.setListData(Util.lista(lista, P2_tipoLista));
+			P2_listLista.ensureIndexIsVisible(0);
+		} else {
+			for (int i = 0; i < ayDatos.size(); i++) {
+				if (ayDatos.get(i).getTexto().length() == 0) {
+					String texto = (Util.texto(lista, P2_tipoLista));
+					ayDatos.get(i).setTexto(texto);
+					ayDatos.get(i).setVisible(true);
+				}
+			}
+		}
+	}
+	
+	public void salir() {
+		arrays.getSf().close();
+		hC.cerrar();
+		System.exit(0);
 	}
 	
 }
