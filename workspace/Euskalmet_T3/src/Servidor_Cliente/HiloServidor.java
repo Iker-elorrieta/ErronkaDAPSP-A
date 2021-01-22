@@ -2,6 +2,7 @@ package Servidor_Cliente;
 
 import java.io.*;
 import java.net.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
@@ -13,7 +14,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import Hibernate.*;
 
-public class HiloServidor extends Thread{
+public class HiloServidor extends Thread {
 
 	ObjectInputStream fentrada;
 	ObjectOutputStream fsalida;
@@ -27,6 +28,7 @@ public class HiloServidor extends Thread{
 
 	public HiloServidor() {}
 
+	@SuppressWarnings("unchecked")
 	public void run() {
 		System.out.println("Empieza el hilo servidor");
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
@@ -41,11 +43,9 @@ public class HiloServidor extends Thread{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		Query q = session.createQuery(hql);
-		q.setParameter("cod", 1);
+		List<Object> resultado = session.createQuery(hql).list();
 		try {
-			Municipio muni = (Municipio) q.uniqueResult();
-			fsalida.writeObject(muni.getNombre());
+			fsalida.writeObject(resultado);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -26,7 +26,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnSalir;
 	
 	private JPanel JPnl_Lista;
-	private String P2_tipoLista, P2_hql;
+	private String P2_tipoLista, P2_hql = "";
 	private JComboBox<String> P2_cmbxProvincias;
 	private JList<String> P2_listLista;
 	private JButton P2_btnAceptar, P2_btnAtras, P2_btnSalir;

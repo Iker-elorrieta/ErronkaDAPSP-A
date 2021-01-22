@@ -143,7 +143,7 @@ public class Estaciones {
 				while (iter2.hasNext()) {
 					JsonObject entrada2 = iter2.next().getAsJsonObject();
 					
-					if (entrada.get("Town").getAsString().toUpperCase().contains(entrada2.get("municipality").getAsString().toUpperCase())) {
+					if (entrada.get("Town").getAsString().toUpperCase().equals(entrada2.get("municipality").getAsString().toUpperCase())) {
 						String cod_muniStr = entrada2.get("municipalitycode").getAsString();
 						cod_muni.appendChild(doc.createTextNode(cod_muniStr));
 						break;
