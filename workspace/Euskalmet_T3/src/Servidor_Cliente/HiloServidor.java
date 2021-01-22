@@ -16,14 +16,10 @@ public class HiloServidor extends Thread{
 	ObjectOutputStream fsalida;
 	Socket socket = null;
 
-	public HiloServidor(Socket s){
+	public HiloServidor(Socket s) throws IOException{
 		socket=s;
-		try {
-			fsalida = new ObjectOutputStream(socket.getOutputStream());
-			fentrada = new ObjectInputStream((socket.getInputStream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		fsalida = new ObjectOutputStream(socket.getOutputStream());
+		fentrada = new ObjectInputStream((socket.getInputStream()));
 	}
 
 	public void run() {
@@ -31,9 +27,7 @@ public class HiloServidor extends Thread{
 		SessionFactory sesioa = HibernateUtil.getSessionFactory();
 		Session session = sesioa.openSession();
 		Transaction tx = session.beginTransaction();
-
 		String hql=null;
-
 		try {
 			hql = fentrada.readObject().toString();
 		} catch (IOException e) {
@@ -49,7 +43,6 @@ public class HiloServidor extends Thread{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
 		try {
 			tx.commit();	
 		}catch(ConstraintViolationException e) {
@@ -58,56 +51,5 @@ public class HiloServidor extends Thread{
 			System.out.printf("ERROR SQL: %s%n",e.getSQLException().getMessage());
 		}
 		session.close();
-
-
-		//		Connection conn = null;
-		//		Statement stmt = null;
-		//		try {
-
-		//			// Konexioa Ireki
-		//			System.out.println("Datubasera konektatzen...");
-		//			Conexion_MySQL MDK = Conexion_MySQL.getInstance();
-		//			conn = MDK.conectar();
-		//
-		//			// query edo SQL sententzia egikaritu
-		//			System.out.println(" Statementa sortzen...");
-		//			stmt = conn.createStatement();
-		//			ResultSet rs = stmt.executeQuery(sql);
-
-		// Erantzunetik informazioa erauzi
-		//			while (rs.next()) {
-		// Bueltatu zutabeen izenen arabera
-		//				String nombre = rs.getString("nombre");
-		//				fsalida.write(nombre);
-
-		// Emaitzak pantailaratu
-		//				System.out.println("Nombre: " + nombre);
-		//			}
-
-		// Garbiketa
-		//			rs.close();
-		//			stmt.close();
-		//			MDK.desconectar();
-		//		} catch (SQLException se) { 
-		//			// JDBC erroreak
-		//			se.printStackTrace();
-		//		} catch (Exception e) {
-		//			// Class.forName errorea
-		//			e.printStackTrace();
-		//		} finally {
-		//			// itxi erabilitako errekurtsoak
-		//			try {
-		//				if (stmt != null)
-		//					stmt.close();
-		//			} catch (SQLException se2) {
-		//			}
-		//			try {
-		//				if (conn != null)
-		//					conn.close();
-		//			} catch (SQLException se) {
-		//				se.printStackTrace();
-		//			}
-		//		}
-		//}
 	}
 }

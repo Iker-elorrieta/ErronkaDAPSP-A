@@ -17,20 +17,12 @@ class Pruebas {
 	
 	Servidor s = new Servidor();
 	Cliente c = new Cliente();
-	Socket so = null;
-	HiloServidor hs = null;
-	VentanaCliente v = new VentanaCliente();
 
 	@Test
-	public void servidorPrueba() {
+	public void servidorPrueba() throws ClassNotFoundException, IOException {
 		s.start();
-//		so = new Socket("localhost",5000);
-//		hs = new HiloServidor(so);
-//		s = new Servidor(5000);
-//		s.run();
 		boolean conexion=c.iniciar();
-		//hs.start();
-		
 		assertTrue(conexion);
 	}
+	
 }
