@@ -1,5 +1,6 @@
 package App;
 
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,19 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JButton P2_btnAceptar, P2_btnAtras, P2_btnSalir;
 	
 	private ArrayList<Datos> ayDatos = new ArrayList<Datos>();
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AppCliente frame = new AppCliente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	public AppCliente() {
 		hC = new HiloCliente(this);

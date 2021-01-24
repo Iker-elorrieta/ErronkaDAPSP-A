@@ -10,7 +10,7 @@
 }, {
   "Name" : "ABANTO",
   "Province" : "Bizkaia",
-  "Town" : "Abanto y Ciérvana-Abanto Zierbena",
+  "Town" : "Abanto",
   "Address" : "Avda. del Minero, 2. Ayuntamiento",
   "CoordenatesXETRS89" : "493987,175",
   "CoordenatesYETRS89" : "4796406,558",
@@ -64,7 +64,7 @@
 }, {
   "Name" : "ATEGORRIETA",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "Avda. Ategorrieta, 71",
   "CoordenatesXETRS89" : "584272,2271",
   "CoordenatesYETRS89" : "4797096,9139",
@@ -82,7 +82,7 @@
 }, {
   "Name" : "AVDA. TOLOSA",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "C/ Andrestegi, 2 ",
   "CoordenatesXETRS89" : "580211,325",
   "CoordenatesYETRS89" : "4795650,4773",
@@ -100,7 +100,7 @@
 }, {
   "Name" : "AÑORGA",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "Avda. de Añorga, 12 (Añorga Txiki)",
   "CoordenatesXETRS89" : "581469,0172",
   "CoordenatesYETRS89" : "4793568,2345",
@@ -172,7 +172,7 @@
 }, {
   "Name" : "EASO",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "Plaza del Centenario, s/n",
   "CoordenatesXETRS89" : "582643,6267",
   "CoordenatesYETRS89" : "4795983,9845",
@@ -253,7 +253,7 @@
 }, {
   "Name" : "LAS CARRERAS",
   "Province" : "Bizkaia",
-  "Town" : "Abanto y Ciérvana-Abanto Zierbena",
+  "Town" : "Abanto",
   "Address" : "Plaza Trinidad, s/n. Bº Las Carreras",
   "CoordenatesXETRS89" : "492102,56",
   "CoordenatesYETRS89" : "4796311,78",
@@ -379,7 +379,7 @@
 }, {
   "Name" : "PUYO",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "Camino de Puyo, 14",
   "CoordenatesXETRS89" : "582404,0515",
   "CoordenatesYETRS89" : "4794939,6966",
@@ -505,7 +505,7 @@
 }, {
   "Name" : "ZUBIETA",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "URIBITARTE IBILBIDEA",
   "CoordenatesXETRS89" : "578604",
   "CoordenatesYETRS89" : "4791483",
@@ -514,7 +514,7 @@
 }, {
   "Name" : "ZUBIETA METEO",
   "Province" : "Gipuzkoa",
-  "Town" : "Donostia / San Sebastián",
+  "Town" : "Donostia/San_Sebastián",
   "Address" : "ZUBIETA",
   "CoordenatesXETRS89" : "578595",
   "CoordenatesYETRS89" : "4789696",

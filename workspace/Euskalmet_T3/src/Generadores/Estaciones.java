@@ -81,6 +81,13 @@ public class Estaciones {
 		String texto = "";
 		String linea = bf.readLine();
 		while(linea != null) {
+			 if (linea.contains("Town")) {
+				if (linea.contains("Donostia")) {
+					linea = linea.substring(0, 12) + "Donostia/San_Sebastián\",";
+				} else if (linea.indexOf(" ", 12) != -1) {
+					linea = linea.substring(0, linea.indexOf(" ", 12)) + "\",";
+				}
+			}
             texto += "\n"+linea;
             linea = bf.readLine();
         }
