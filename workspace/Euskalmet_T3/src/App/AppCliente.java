@@ -185,7 +185,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			}
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
-			JPnl_Lista.setVisible(false);
+			this.setVisible(false);
 			
 			if (P2_tipoLista.equals("municipios")) {
 				List<String> lMuni = P2_listLista.getSelectedValuesList();
@@ -204,7 +204,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			}
 			
 			while (ayDatos.size() != 0);
-			JPnl_Lista.setVisible(true);
+			this.setVisible(true);
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);
@@ -225,7 +225,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	public void setDatos(List<Object> lista) {
-		if (JPnl_Lista.isVisible()) {
+		if (this.isVisible()) {
 			P2_listLista.setListData(Util.lista(lista, P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 		} else {
