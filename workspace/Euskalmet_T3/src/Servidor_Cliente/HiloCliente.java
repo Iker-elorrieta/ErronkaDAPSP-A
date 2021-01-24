@@ -14,7 +14,8 @@ public class HiloCliente extends Thread {
 	private AppCliente frame;
 	
 	private final int PUERTO = 5000;
-	private final String IP = "192.168.106.28";
+//	private final String IP = "192.168.106.28";
+	private final String IP = "127.0.0.1";
 	
 	private ObjectInputStream fentrada;
 	private ObjectOutputStream fsalida;

@@ -53,7 +53,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	public AppCliente() {
 		hC = new HiloCliente(this);
-		hC.run();
+		hC.start();
 		
 		arrays = new Contenedor();
 		
