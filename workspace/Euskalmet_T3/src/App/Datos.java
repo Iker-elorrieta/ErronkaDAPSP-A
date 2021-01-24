@@ -31,7 +31,7 @@ public class Datos extends JFrame implements ActionListener {
 		this.P3_dato = P3_dato;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		//setBounds(100, 100, 700, 500);
 		getContentPane().setLayout(null);
 		
 		frame();

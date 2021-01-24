@@ -5,11 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import App.AppCliente;
 
-public class HiloCliente extends Thread {
+public class Cliente extends Thread {
 	
 	private AppCliente frame;
 	
@@ -21,35 +22,19 @@ public class HiloCliente extends Thread {
 	private ObjectOutputStream fsalida;
 	private Socket cliente = null;
 	
-	private boolean cerrar;
-	private List<Object> resultado = null;
-	
-	public HiloCliente(AppCliente frame) {
-		this.frame = frame;
-	}
+	private ArrayList<List<Object>> resultado = null;
 	
 	@SuppressWarnings("unchecked")
-	public void run() {
+	public Cliente(AppCliente frame) throws ClassNotFoundException {
+		this.frame = frame;
+		
 		try {
 			cliente = new Socket(IP, PUERTO);
 			System.out.println("Conexion realizada con servidor");
 			fsalida = new ObjectOutputStream(cliente.getOutputStream());
-			fentrada = new ObjectInputStream((cliente.getInputStream()));
+			fentrada = new ObjectInputStream(cliente.getInputStream());
 			
-			while (!cerrar) {
-				String hql = frame.getHQL();
-				if (hql.length() != 0) {
-					try {
-						fsalida.writeObject(hql);
-						resultado = (List<Object>) fentrada.readObject();
-						frame.setDatos(resultado);
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			resultado = (ArrayList<List<Object>>) fentrada.readObject();
 			
 			cliente.close();
 			System.out.println("Fin cliente");
@@ -60,14 +45,8 @@ public class HiloCliente extends Thread {
 		}
 	}
 	
-	public void cerrar() {
-		cerrar = true;
-	}
-	
-	public List<Object> getResultado() {
-		List<Object> lista = resultado;
-		resultado = null;
-		return lista;
+	public ArrayList<List<Object>> getResultado() {
+		return resultado;
 	}
 	
 }
