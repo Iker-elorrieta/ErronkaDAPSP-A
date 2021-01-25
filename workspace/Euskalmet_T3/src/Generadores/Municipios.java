@@ -32,10 +32,6 @@ import com.google.gson.*;
 
 public class Municipios {
 	
-	public Municipios() throws IOException {
-		principal();
-	}
-	
 	public static void main(String[] args) throws IOException {
 		principal();
 	}

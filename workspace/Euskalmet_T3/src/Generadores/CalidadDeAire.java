@@ -39,10 +39,6 @@ import com.google.gson.JsonParser;
 
 public class CalidadDeAire {
 	
-	public CalidadDeAire() throws IOException {
-		principal();
-	}
-	
 	public static void main(String[] args) throws IOException {
 		principal();
 	}
