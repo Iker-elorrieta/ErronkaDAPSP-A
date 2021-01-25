@@ -29,7 +29,7 @@ public class Cliente extends Thread {
 	public boolean iniciar(){
 		try {
 			cliente = new Socket(IP, PUERTO);
-			System.out.println("Conexion realizada con servidor");
+			System.out.println("[Cliente] >> Conexion realizada con servidor. \n");
 			fsalida = new ObjectOutputStream(cliente.getOutputStream());
 			fentrada = new ObjectInputStream(cliente.getInputStream());
 			
@@ -37,7 +37,7 @@ public class Cliente extends Thread {
 			
 			cliente.close();
 			
-			System.out.println("Fin cliente");
+			System.out.println("[Cliente] >> Fin cliente. \n");
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {

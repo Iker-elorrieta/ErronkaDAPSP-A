@@ -3,6 +3,7 @@ package Servidor_Cliente;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -11,7 +12,9 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import Generadores.GenerarTodo;
 import Hibernate.HibernateUtil;
+import Inserts.LlenarBBDD;
 
 public class Servidor extends Thread{
 
@@ -22,9 +25,14 @@ public class Servidor extends Thread{
 
 	@SuppressWarnings("unchecked")
 	public void run() {
+//		System.out.println("[Servidor] >> Actualizando datos... \n");
+//		prepararTodo();
+//		System.out.println("[Servidor] >> Datos actualizados. \n");
+		
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
+		
 		//Municipios por Provincia
 		List<Object> prov = session.createQuery("SELECT DISTINCT p FROM Provincia AS p").list();
 		ayDatos.add(prov);
@@ -34,15 +42,19 @@ public class Servidor extends Thread{
 		ayDatos.add(muniGipuzkoa);
 		List<Object> muniAraba = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Araba' ORDER BY m.nombre").list();
 		ayDatos.add(muniAraba);
-		//Espacios por Provincia
+		
+		//Espacios Naturales por Provincia
 		List<Object> espNBizkaia = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Bizkaia' ORDER BY me.espaciosNaturales.nombre").list();
 		ayDatos.add(espNBizkaia);
 		List<Object> espNGipuzkoa = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Gipuzkoa' ORDER BY me.espaciosNaturales.nombre").list();
 		ayDatos.add(espNGipuzkoa);
 		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre").list();
 		ayDatos.add(espNAraba);
+		
+		//Calidad de Aire por Municipio
 		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
 		ayDatos.add(muniCAire);
+		
 		session.close();
 		sf.close();
 		
@@ -50,16 +62,16 @@ public class Servidor extends Thread{
 		Socket cliente = null;
 		try {
 			servidor = crearSocket();
-			System.out.println("Esperando conexiones del cliente...");
+			System.out.println("[Servidor] >> Esperando conexiones del cliente... \n");
 			while (true) {
 				cliente = new Socket();
 				cliente = servidor.accept();
-				System.out.println("Cliente conectado");
+				System.out.println("[Servidor] >> Cliente conectado. \n");
 				HiloServidor hilo = new HiloServidor(cliente,ayDatos);
 				hilo.start();
 			}
 		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("[Servidor] >> Error: " + e.getMessage() + " \n");
 		
 		}finally {
 			if (servidor != null)
@@ -69,7 +81,7 @@ public class Servidor extends Thread{
 					e.printStackTrace();
 				}
 		}
-		System.out.println("El servidor se ha terminado");
+		System.out.println("[Servidor] >> El servidor se ha terminado. \n");
 	}
 	
 	public ServerSocket crearSocket() throws IOException {
@@ -86,6 +98,15 @@ public class Servidor extends Thread{
 		mainServer();
 	}
 	
-	
+	private void prepararTodo() {
+		try {
+			GenerarTodo.principal();
+			LlenarBBDD.principal();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

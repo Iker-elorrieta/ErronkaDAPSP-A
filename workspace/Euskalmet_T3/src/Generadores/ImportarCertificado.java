@@ -24,6 +24,7 @@ public class ImportarCertificado {
 	public static void principal() {
 		for (int i = 1; i <= 2; i++) {
 			try {
+				System.out.println("[Certificado] >> Importando certificado... \n");
 				if (i == 1) {
 					InputStream certIn = ClassLoader.class.getResourceAsStream("src/euskadi.cer");
 					
@@ -41,8 +42,10 @@ public class ImportarCertificado {
 					    return;
 					}
 					localCertIn.close();
+					System.out.println("[Certificado] >> Certificado installado. \n");
 				} else {
 					trustEveryone();
+					System.out.println("[Certificado] >> Error saltado. \n");
 				}
 				break;
 			} catch (FileNotFoundException e) {

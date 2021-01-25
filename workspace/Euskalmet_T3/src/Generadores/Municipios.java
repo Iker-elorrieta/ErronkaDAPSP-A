@@ -40,12 +40,12 @@ public class Municipios {
 		boolean terminado=false;
 		String nomArchivo = "municipios";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/pueblos_euskadi_turismo/opendata/herriak.json", nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO");
 		limpiarJSON(nomArchivo);
-		System.out.println(nomArchivo + " -> LIMPIADO");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 		generarXML(nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO XML \n");
-		System.out.println("-> FINALIZADO <-");
+		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
+		System.out.println("[Datos] >> Municipios -> FINALIZADO \n");
 		terminado = true;
 		return terminado;
 	}

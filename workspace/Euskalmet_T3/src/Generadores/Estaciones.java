@@ -42,12 +42,12 @@ public class Estaciones {
 		boolean terminado=false;
 		String nomArchivo = "estaciones";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/estaciones.json", nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO");
 		limpiarJSON(nomArchivo);
-		System.out.println(nomArchivo + " -> LIMPIADO");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 		generarXML(nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO XML \n");
-		System.out.println("-> FINALIZADO <-");
+		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
+		System.out.println("[Datos] >> Estaciones -> FINALIZADO \n");
 		terminado = true;
 		return terminado;
 	}

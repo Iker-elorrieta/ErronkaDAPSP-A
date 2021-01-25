@@ -36,14 +36,14 @@ public class LlenarBBDD {
 	private static Logger log = Logger.getLogger("org.hibernate");
 	
 	public static void main(String[] args) throws SQLException, IOException {
-		log.setLevel(Level.OFF);
-		sf = HibernateUtil.getSessionFactory();
 		principal();
 	}
 	
 	public static boolean principal() throws IOException, SQLException {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
 		
 		provincias(/*conexion*/);
 		System.out.println("provincia -> COMPLETADO \n");
@@ -57,7 +57,7 @@ public class LlenarBBDD {
 		System.out.println("muni_espacios -> COMPLETADO \n");
 		calidad_aire(/*conexion, */nomEstaciones);
 		System.out.println("calidad_aire -> COMPLETADO \n");
-		System.out.println("-> FINALIZADO <-");
+		System.out.println("-> FINALIZADO <- \n");
 		
 //		conexion.close(); conn.desconectar();
 		sf.close();

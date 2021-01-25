@@ -44,12 +44,12 @@ public class EspaciosNaturales {
 		
 		String nomArchivo = "espacios_naturales";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/playas_de_euskadi/opendata/espacios-naturales.json", nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO JSON");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
 		limpiarJSON(nomArchivo);
-		System.out.println(nomArchivo + " -> LIMPIADO");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 		generarXML(nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO XML \n");
-		System.out.println("-> FINALIZADO <-");
+		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
+		System.out.println("[Datos] >> EspaciosNaturales -> FINALIZADO \n");
 		terminado = true;
 		
 		return terminado;

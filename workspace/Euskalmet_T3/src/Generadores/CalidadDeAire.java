@@ -48,11 +48,11 @@ public class CalidadDeAire {
 	
 		String nomArchivo = "0_CalidadAire";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/index.json", nomArchivo);
-		System.out.println(nomArchivo + " -> GENERADO JSON");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
 		limpiarJSON(nomArchivo);
-		System.out.println(nomArchivo + " -> LIMPIADO \n");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO \n");
 		recorrerJSON(nomArchivo);
-		System.out.println("-> FINALIZADO <-");
+		System.out.println("[Datos] >> CalidadAire -> FINALIZADO \n");
 		terminado = true;
 		
 		return terminado;
@@ -114,11 +114,11 @@ public class CalidadDeAire {
 				String url = objeto.get("url").getAsString();
 				if (url.contains("datos_indice")) {
 					generarJSON(url, nombre);
-					System.out.println(nombre + " -> GENERADO JSON");
+					System.out.println("[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
 					limpiarJSON(nombre);
-					System.out.println(nombre + " -> LIMPIADO");
+					System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
 					generarXML(nombre);
-					System.out.println(nombre + " -> GENERADO XML \n");
+					System.out.println("[Datos/XML] >> " + nombre + " -> GENERADO XML \n");
 				}
 			}
 		} catch (FileNotFoundException e) {
