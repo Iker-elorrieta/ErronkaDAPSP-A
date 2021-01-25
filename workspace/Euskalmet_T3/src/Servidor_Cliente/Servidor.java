@@ -21,7 +21,7 @@ public class Servidor extends Thread{
 	private Logger log = Logger.getLogger("org.hibernate");
 
 	@SuppressWarnings("unchecked")
-	public void run(){
+	public void run() {
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();

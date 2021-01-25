@@ -31,6 +31,7 @@ public class Cliente extends Thread {
 			resultado = (ArrayList<List<Object>>) fentrada.readObject();
 			
 			cliente.close();
+			
 			System.out.println("Fin cliente");
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
