@@ -17,12 +17,12 @@ import Hibernate.HibernateUtil;
 import Inserts.LlenarBBDD;
 
 public class Servidor extends Thread{
-
+	
 	private final int PUERTO = 5000;
 	private ArrayList<List<Object>> ayDatos = new ArrayList<List<Object>>();
 	private SessionFactory sf;
 	private Logger log = Logger.getLogger("org.hibernate");
-
+	
 	@SuppressWarnings("unchecked")
 	public void run() {
 //		System.out.println("[Servidor] >> Actualizando datos... \n");
@@ -93,7 +93,7 @@ public class Servidor extends Thread{
 		s1.run();
 		return true;
 	}
-
+	
 	public static void main(String[] args) {
 		mainServer();
 	}
@@ -108,5 +108,5 @@ public class Servidor extends Thread{
 			e.printStackTrace();
 		}
 	}
-
+	
 }
