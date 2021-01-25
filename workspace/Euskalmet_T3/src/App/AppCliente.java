@@ -212,7 +212,6 @@ public class AppCliente extends JFrame implements ActionListener {
 					P2_listLista.setListData(Util.lista(arrays.getAyEspNAraba(), P2_tipoLista));
 				}
 			}
-			
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
 			this.setVisible(false);
@@ -229,9 +228,6 @@ public class AppCliente extends JFrame implements ActionListener {
 				datos.setVisible(true);
 				ayDatos.add(datos);
 			}
-			
-			while(ayDatos.size() != 0);
-			this.setVisible(true);
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);

@@ -12,7 +12,7 @@ public class HiloServidor extends Thread {
 	private ObjectInputStream fentrada;
 	private ObjectOutputStream fsalida;
 	private Socket socket = null;
-	private ArrayList<List<Object>> ayDatos;
+	private ArrayList<List<Object>> ayDatos; 
 
 	public HiloServidor(Socket s, ArrayList<List<Object>> ayDatos) throws IOException{
 		this.socket=s;
@@ -23,11 +23,14 @@ public class HiloServidor extends Thread {
 	
 	public void run() {
 		System.out.println("Empieza el hilo servidor");
+		
 		try {
 			fsalida.writeObject(ayDatos);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("Fin del hilo servidor");
 	}
 }
 

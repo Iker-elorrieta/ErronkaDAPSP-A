@@ -99,6 +99,9 @@ public class Datos extends JFrame implements ActionListener {
 			
 		} else if (e.getSource() == P3_btnCerrar) {
 			App.getAyDatos().remove(this);
+			if (App.getAyDatos().size() == 0) {
+				App.setVisible(true);
+			}
 			this.dispose();
 		} else {
 			System.exit(0);
@@ -123,7 +126,6 @@ public class Datos extends JFrame implements ActionListener {
 				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyEspNAraba(), tipo));
 			}
 		}
-		
 		P3_txtInfo.setCaretPosition(0);
 	}
 	

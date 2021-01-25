@@ -1,7 +1,8 @@
+/App/
+/ArchivosJSON/
 /ArchivosJSON_CalidadAire/
 /ArchivosXML/
 /ArchivosXML_CalidadAire/
-/App/
 /EUSKALMET_E-R.png
 /Generadores/
 /Hibernate/
@@ -14,4 +15,3 @@
 /euskomet_db.sql
 /hibernate.cfg.xml
 /hibernate.reveng.xml
-/ArchivosJSON/
