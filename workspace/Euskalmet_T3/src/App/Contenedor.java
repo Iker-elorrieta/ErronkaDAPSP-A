@@ -11,6 +11,7 @@ public class Contenedor {
 	private List<Object> ayEspNBizkaia;
 	private List<Object> ayEspNGipuzkoa;
 	private List<Object> ayEspNAraba;
+	private List<Object> ayMuniCAire;
 	
 	public Contenedor(List<List<Object>> ayDatos) {
 		ayProv = ayDatos.get(0);
@@ -20,6 +21,7 @@ public class Contenedor {
 		ayEspNBizkaia = ayDatos.get(4);
 		ayEspNGipuzkoa = ayDatos.get(5);
 		ayEspNAraba = ayDatos.get(6);
+		ayMuniCAire = ayDatos.get(7);
 	}
 	
 	public List<Object> getAyProv() {
@@ -48,6 +50,10 @@ public class Contenedor {
 	
 	public List<Object> getAyEspNAraba() {
 		return ayEspNAraba;
+	}
+	
+	public List<Object> getAyMuniCAire() {
+		return ayMuniCAire;
 	}
 	
 }

@@ -41,6 +41,8 @@ public class Servidor extends Thread{
 		ayDatos.add(espNGipuzkoa);
 		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre").list();
 		ayDatos.add(espNAraba);
+		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
+		ayDatos.add(muniCAire);
 		session.close();
 		sf.close();
 		
