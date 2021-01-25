@@ -3,12 +3,17 @@ package Generadores;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 
 public class ImportarCertificado {
 	
@@ -17,34 +22,63 @@ public class ImportarCertificado {
 	}
 	
 	public static void principal() {
-		try {
-			InputStream certIn = ClassLoader.class.getResourceAsStream("src/euskadi.cer");
-			
-			final char sep = File.separatorChar;
-			File dir = new File(System.getProperty("java.home") + sep + "lib" + sep + "security");
-			File file = new File(dir, "cacerts");
-			InputStream localCertIn = new FileInputStream(file);
-			
-			char[] passphrase = "changeit".toCharArray();
-			KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-			keystore.load(localCertIn, passphrase);
-			if (keystore.containsAlias("DreamTeam")) {
-			    certIn.close();
-			    localCertIn.close();
-			    return;
+		for (int i = 1; i <= 2; i++) {
+			try {
+				if (i == 1) {
+					InputStream certIn = ClassLoader.class.getResourceAsStream("src/euskadi.cer");
+					
+					final char sep = File.separatorChar;
+					File dir = new File(System.getProperty("java.home") + sep + "lib" + sep + "security");
+					File file = new File(dir, "cacerts");
+					InputStream localCertIn = new FileInputStream(file);
+					
+					char[] passphrase = "changeit".toCharArray();
+					KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+					keystore.load(localCertIn, passphrase);
+					if (keystore.containsAlias("DreamTeam")) {
+					    certIn.close();
+					    localCertIn.close();
+					    return;
+					}
+					localCertIn.close();
+				} else {
+					trustEveryone();
+				}
+				break;
+			} catch (FileNotFoundException e) {
+				if (!e.getMessage().contains("denied")) {
+					e.printStackTrace();
+					System.exit(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.exit(1);
 			}
-			localCertIn.close();
-		} catch (KeyStoreException e) {
-			e.printStackTrace();
-		} catch (CertificateException e) {
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
+	private static void trustEveryone() {
+		try {
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String arg0, SSLSession arg1) {
+					return false;
+				}
+			});
+			SSLContext context = SSLContext.getInstance("TLS");
+			context.init(null, new X509TrustManager[] {new X509TrustManager() {
+				public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				@Override
+				public X509Certificate[] getAcceptedIssuers() {
+					return new X509Certificate[0];
+				}
+			}}, new SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
