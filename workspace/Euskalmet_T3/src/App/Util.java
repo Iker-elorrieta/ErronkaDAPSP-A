@@ -2,18 +2,17 @@ package App;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Hibernate.EspaciosNaturales;
 import Hibernate.Municipio;
 import Hibernate.Provincia;
 
 public class Util {
 	
-	public static String[] cmbxProvincias(ArrayList<Provincia> ay) {
+	public static String[] cmbxProvincias(List<Object> ay) {
 		ArrayList<String> ayProv = new ArrayList<String>();
 		
 		for (int i = 0; i < ay.size(); i++) {
-			Provincia prov = ay.get(i);
+			Provincia prov = (Provincia) ay.get(i);
 			ayProv.add(prov.getNombre());
 		}
 		

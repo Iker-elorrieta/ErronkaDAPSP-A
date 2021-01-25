@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,12 +17,17 @@ public class Servidor extends Thread{
 
 	private final static int PUERTO = 5000;
 	private ArrayList<List<Object>> ayDatos = new ArrayList<List<Object>>();
+	private SessionFactory sf;
+	private Logger log = Logger.getLogger("org.hibernate");
 
 	@SuppressWarnings("unchecked")
 	public void run(){
-		SessionFactory sesioa = HibernateUtil.getSessionFactory();
-		Session session = sesioa.openSession();
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
 		//Municipios por Provincia
+		List<Object> prov = session.createQuery("SELECT DISTINCT p FROM Provincia AS p").list();
+		ayDatos.add(prov);
 		List<Object> muniBizkaia = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Bizkaia' ORDER BY m.nombre").list();
 		ayDatos.add(muniBizkaia);
 		List<Object> muniGipuzkoa = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Gipuzkoa' ORDER BY m.nombre").list();
@@ -35,6 +42,7 @@ public class Servidor extends Thread{
 		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre").list();
 		ayDatos.add(espNAraba);
 		session.close();
+		sf.close();
 		
 		ServerSocket servidor = null;
 		Socket cliente = null;

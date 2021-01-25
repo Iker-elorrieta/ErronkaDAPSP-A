@@ -21,7 +21,7 @@ public class Datos extends JFrame implements ActionListener {
 	private AppCliente App;
 	
 	private JPanel JPnl_Info;
-	private String P3_dato;
+	private String P3_dato, tipo, prov;
 	private JLabel P3_lblNombre;
 	private JTextArea P3_txtInfo;
 	private JButton P3_btnHistorico, P3_btnCerrar, P3_btnSalir;
@@ -29,9 +29,11 @@ public class Datos extends JFrame implements ActionListener {
 	public Datos(AppCliente App, String P3_dato) {
 		this.App = App;
 		this.P3_dato = P3_dato;
+		this.tipo = App.getTipo();
+		this.prov = App.getProv();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 700, 500);
 		getContentPane().setLayout(null);
 		
 		frame();
@@ -64,6 +66,7 @@ public class Datos extends JFrame implements ActionListener {
 		P3_txtInfo.setWrapStyleWord(true);
 		P3_txtInfo.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		P3_txtInfo.setBounds(45, 66, 342, 248);
+		setTxtInfo();
 		
 		JScrollPane P3_scrollPane = new JScrollPane(P3_txtInfo);
 		P3_scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -98,17 +101,30 @@ public class Datos extends JFrame implements ActionListener {
 			App.getAyDatos().remove(this);
 			this.dispose();
 		} else {
-			App.salir();
+			System.exit(0);
 		}
 	}
 	
-	public void setTexto(String texto) {
-		P3_txtInfo.setText(texto);
+	private void setTxtInfo() {
+		if (tipo.equals("municipios")) {
+			if (prov.equals("Bizkaia")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyMuniBizkaia(), tipo));
+			} else if (prov.equals("Gipuzkoa")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyMuniGipuzkoa(), tipo));
+			} else if (prov.equals("Araba")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyMuniAraba(), tipo));
+			}
+		} else if (tipo.equals("espaciosN")) {
+			if (prov.equals("Bizkaia")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyEspNBizkaia(), tipo));
+			} else if (prov.equals("Gipuzkoa")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyEspNGipuzkoa(), tipo));
+			} else if (prov.equals("Araba")) {
+				P3_txtInfo.setText(Util.texto(App.getContenedor().getAyEspNAraba(), tipo));
+			}
+		}
+		
 		P3_txtInfo.setCaretPosition(0);
-	}
-	
-	public String getTexto() {
-		return P3_txtInfo.getText();
 	}
 	
 }

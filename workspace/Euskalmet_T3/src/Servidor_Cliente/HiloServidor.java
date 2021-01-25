@@ -6,12 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import Hibernate.HibernateUtil;
 
 public class HiloServidor extends Thread {
 
@@ -26,11 +20,9 @@ public class HiloServidor extends Thread {
 		this.fentrada = new ObjectInputStream(socket.getInputStream());
 		this.ayDatos = ayDatos;
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	public void run() {
 		System.out.println("Empieza el hilo servidor");
-
 		try {
 			fsalida.writeObject(ayDatos);
 		} catch (IOException e) {

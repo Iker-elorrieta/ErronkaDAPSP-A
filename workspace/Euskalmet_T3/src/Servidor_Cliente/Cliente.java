@@ -8,11 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import App.AppCliente;
-
 public class Cliente extends Thread {
-	
-	private AppCliente frame;
 	
 	private final int PUERTO = 5000;
 //	private final String IP = "192.168.106.28";
@@ -25,9 +21,7 @@ public class Cliente extends Thread {
 	private ArrayList<List<Object>> resultado = null;
 	
 	@SuppressWarnings("unchecked")
-	public Cliente(AppCliente frame) throws ClassNotFoundException {
-		this.frame = frame;
-		
+	public Cliente() throws ClassNotFoundException {
 		try {
 			cliente = new Socket(IP, PUERTO);
 			System.out.println("Conexion realizada con servidor");

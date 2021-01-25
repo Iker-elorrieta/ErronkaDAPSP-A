@@ -31,7 +31,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnSalir;
 	
 	private JPanel JPnl_Lista;
-	private String P2_tipoLista, P2_hql = "";
+	private String P2_tipoLista;
 	private JComboBox<String> P2_cmbxProvincias;
 	private JList<String> P2_listLista;
 	private JButton P2_btnAceptar, P2_btnAtras, P2_btnSalir;
@@ -52,10 +52,13 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	public AppCliente() {
-		hC = new Cliente(this);
-		hC.start();
-		
-		arrays = new Contenedor();
+		try {
+			hC = new Cliente();
+			hC.start();
+			arrays = new Contenedor(hC.getResultado());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
@@ -174,8 +177,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "municipios";
 			P2_cmbxProvincias.setSelectedIndex(0);
-			P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyMuni(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
-			P2_listLista.setListData(Util.lista(arrays.getSf(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+			P2_listLista.setListData(Util.lista(arrays.getAyMuniBizkaia(), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		} else if (e.getSource() == P1_btnEspaciosN) {
@@ -183,57 +185,76 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "espaciosN";
 			P2_cmbxProvincias.setSelectedIndex(0);
-			P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyEspN(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
-			P2_listLista.setListData(Util.lista(arrays.getSf(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+			P2_listLista.setListData(Util.lista(arrays.getAyEspNBizkaia(), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		} else {
-			salir();
+			System.exit(0);
 		}
 	}
 	
 	private void actionLista(ActionEvent e) {
 		if (e.getSource() == P2_cmbxProvincias) {
 			if (P2_tipoLista.equals("municipios")) {
-				P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyMuni(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
-				P2_listLista.setListData(Util.lista(arrays.getSf(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyMuniBizkaia(), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyMuniGipuzkoa(), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyMuniAraba(), P2_tipoLista));
+				}
 			} else if (P2_tipoLista.equals("espaciosN")) {
-				P2_listLista.setListData(Util.lista(arrays.getSf(), arrays.getAyEspN(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
-				P2_listLista.setListData(Util.lista(arrays.getSf(), P2_tipoLista, P2_cmbxProvincias.getSelectedItem().toString()));
+				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyEspNBizkaia(), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyEspNGipuzkoa(), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
+					P2_listLista.setListData(Util.lista(arrays.getAyEspNAraba(), P2_tipoLista));
+				}
 			}
+			
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
+			this.setVisible(false);
+			
 			if (P2_tipoLista.equals("municipios")) {
 				List<String> lMuni = P2_listLista.getSelectedValuesList();
 				for (int i = 0; i < lMuni.size(); i++) {
-
-					Datos datos = new Datos(this, lMuni.get(i), P2_tipoLista);
+					Datos datos = new Datos(this, lMuni.get(i));
 					datos.setVisible(true);
 					ayDatos.add(datos);
 				}
 			} else if (P2_tipoLista.equals("espaciosN")) {
 				Datos datos = new Datos(this, P2_listLista.getSelectedValue());
-				Datos datos = new Datos(this, P2_listLista.getSelectedValue(), P2_tipoLista);
 				datos.setVisible(true);
 				ayDatos.add(datos);
 			}
+			
+			while(ayDatos.size() != 0);
+			this.setVisible(true);
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);
 			P2_tipoLista = "";
 		} else {
-			salir();
+			System.exit(0);
 		}
+	}
+	
+	public Contenedor getContenedor() {
+		return arrays;
+	}
+	
+	public String getTipo() {
+		return P2_tipoLista;
+	}
+	
+	public String getProv() {
+		return P2_cmbxProvincias.getSelectedItem().toString();
 	}
 	
 	public ArrayList<Datos> getAyDatos() {
 		return ayDatos;
-	}
-	
-	public void salir() {
-		arrays.getSf().close();
-		hC.cerrar();
-		System.exit(0);
 	}
 	
 }

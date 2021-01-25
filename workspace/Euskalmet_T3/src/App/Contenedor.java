@@ -1,55 +1,53 @@
 package App;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import Hibernate.*;
 
 public class Contenedor {
 	
-	private SessionFactory sf;
-	private Logger log = Logger.getLogger("org.hibernate");
+	private List<Object> ayProv;
+	private List<Object> ayMuniBizkaia;
+	private List<Object> ayMuniGipuzkoa;
+	private List<Object> ayMuniAraba;
+	private List<Object> ayEspNBizkaia;
+	private List<Object> ayEspNGipuzkoa;
+	private List<Object> ayEspNAraba;
 	
-	private ArrayList<Provincia> ayProv;
-	
-	public Contenedor() {
-		log.setLevel(Level.OFF);
-		sf = HibernateUtil.getSessionFactory();
-		
-		ayProv = new ArrayList<Provincia>();
-		llenarArray("Provincia");
+	public Contenedor(List<List<Object>> ayDatos) {
+		ayProv = ayDatos.get(0);
+		ayMuniBizkaia = ayDatos.get(1);
+		ayMuniGipuzkoa = ayDatos.get(2);
+		ayMuniAraba = ayDatos.get(3);
+		ayEspNBizkaia = ayDatos.get(4);
+		ayEspNGipuzkoa = ayDatos.get(5);
+		ayEspNAraba = ayDatos.get(6);
 	}
 	
-	@SuppressWarnings("unchecked")
-	private void llenarArray(String tipo) {
-		Session session = sf.openSession();
-		
-		List<Object> list = session.createQuery("FROM "+tipo).list();
-		for (int i = 0; i < list.size(); i++) {
-			if (tipo.equals("Provincia")) {
-				Provincia prov = (Provincia) list.get(i);
-				ayProv.add(prov);
-			}
-		}
-		
-		session.close();
-	}
-
-	public SessionFactory getSf() {
-		return sf;
-	}
-	
-	public Logger getLog() {
-		return log;
-	}
-	
-	public ArrayList<Provincia> getAyProv() {
+	public List<Object> getAyProv() {
 		return ayProv;
+	}
+	
+	public List<Object> getAyMuniBizkaia() {
+		return ayMuniBizkaia;
+	}
+	
+	public List<Object> getAyMuniGipuzkoa() {
+		return ayMuniGipuzkoa;
+	}
+	
+	public List<Object> getAyMuniAraba() {
+		return ayMuniAraba;
+	}
+	
+	public List<Object> getAyEspNBizkaia() {
+		return ayEspNBizkaia;
+	}
+	
+	public List<Object> getAyEspNGipuzkoa() {
+		return ayEspNGipuzkoa;
+	}
+	
+	public List<Object> getAyEspNAraba() {
+		return ayEspNAraba;
 	}
 	
 }
