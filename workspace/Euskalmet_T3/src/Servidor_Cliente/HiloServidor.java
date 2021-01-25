@@ -14,6 +14,8 @@ public class HiloServidor extends Thread {
 	private Socket socket = null;
 	private ArrayList<List<Object>> ayDatos; 
 
+	public HiloServidor() {}
+	
 	public HiloServidor(Socket s, ArrayList<List<Object>> ayDatos) throws IOException{
 		this.socket=s;
 		this.fsalida = new ObjectOutputStream(socket.getOutputStream());

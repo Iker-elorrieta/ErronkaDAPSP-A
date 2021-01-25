@@ -15,7 +15,7 @@ import Hibernate.HibernateUtil;
 
 public class Servidor extends Thread{
 
-	private final static int PUERTO = 5000;
+	private final int PUERTO = 5000;
 	private ArrayList<List<Object>> ayDatos = new ArrayList<List<Object>>();
 	private SessionFactory sf;
 	private Logger log = Logger.getLogger("org.hibernate");
@@ -47,7 +47,7 @@ public class Servidor extends Thread{
 		ServerSocket servidor = null;
 		Socket cliente = null;
 		try {
-			servidor = new ServerSocket(PUERTO);
+			servidor = crearSocket();
 			System.out.println("Esperando conexiones del cliente...");
 			while (true) {
 				cliente = new Socket();
@@ -68,6 +68,10 @@ public class Servidor extends Thread{
 				}
 		}
 		System.out.println("El servidor se ha terminado");
+	}
+	
+	public ServerSocket crearSocket() throws IOException {
+		return new ServerSocket(PUERTO);
 	}
 	
 	public static boolean mainServer() {

@@ -20,8 +20,13 @@ public class Cliente extends Thread {
 	
 	private ArrayList<List<Object>> resultado = null;
 	
+	
+	public Cliente(){
+		iniciar();
+	}
+	
 	@SuppressWarnings("unchecked")
-	public Cliente() throws ClassNotFoundException {
+	public boolean iniciar(){
 		try {
 			cliente = new Socket(IP, PUERTO);
 			System.out.println("Conexion realizada con servidor");
@@ -37,7 +42,10 @@ public class Cliente extends Thread {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
+		return true;
 	}
 	
 	public ArrayList<List<Object>> getResultado() {

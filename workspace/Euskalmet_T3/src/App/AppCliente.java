@@ -52,13 +52,9 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	public AppCliente() {
-		try {
-			hC = new Cliente();
-			hC.start();
-			arrays = new Contenedor(hC.getResultado());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		hC = new Cliente();
+		hC.start();
+		arrays = new Contenedor(hC.getResultado());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);

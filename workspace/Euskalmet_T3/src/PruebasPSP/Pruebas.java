@@ -4,26 +4,26 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
 
 import Servidor_Cliente.Cliente;
 import Servidor_Cliente.HiloServidor;
 import Servidor_Cliente.Servidor;
-import Servidor_Cliente.VentanaCliente;
 
 class Pruebas {
 
 	Servidor s = new Servidor();
 	Cliente c = new Cliente();
 	HiloServidor hs = new HiloServidor();
-	VentanaCliente v;
+	Socket so = new Socket();
+	ArrayList <List<Object>> ay = null ;
+	
 
 	@Test
 	public void servidorPrueba() throws ClassNotFoundException, IOException {
@@ -31,7 +31,6 @@ class Pruebas {
 		boolean conexion=c.iniciar();
 		assertTrue(conexion);
 	}
-
 	
 	
 	/* estos tests con ExecutorService hacen que el metodo que se prueba entre a una excepcion,
@@ -72,14 +71,10 @@ class Pruebas {
 	
 	@Test
 	public void serverMainTest() {
+		@SuppressWarnings("static-access")
 		boolean t = s.mainServer();
 		assertTrue(t);
 	}
 	
-	@Test
-	public void clienteMainTest() throws ClassNotFoundException, IOException {
-		boolean t = c.clienteMain();
-		assertTrue(t);
-	}
 	
 }
