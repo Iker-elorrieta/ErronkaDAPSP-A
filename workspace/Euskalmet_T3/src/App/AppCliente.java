@@ -26,6 +26,16 @@ public class AppCliente extends JFrame implements ActionListener {
 	private Cliente hC;
 	
 	private List<List<Object>> arrays;
+	/* Contenido de objecto 'arrays': 
+		- arrays.get(0) -> Provincias.
+		- arrays.get(1) -> Municipios de Bizkaia.
+		- arrays.get(2) -> Municipios de Gipuzkoa.
+		- arrays.get(3) -> Municipios de Araba.
+		- arrays.get(4) -> Espacios Naturales de Bizkaia.
+		- arrays.get(5) -> Espacios Naturales de Gipuzkoa.
+		- arrays.get(6) -> Espacios Naturales de Araba.
+		- arrays.get(7) -> Historico por Municipios.
+	 */
 	
 	private JPanel JPnl_Menu;
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnSalir;
