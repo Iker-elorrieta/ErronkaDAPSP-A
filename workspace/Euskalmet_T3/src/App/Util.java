@@ -75,10 +75,9 @@ public class Util {
 			if (((String) est[2]).equals(direccion)) {
 				String fechaHora = ((Timestamp) est[0]).toString();
 				String calidad = (String) est[1];
-				if (calidad.length() == 0) {
-					historico += ">> " + fechaHora + " >> Sin datos. \n\n";
-				} else {
-					historico += ">> " + fechaHora + " >> " + calidad + ". \n\n";
+				if (calidad.length() != 0) {
+					if (!calidad.contains("datos")) 
+						historico += ">> " + fechaHora + " >> " + calidad + ". \n\n";
 				}
 			}
 		}

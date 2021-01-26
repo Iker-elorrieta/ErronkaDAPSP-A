@@ -3,6 +3,7 @@ package App;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +22,7 @@ import java.awt.Color;
 public class Datos extends JFrame implements ActionListener {
 	
 	private AppCliente App;
-	private Contenedor arrays;
+	private List<List<Object>> arrays;
 	
 	private JPanel JPnl_Info;
 	private String P3_dato, tipo, prov;
@@ -36,7 +37,7 @@ public class Datos extends JFrame implements ActionListener {
 	
 	public Datos(AppCliente App, String P3_dato) {
 		this.App = App;
-		this.arrays = App.getContenedor();
+		this.arrays = App.getArrays();
 		this.P3_dato = P3_dato;
 		this.tipo = App.getTipo();
 		this.prov = App.getProv();
@@ -122,7 +123,7 @@ public class Datos extends JFrame implements ActionListener {
 	}
 	
 	private void historico() {
-		P4_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.getAyMuniCAire(), P3_dato));
+		P4_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.get(7), P3_dato));
 		if (P4_cmbxEstaciones.getItemCount() != 0) {
 			P4_cmbxEstaciones.setSelectedIndex(0);
 		}
@@ -176,7 +177,7 @@ public class Datos extends JFrame implements ActionListener {
 			if (P4_cmbxEstaciones.getItemCount() != 0) {
 				JPnl_Info.setVisible(false);
 				JPnl_Historico.setVisible(true);
-				P4_txtHistorico.setText(Util.historico(arrays.getAyMuniCAire(), P4_cmbxEstaciones.getSelectedItem().toString()));
+				P4_txtHistorico.setText(Util.historico(arrays.get(7), P4_cmbxEstaciones.getSelectedItem().toString()));
 				P4_txtHistorico.setCaretPosition(0);
 			} else {
 				P3_lblMsg.setText(">> Histórico no disponible <<");
@@ -194,7 +195,7 @@ public class Datos extends JFrame implements ActionListener {
 	
 	private void actionHistorico(ActionEvent e) {
 		if (e.getSource() == P4_cmbxEstaciones) {
-			P4_txtHistorico.setText(Util.historico(arrays.getAyMuniCAire(), P4_cmbxEstaciones.getSelectedItem().toString()));
+			P4_txtHistorico.setText(Util.historico(arrays.get(7), P4_cmbxEstaciones.getSelectedItem().toString()));
 			P4_txtHistorico.setCaretPosition(0);
 		} else if (e.getSource() == P4_btnAtras) {
 			JPnl_Info.setVisible(true);
@@ -213,19 +214,19 @@ public class Datos extends JFrame implements ActionListener {
 	private void setTxtInfo() {
 		if (tipo.equals("municipios")) {
 			if (prov.equals("Bizkaia")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyMuniBizkaia(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(1), tipo));
 			} else if (prov.equals("Gipuzkoa")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyMuniGipuzkoa(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(2), tipo));
 			} else if (prov.equals("Araba")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyMuniAraba(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(3), tipo));
 			}
 		} else if (tipo.equals("espaciosN")) {
 			if (prov.equals("Bizkaia")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyEspNBizkaia(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(4), tipo));
 			} else if (prov.equals("Gipuzkoa")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyEspNGipuzkoa(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(5), tipo));
 			} else if (prov.equals("Araba")) {
-				P3_txtInfo.setText(Util.texto(arrays.getAyEspNAraba(), tipo));
+				P3_txtInfo.setText(Util.texto(arrays.get(6), tipo));
 			}
 		}
 		P3_txtInfo.setCaretPosition(0);

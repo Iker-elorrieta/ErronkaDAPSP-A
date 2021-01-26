@@ -28,9 +28,9 @@ public class Servidor extends Thread{
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		
-		System.out.println("[Servidor] >> Actualizando datos... \n");
-		prepararTodo();
-		System.out.println("[Servidor] >> Datos actualizados. \n");
+//		System.out.println("[Servidor] >> Actualizando datos... \n");
+//		prepararTodo();
+//		System.out.println("[Servidor] >> Datos actualizados. \n");
 		
 		Session session = sf.openSession();
 		
