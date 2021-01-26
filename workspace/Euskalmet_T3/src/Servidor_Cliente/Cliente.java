@@ -2,7 +2,6 @@ package Servidor_Cliente;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ public class Cliente extends Thread {
 	private final String IP = "127.0.0.1";
 	
 	private ObjectInputStream fentrada;
-	private ObjectOutputStream fsalida;
 	private Socket cliente = null;
 	
 	private ArrayList<List<Object>> resultado = null;
@@ -30,7 +28,6 @@ public class Cliente extends Thread {
 		try {
 			cliente = new Socket(IP, PUERTO);
 			System.out.println("[Cliente] >> Conexion realizada con servidor. \n");
-			fsalida = new ObjectOutputStream(cliente.getOutputStream());
 			fentrada = new ObjectInputStream(cliente.getInputStream());
 			
 			resultado = (ArrayList<List<Object>>) fentrada.readObject();

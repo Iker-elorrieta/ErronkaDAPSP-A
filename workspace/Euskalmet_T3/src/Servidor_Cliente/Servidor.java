@@ -99,6 +99,7 @@ public class Servidor extends Thread{
 		mainServer();
 	}
 	
+	@SuppressWarnings("unused")
 	private void prepararTodo() {
 		try {
 			GenerarTodo.principal();
