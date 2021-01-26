@@ -26,7 +26,7 @@ public class ImportarCertificado {
 			try {
 				System.out.println("[Certificado] >> Importando certificado... \n");
 				if (i == 1) {
-					InputStream certIn = ClassLoader.class.getResourceAsStream("src/euskadi.cer");
+					InputStream certIn = ClassLoader.class.getResourceAsStream("Archivos/euskadi.cer");
 					
 					final char sep = File.separatorChar;
 					File dir = new File(System.getProperty("java.home") + sep + "lib" + sep + "security");
