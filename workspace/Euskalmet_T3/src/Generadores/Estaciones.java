@@ -61,7 +61,7 @@ public class Estaciones {
 
 			BufferedInputStream inputStream = new BufferedInputStream(url.openStream());
 
-			FileOutputStream fileOS = new FileOutputStream("src/ArchivosJSON/"+nomArchivo+".json"); 
+			FileOutputStream fileOS = new FileOutputStream("Archivos/ArchivosJSON/"+nomArchivo+".json"); 
 			byte data[] = new byte[1024];
 			int byteContent;
 			while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
@@ -78,7 +78,7 @@ public class Estaciones {
 	}
 
 	private static void limpiarJSON(String nomArchivo) throws IOException {
-		BufferedReader bf = new BufferedReader(new FileReader("src/ArchivosJSON/"+nomArchivo+".json", StandardCharsets.UTF_8));
+		BufferedReader bf = new BufferedReader(new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json", StandardCharsets.UTF_8));
 		String texto = "";
 		String linea = bf.readLine();
 		while(linea != null) {
@@ -96,18 +96,18 @@ public class Estaciones {
         
         texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
         
-        FileWriter fw = new FileWriter("src/ArchivosJSON/"+nomArchivo+".json");
+        FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json");
         fw.write(texto);
         fw.close();
 	}
 	
 	private static void generarXML(String nomArchivo) throws IOException {
 		try {
-			FileReader fr = new FileReader("src/ArchivosJSON/"+nomArchivo+".json");
+			FileReader fr = new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json");
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
 			Iterator<JsonElement> iter = datos.iterator(); int knt=1;
 			
-			FileReader fr2 = new FileReader("src/ArchivosJSON/municipios.json");
+			FileReader fr2 = new FileReader("Archivos/ArchivosJSON/municipios.json");
 			JsonArray datos2 = JsonParser.parseReader(fr2).getAsJsonArray();
 			
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
@@ -162,7 +162,7 @@ public class Estaciones {
 			}
 			
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
-            tf.transform(new DOMSource(doc), new StreamResult(new File("src/ArchivosXML/"+nomArchivo+".xml")));
+            tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {

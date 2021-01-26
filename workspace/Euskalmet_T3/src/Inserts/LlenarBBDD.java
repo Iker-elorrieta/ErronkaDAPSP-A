@@ -69,7 +69,7 @@ public class LlenarBBDD {
 	private static ArrayList<ArrayList<String>> recorrerXML(String nomCarpeta, String nomArchivo) {
 		ArrayList<ArrayList<String>> mtDatos = new ArrayList<ArrayList<String>>();
 		try {
-			File archivoOrigen = new File("src/"+nomCarpeta+"/"+nomArchivo+".xml");
+			File archivoOrigen = new File("Archivos/"+nomCarpeta+"/"+nomArchivo+".xml");
 			
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(archivoOrigen);
 			doc.getDocumentElement().normalize();

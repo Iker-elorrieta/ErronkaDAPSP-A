@@ -45,10 +45,10 @@ public class MuniEspacios {
 	
 	private static void generarXML(String nomArchivo) throws IOException {
 		try {
-			FileReader fr = new FileReader("src/ArchivosJSON/espacios_naturales.json");
+			FileReader fr = new FileReader("Archivos/ArchivosJSON/espacios_naturales.json");
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
 			
-			FileReader fr2 = new FileReader("src/ArchivosJSON/municipios.json");
+			FileReader fr2 = new FileReader("Archivos/ArchivosJSON/municipios.json");
 			JsonArray datos2 = JsonParser.parseReader(fr2).getAsJsonArray();
 			
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
@@ -59,7 +59,7 @@ public class MuniEspacios {
 				JsonObject objeto = iter.next().getAsJsonObject();
 				
 				String cod_enaturalStr = "";
-				File archivoOrigen = new File("src/ArchivosXML/espacios_naturales.xml");
+				File archivoOrigen = new File("Archivos/ArchivosXML/espacios_naturales.xml");
 				Document doc2 = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(archivoOrigen);
 				doc2.getDocumentElement().normalize();
 
@@ -132,7 +132,7 @@ public class MuniEspacios {
 			}
 			
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
-            tf.transform(new DOMSource(doc), new StreamResult(new File("src/ArchivosXML/"+nomArchivo+".xml")));
+            tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
