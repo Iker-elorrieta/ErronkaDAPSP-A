@@ -25,12 +25,13 @@ public class Servidor extends Thread{
 	
 	@SuppressWarnings("unchecked")
 	public void run() {
-//		System.out.println("[Servidor] >> Actualizando datos... \n");
-//		prepararTodo();
-//		System.out.println("[Servidor] >> Datos actualizados. \n");
-		
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
+		
+		System.out.println("[Servidor] >> Actualizando datos... \n");
+		prepararTodo();
+		System.out.println("[Servidor] >> Datos actualizados. \n");
+		
 		Session session = sf.openSession();
 		
 		//Municipios por Provincia
@@ -101,7 +102,7 @@ public class Servidor extends Thread{
 	private void prepararTodo() {
 		try {
 			GenerarTodo.principal();
-			LlenarBBDD.principal();
+			LlenarBBDD.principal(sf);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (SQLException e) {

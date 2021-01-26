@@ -143,8 +143,6 @@ public class Municipios {
 				else if (entrada.get("territory").getAsString().contains("Araba")) 
 					cod_prov.appendChild(doc.createTextNode("3"));
 				
-				Element foto = doc.createElement("foto"); municipio.appendChild(foto);
-				
 				Element latitud = doc.createElement("latitud"); municipio.appendChild(latitud);
 				String latitudStr = entrada.get("latwgs84").getAsString();
 				latitud.appendChild(doc.createTextNode(latitudStr));

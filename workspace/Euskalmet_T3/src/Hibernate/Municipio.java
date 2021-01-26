@@ -1,5 +1,5 @@
 package Hibernate;
-// Generated 20 ene. 2021 10:06:17 by Hibernate Tools 5.4.21.Final
+// Generated 26 ene. 2021 12:32:07 by Hibernate Tools 5.4.21.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,6 @@ public class Municipio implements java.io.Serializable {
 	private Provincia provincia;
 	private String nombre;
 	private String descripcion;
-	private String foto;
 	private Double longitud;
 	private Double latitud;
 	private Set estacioneses = new HashSet(0);
@@ -27,13 +26,12 @@ public class Municipio implements java.io.Serializable {
 		this.provincia = provincia;
 	}
 
-	public Municipio(int codMuni, Provincia provincia, String nombre, String descripcion, String foto, Double longitud,
+	public Municipio(int codMuni, Provincia provincia, String nombre, String descripcion, Double longitud,
 			Double latitud, Set estacioneses, Set muniEspacioses) {
 		this.codMuni = codMuni;
 		this.provincia = provincia;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.foto = foto;
 		this.longitud = longitud;
 		this.latitud = latitud;
 		this.estacioneses = estacioneses;
@@ -70,14 +68,6 @@ public class Municipio implements java.io.Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public String getFoto() {
-		return this.foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public Double getLongitud() {

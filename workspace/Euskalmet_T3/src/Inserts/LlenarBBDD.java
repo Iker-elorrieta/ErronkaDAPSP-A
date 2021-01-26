@@ -36,14 +36,15 @@ public class LlenarBBDD {
 	private static Logger log = Logger.getLogger("org.hibernate");
 	
 	public static void main(String[] args) throws SQLException, IOException {
-		principal();
-	}
-	
-	public static boolean principal() throws IOException, SQLException {
-		boolean terminado=false;
-//		Connection conexion = conn.conectar();
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
+		principal(sf);
+		sf.close();
+	}
+	
+	public static boolean principal(SessionFactory sf) throws IOException, SQLException {
+		boolean terminado=false;
+//		Connection conexion = conn.conectar();
 		
 		provincias(/*conexion*/);
 		System.out.println("provincia -> COMPLETADO \n");
@@ -60,7 +61,6 @@ public class LlenarBBDD {
 		System.out.println("-> FINALIZADO <- \n");
 		
 //		conexion.close(); conn.desconectar();
-		sf.close();
 		terminado = true;
 		
 		return terminado;
@@ -166,15 +166,14 @@ public class LlenarBBDD {
 				Session sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
-//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,foto,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
+//				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
 //				query.setInt(1, Integer.parseInt(municipios.get(i).get(0)));
 //				query.setString(2, municipios.get(i).get(1));
 //				query.setString(3, municipios.get(i).get(2));
 //				query.setInt(4, Integer.parseInt(municipios.get(i).get(3)));
-//				query.setString(5, municipios.get(i).get(4));
-//				for (int j = 5; j < 7; j++) {
+//				for (int j = 4; j < 6; j++) {
 //					String dato = municipios.get(i).get(j).replaceAll("\\,", "\\.");
 //					if (dato.length() != 0) {
 //						query.setDouble(j+1, Double.parseDouble(dato));
@@ -191,13 +190,12 @@ public class LlenarBBDD {
 				muni.setDescripcion(municipios.get(i).get(2));
 				Provincia prov = sesion.get(Provincia.class, Integer.parseInt(municipios.get(i).get(3)));
 				muni.setProvincia(prov);
-				muni.setFoto(municipios.get(i).get(4));
-				for (int j = 5; j < 7; j++) {
+				for (int j = 4; j < 6; j++) {
 					String dato = municipios.get(i).get(j).replaceAll("\\,", "\\.");
 					if (dato.length() != 0) {
-						if (j == 5) {
+						if (j == 4) {
 							muni.setLatitud(Double.parseDouble(dato));
-						} else if (j == 6) {
+						} else if (j == 5) {
 							muni.setLongitud(Double.parseDouble(dato));
 						}
 					}
@@ -309,7 +307,7 @@ public class LlenarBBDD {
 				Session sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
-//				sql = "INSERT INTO espacios_naturales(cod_enatural,nombre,descripcion,tipo,latitud,longitud,foto) VALUES(?,?,?,?,?,?,?)";
+//				sql = "INSERT INTO espacios_naturales(cod_enatural,nombre,descripcion,tipo,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
 //				
 //				query = conexion.prepareStatement(sql);
 //				query.setInt(1, Integer.parseInt(espacios_naturales.get(i).get(0)));
@@ -324,7 +322,6 @@ public class LlenarBBDD {
 //						query.setNull(j+1, Types.NULL);
 //					}
 //				}
-//				query.setString(7, espacios_naturales.get(i).get(6));
 //				
 //				lineas += query.executeUpdate();
 //				query.close();
@@ -344,7 +341,6 @@ public class LlenarBBDD {
 						}
 					}
 				}
-				eNatural.setFoto(espacios_naturales.get(i).get(6));
 
 				sesion.save(eNatural); tx.commit(); lineas++;
 				

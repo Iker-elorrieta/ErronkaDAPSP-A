@@ -154,8 +154,6 @@ public class EspaciosNaturales {
 				String longitudStr = entrada.get("lonwgs84").getAsString();
 				longitud.appendChild(doc.createTextNode(longitudStr));
 				
-				Element foto = doc.createElement("foto"); espacio_natural.appendChild(foto);
-				
 				knt++;
 			}
 			
