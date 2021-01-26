@@ -22,7 +22,6 @@ class Pruebas {
 	Cliente c = new Cliente();
 	HiloServidor hs = new HiloServidor();
 	Socket so = new Socket();
-	ArrayList <List<Object>> ay = null ;
 	
 
 	@Test
