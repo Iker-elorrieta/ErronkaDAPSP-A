@@ -16,7 +16,7 @@ class PruebaBBDD {
 	
 	private SessionFactory sf;
 	private Logger log = Logger.getLogger("org.hibernate");
-
+	
 	@Test
 	public void principalPrueba() throws IOException, SQLException {
 		log.setLevel(Level.OFF);

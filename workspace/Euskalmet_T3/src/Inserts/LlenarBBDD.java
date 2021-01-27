@@ -45,6 +45,7 @@ public class LlenarBBDD {
 	public static boolean principal(SessionFactory sf) throws IOException, SQLException {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
+		LlenarBBDD.sf = sf;
 		
 		provincias(/*conexion*/);
 		System.out.println("provincia -> COMPLETADO \n");

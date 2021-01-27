@@ -17,16 +17,6 @@ class PruebaGeneradores {
 	}
 	
 	@Test
-	public void principalPruebaEstaciones() throws IOException {
-		assertTrue(Estaciones.principal());
-	}
-	
-	@Test
-	public void principalPruebaCalidadAire() throws IOException {
-		assertTrue(CalidadDeAire.principal());
-	}
-	
-	@Test
 	public void principalPruebaEspaciosNaturales() throws IOException {
 		assertTrue(EspaciosNaturales.principal());
 	}
@@ -34,6 +24,16 @@ class PruebaGeneradores {
 	@Test
 	public void principalPruebaMuniEspacios() throws IOException {
 		assertTrue(MuniEspacios.principal());
+	}
+	
+	@Test
+	public void principalPruebaEstaciones() throws IOException {
+		assertTrue(Estaciones.principal());
+	}
+	
+	@Test
+	public void principalPruebaCalidadAire() throws IOException {
+		assertTrue(CalidadDeAire.principal());
 	}
 
 }
