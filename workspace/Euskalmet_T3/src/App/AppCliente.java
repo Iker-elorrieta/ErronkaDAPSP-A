@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -42,7 +43,8 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	private JPanel JPnl_Lista;
 	private String P2_tipoLista;
-	private JComboBox<String> P2_cmbxProvincias;
+	private JLabel P2_lblProvincias, P2_lblLista;
+	private JComboBox<String> P2_cmbxFiltros, P2_cmbxProvincias;
 	private JList<String> P2_listLista;
 	private JButton P2_btnAceptar, P2_btnAtras, P2_btnSalir;
 	
@@ -121,9 +123,21 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	private void lista() {
-		JLabel P2_lblProvincias = new JLabel("Provincias:");
+		JLabel P2_lblFiltros = new JLabel("Filtros:");
+		P2_lblFiltros.setFont(new Font("Tahoma", Font.BOLD, 14));
+		P2_lblFiltros.setBounds(45, 23, 100, 17);
+		JPnl_Lista.add(P2_lblFiltros);
+		
+		P2_cmbxFiltros = new JComboBox<String>();
+		P2_cmbxFiltros.setToolTipText("Selecciona filtro");
+		P2_cmbxFiltros.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		P2_cmbxFiltros.setBounds(45, 48, 157, 31);
+		P2_cmbxFiltros.addActionListener(this);
+		JPnl_Lista.add(P2_cmbxFiltros);
+		
+		P2_lblProvincias = new JLabel("Provincias:");
 		P2_lblProvincias.setFont(new Font("Tahoma", Font.BOLD, 14));
-		P2_lblProvincias.setBounds(45, 11, 100, 17);
+		P2_lblProvincias.setBounds(230, 20, 100, 17);
 		JPnl_Lista.add(P2_lblProvincias);
 		
 		P2_cmbxProvincias = new JComboBox<String>(Util.cmbxProvincias(arrays.get(0)));
@@ -131,13 +145,13 @@ public class AppCliente extends JFrame implements ActionListener {
 		P2_cmbxProvincias.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		P2_cmbxProvincias.setMaximumRowCount(3);
 		P2_cmbxProvincias.setToolTipText("Selecciona provincia");
-		P2_cmbxProvincias.setBounds(45, 46, 157, 31);
+		P2_cmbxProvincias.setBounds(230, 48, 157, 31);
 		P2_cmbxProvincias.addActionListener(this);
 		JPnl_Lista.add(P2_cmbxProvincias);
 		
-		JLabel P2_lblLista = new JLabel("Municipios:");
+		P2_lblLista = new JLabel();
 		P2_lblLista.setFont(new Font("Tahoma", Font.BOLD, 14));
-		P2_lblLista.setBounds(45, 88, 94, 17);
+		P2_lblLista.setBounds(45, 88, 342, 17);
 		JPnl_Lista.add(P2_lblLista);
 		
 		P2_listLista = new JList<String>();
@@ -151,19 +165,19 @@ public class AppCliente extends JFrame implements ActionListener {
 		
 		P2_btnAceptar = new JButton("ACEPTAR");
 		P2_btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		P2_btnAceptar.setBounds(264, 48, 123, 31);
+		P2_btnAceptar.setBounds(161, 361, 110, 31);
 		P2_btnAceptar.addActionListener(this);
 		JPnl_Lista.add(P2_btnAceptar);
 		
 		P2_btnAtras = new JButton("ATRAS");
 		P2_btnAtras.setFont(new Font("Tahoma", Font.BOLD, 14));
-		P2_btnAtras.setBounds(45, 364, 106, 25);
+		P2_btnAtras.setBounds(45, 364, 94, 25);
 		P2_btnAtras.addActionListener(this);
 		JPnl_Lista.add(P2_btnAtras);
 		
 		P2_btnSalir = new JButton("SALIR");
 		P2_btnSalir.setFont(new Font("Tahoma", Font.BOLD, 14));
-		P2_btnSalir.setBounds(281, 364, 106, 25);
+		P2_btnSalir.setBounds(294, 364, 93, 25);
 		P2_btnSalir.addActionListener(this);
 		JPnl_Lista.add(P2_btnSalir);
 	}
@@ -182,7 +196,11 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "municipios";
+			String[] filtros = {"Provincias"};
+			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
+			P2_cmbxFiltros.setSelectedIndex(0);
 			P2_cmbxProvincias.setSelectedIndex(0);
+			P2_lblLista.setText("Municipios:");
 			P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -190,7 +208,12 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
 			P2_tipoLista = "espaciosN";
+			String[] filtros = {"Provincias","Playas"};
+			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
+			P2_cmbxFiltros.setSelectedIndex(0);
 			P2_cmbxProvincias.setSelectedIndex(0);
+			P2_cmbxFiltros.addItem("Playas");
+			P2_lblLista.setText("Espacios naturales:");
 			P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -200,7 +223,19 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	private void actionLista(ActionEvent e) {
-		if (e.getSource() == P2_cmbxProvincias) {
+		if (e.getSource() == P2_cmbxFiltros) {
+			if (P2_tipoLista.equals("espaciosN")) {
+				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
+					P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
+					P2_listLista.setListData(Util.lista(arrays.get(5), P2_tipoLista));
+				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
+					P2_listLista.setListData(Util.lista(arrays.get(6), P2_tipoLista));
+				}
+			}
+			
+			P2_listLista.ensureIndexIsVisible(0);
+		} else if (e.getSource() == P2_cmbxProvincias) {
 			if (P2_tipoLista.equals("municipios")) {
 				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
 					P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
@@ -218,6 +253,7 @@ public class AppCliente extends JFrame implements ActionListener {
 					P2_listLista.setListData(Util.lista(arrays.get(6), P2_tipoLista));
 				}
 			}
+			
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
 			this.setVisible(false);
@@ -258,5 +294,4 @@ public class AppCliente extends JFrame implements ActionListener {
 	public ArrayList<Datos> getAyDatos() {
 		return ayDatos;
 	}
-	
 }
