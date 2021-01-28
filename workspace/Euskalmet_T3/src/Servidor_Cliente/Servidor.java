@@ -45,11 +45,11 @@ public class Servidor extends Thread{
 		ayDatos.add(muniAraba);
 		
 		//Espacios Naturales por Provincia
-		List<Object> espNBizkaia = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Bizkaia' ORDER BY me.espaciosNaturales.nombre").list();
+		List<Object> espNBizkaia = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Bizkaia' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
 		ayDatos.add(espNBizkaia);
-		List<Object> espNGipuzkoa = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Gipuzkoa' ORDER BY me.espaciosNaturales.nombre").list();
+		List<Object> espNGipuzkoa = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Gipuzkoa' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
 		ayDatos.add(espNGipuzkoa);
-		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre").list();
+		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
 		ayDatos.add(espNAraba);
 		
 		//Calidad de Aire por Municipio
@@ -64,11 +64,14 @@ public class Servidor extends Thread{
 		try {
 			servidor = crearSocket();
 			System.out.println("[Servidor] >> Esperando conexiones del cliente... \n");
+			int conn = 0;
 			while (true) {
 				cliente = new Socket();
 				cliente = servidor.accept();
-				System.out.println("[Servidor] >> Cliente conectado. \n");
+				System.out.println("[Servidor] >> Cliente conectado.");
+				conn++;
 				HiloServidor hilo = new HiloServidor(cliente,ayDatos);
+				hilo.setName("Hilo Nº"+conn+".");
 				hilo.start();
 			}
 		} catch (IOException e) {

@@ -3,6 +3,7 @@ package App;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ public class Datos extends JFrame implements ActionListener {
 	
 	private JPanel JPnl_Info;
 	private String P3_dato, tipo, prov;
+	private ArrayList<String> municipios = new ArrayList<String>();
 	private JLabel P3_lblNombre, P3_lblMsg;
 	private JTextArea P3_txtInfo;
 	private JButton P3_btnHistorico, P3_btnCerrar, P3_btnSalir;
@@ -123,7 +125,7 @@ public class Datos extends JFrame implements ActionListener {
 	}
 	
 	private void historico() {
-		P4_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.get(7), P3_dato));
+		P4_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.get(7), municipios));
 		if (P4_cmbxEstaciones.getItemCount() != 0) {
 			P4_cmbxEstaciones.setSelectedIndex(0);
 		}
@@ -220,15 +222,21 @@ public class Datos extends JFrame implements ActionListener {
 			} else if (prov.equals("Araba")) {
 				P3_txtInfo.setText(Util.texto(arrays.get(3), tipo));
 			}
+			
+			municipios.add(P3_dato);
 		} else if (tipo.equals("espaciosN")) {
 			if (prov.equals("Bizkaia")) {
 				P3_txtInfo.setText(Util.texto(arrays.get(4), tipo));
+				municipios = Util.muniEspN(arrays.get(4), P3_dato);
 			} else if (prov.equals("Gipuzkoa")) {
 				P3_txtInfo.setText(Util.texto(arrays.get(5), tipo));
+				municipios = Util.muniEspN(arrays.get(5), P3_dato);
 			} else if (prov.equals("Araba")) {
 				P3_txtInfo.setText(Util.texto(arrays.get(6), tipo));
+				municipios = Util.muniEspN(arrays.get(6), P3_dato);
 			}
 		}
+		
 		P3_txtInfo.setCaretPosition(0);
 	}
 	

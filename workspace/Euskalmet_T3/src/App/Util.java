@@ -9,11 +9,11 @@ import Hibernate.Provincia;
 
 public class Util {
 	
-	public static String[] cmbxProvincias(List<Object> ay) {
+	public static String[] cmbxProvincias(List<Object> lista) {
 		ArrayList<String> ayProv = new ArrayList<String>();
 		
-		for (int i = 0; i < ay.size(); i++) {
-			Provincia prov = (Provincia) ay.get(i);
+		for (int i = 0; i < lista.size(); i++) {
+			Provincia prov = (Provincia) lista.get(i);
 			ayProv.add(prov.getNombre());
 		}
 		
@@ -28,8 +28,10 @@ public class Util {
 				Municipio muni = (Municipio) lista.get(i);
 				ayStr.add(muni.getNombre());
 			} else if (tipoLista.equals("espaciosN")) {
-				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
-				ayStr.add(espN.getNombre());
+				Object[] lEspN = (Object[]) lista.get(i);
+				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
+				if (!ayStr.contains(espN.getNombre())) 
+					ayStr.add(espN.getNombre());
 			}
 		}
 		
@@ -43,22 +45,39 @@ public class Util {
 			if (tipoDato.equals("municipios")) {
 				Municipio muni = (Municipio) lista.get(i);
 				texto = muni.getDescripcion();
+				break;
 			} else if (tipoDato.equals("espaciosN")) {
-				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
+				Object[] lEspN = (Object[]) lista.get(i);
+				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
 				texto = espN.getDescripcion();
+				break;
 			}
 		}
 		
 		return texto;
 	}
 	
-	public static String[] cmbxEstaciones(List<Object> ay, String nombre) {
+	public static ArrayList<String> muniEspN(List<Object> lista, String nombre) {
+		ArrayList<String> municipios = new ArrayList<String>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			Object[] lEspN = (Object[]) lista.get(i);
+			EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
+			if (espN.getNombre().equals(nombre)) {
+				municipios.add(lEspN[1].toString());
+			}
+		}
+		
+		return municipios;
+	}
+	
+	public static String[] cmbxEstaciones(List<Object> lista, ArrayList<String> municipios) {
 		ArrayList<String> ayEst = new ArrayList<String>();
 		
-		for (int i = 0; i < ay.size(); i++) {
-			Object[] est = (Object[]) ay.get(i);
-			if (((String) est[3]).equals(nombre)) {
-				String direccion = (String) est[2];
+		for (int i = 0; i < lista.size(); i++) {
+			Object[] est = (Object[]) lista.get(i);
+			if (municipios.contains(est[3].toString())) {
+				String direccion = est[2].toString();
 				if (!ayEst.contains(direccion)) 
 					ayEst.add(direccion);
 			}

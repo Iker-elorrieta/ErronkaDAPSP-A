@@ -21,7 +21,7 @@ public class HiloServidor extends Thread {
 	}
 	
 	public void run() {
-		System.out.println("Empieza el hilo servidor");
+		System.out.println(" [Servidor] >> Empieza el "+this.getName());
 		
 		try {
 			fsalida.writeObject(ayDatos);
@@ -29,7 +29,7 @@ public class HiloServidor extends Thread {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Fin del hilo servidor");
+		System.out.println(" [Servidor] >> Fin del "+this.getName()+" \n");
 	}
 }
 
