@@ -32,6 +32,10 @@ public class Util {
 				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
 				if (!ayStr.contains(espN.getNombre())) 
 					ayStr.add(espN.getNombre());
+			} else if (tipoLista.equals("Playas")) {
+				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
+				if (espN.getNombre().contains("Playa")) 
+					ayStr.add(espN.getNombre());
 			}
 		}
 		

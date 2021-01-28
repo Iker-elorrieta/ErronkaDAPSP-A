@@ -1,9 +1,7 @@
 package Servidor_Cliente;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,22 +25,24 @@ public class Cliente extends Thread {
 	public boolean iniciar(){
 		try {
 			cliente = new Socket(IP, PUERTO);
-			System.out.println("[Cliente] >> Conexion realizada con servidor. \n");
+			System.out.println(" [Cliente] >> Conexion realizada con servidor. \n");
 			fentrada = new ObjectInputStream(cliente.getInputStream());
 			
 			resultado = (ArrayList<List<Object>>) fentrada.readObject();
-			
-			cliente.close();
-			
-			System.out.println("[Cliente] >> Fin cliente. \n");
-		} catch (UnknownHostException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(" [Cliente] >> Error: " + e.getMessage() + " \n");
 		}
+		
 		return true;
+	}
+	
+	public void cerrar() {
+		try {
+			cliente.close();
+			System.out.println(" [Cliente] >> Fin cliente. \n");
+		} catch (Exception e) {
+			System.out.println(" [Cliente] >> Error: " + e.getMessage() + " \n");
+		}
 	}
 	
 	public ArrayList<List<Object>> getResultado() {

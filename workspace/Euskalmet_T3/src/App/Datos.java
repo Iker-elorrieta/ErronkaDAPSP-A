@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import java.awt.Rectangle;
 import javax.swing.JComboBox;
@@ -183,6 +184,10 @@ public class Datos extends JFrame implements ActionListener {
 				P4_txtHistorico.setCaretPosition(0);
 			} else {
 				P3_lblMsg.setText(">> Histórico no disponible <<");
+				new Timer(5000, new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						P3_lblMsg.setVisible(false);
+					}}).start();
 			}
 		} else if (e.getSource() == P3_btnCerrar) {
 			App.getAyDatos().remove(this);
@@ -191,7 +196,7 @@ public class Datos extends JFrame implements ActionListener {
 			}
 			this.dispose();
 		} else {
-			System.exit(0);
+			App.salir();
 		}
 	}
 	
@@ -209,7 +214,7 @@ public class Datos extends JFrame implements ActionListener {
 			}
 			this.dispose();
 		} else {
-			System.exit(0);
+			App.salir();
 		}
 	}
 	

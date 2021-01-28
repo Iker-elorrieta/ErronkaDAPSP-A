@@ -21,12 +21,12 @@ public class HiloServidor extends Thread {
 	}
 	
 	public void run() {
-		System.out.println(" [Servidor] >> Empieza el "+this.getName());
+		System.out.println(" [Servidor] >> Empieza el "+this.getName()+" \n");
 		
 		try {
 			fsalida.writeObject(ayDatos);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(" [Servidor] >> Error: " + e.getMessage()+" \n");
 		}
 		
 		System.out.println(" [Servidor] >> Fin del "+this.getName()+" \n");

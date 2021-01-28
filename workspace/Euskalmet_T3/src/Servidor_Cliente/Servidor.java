@@ -3,7 +3,6 @@ package Servidor_Cliente;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,9 +27,9 @@ public class Servidor extends Thread{
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		
-//		System.out.println("[Servidor] >> Actualizando datos... \n");
-//		prepararTodo();
-//		System.out.println("[Servidor] >> Datos actualizados. \n");
+		System.out.println(" [Servidor] >> Actualizando datos... \n");
+		prepararTodo();
+		System.out.println(" [Servidor] >> Datos actualizados. \n");
 		
 		Session session = sf.openSession();
 		
@@ -56,6 +55,10 @@ public class Servidor extends Thread{
 		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
 		ayDatos.add(muniCAire);
 		
+		//Todos los Espacios Naturales
+		List<Object> espN = session.createQuery("FROM EspaciosNaturales ORDER BY nombre").list();
+		ayDatos.add(espN);
+		
 		session.close();
 		sf.close();
 		
@@ -63,29 +66,30 @@ public class Servidor extends Thread{
 		Socket cliente = null;
 		try {
 			servidor = crearSocket();
-			System.out.println("[Servidor] >> Esperando conexiones del cliente... \n");
+			System.out.println(" [Servidor] >> Esperando conexiones del cliente... \n");
 			int conn = 0;
 			while (true) {
 				cliente = new Socket();
 				cliente = servidor.accept();
-				System.out.println("[Servidor] >> Cliente conectado.");
+				System.out.println(" [Servidor] >> Cliente conectado.");
 				conn++;
 				HiloServidor hilo = new HiloServidor(cliente,ayDatos);
 				hilo.setName("Hilo Nº"+conn+".");
 				hilo.start();
 			}
-		} catch (IOException e) {
-			System.out.println("[Servidor] >> Error: " + e.getMessage() + " \n");
-		
-		}finally {
-			if (servidor != null)
+		} catch (Exception e) {
+			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
+		} finally {
+			if (servidor != null) {
 				try {
 					servidor.close();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
 				}
+			}
+			
+			System.out.println(" [Servidor] >> El servidor se ha terminado. \n");
 		}
-		System.out.println("[Servidor] >> El servidor se ha terminado. \n");
 	}
 	
 	public ServerSocket crearSocket() throws IOException {
@@ -107,10 +111,8 @@ public class Servidor extends Thread{
 		try {
 			GenerarTodo.principal();
 			LlenarBBDD.principal(sf);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
 		}
 	}
 	

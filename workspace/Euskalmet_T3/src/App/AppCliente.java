@@ -27,7 +27,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private Cliente hC;
 	
 	private List<List<Object>> arrays;
-	/* Contenido de objecto 'arrays': 
+	/* Contenido de objeto 'arrays': 
 		- arrays.get(0) -> Provincias.
 		- arrays.get(1) -> Municipios de Bizkaia.
 		- arrays.get(2) -> Municipios de Gipuzkoa.
@@ -36,13 +36,14 @@ public class AppCliente extends JFrame implements ActionListener {
 		- arrays.get(5) -> Espacios Naturales de Gipuzkoa.
 		- arrays.get(6) -> Espacios Naturales de Araba.
 		- arrays.get(7) -> Historico por Municipios.
+		- arrays.get(8) -> Todos los Espacios Naturales.
 	 */
 	
 	private JPanel JPnl_Menu;
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnSalir;
 	
 	private JPanel JPnl_Lista;
-	private String P2_tipoLista;
+	private String P2_tipoLista = "municipios";
 	private JLabel P2_lblProvincias, P2_lblLista;
 	private JComboBox<String> P2_cmbxFiltros, P2_cmbxProvincias;
 	private JList<String> P2_listLista;
@@ -56,6 +57,7 @@ public class AppCliente extends JFrame implements ActionListener {
 				try {
 					AppCliente frame = new AppCliente();
 					frame.setVisible(true);
+					System.out.println(" [App] >> Aplicación iniciada. \n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -195,11 +197,14 @@ public class AppCliente extends JFrame implements ActionListener {
 		if (e.getSource() == P1_btnMunicipios) {
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
-			P2_tipoLista = "municipios";
+			
 			String[] filtros = {"Provincias"};
 			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
 			P2_cmbxFiltros.setSelectedIndex(0);
+			
 			P2_cmbxProvincias.setSelectedIndex(0);
+			
+			P2_tipoLista = "municipios";
 			P2_lblLista.setText("Municipios:");
 			P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
@@ -207,30 +212,38 @@ public class AppCliente extends JFrame implements ActionListener {
 		} else if (e.getSource() == P1_btnEspaciosN) {
 			JPnl_Menu.setVisible(false);
 			JPnl_Lista.setVisible(true);
-			P2_tipoLista = "espaciosN";
+			
 			String[] filtros = {"Provincias","Playas"};
 			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
 			P2_cmbxFiltros.setSelectedIndex(0);
+			
 			P2_cmbxProvincias.setSelectedIndex(0);
-			P2_cmbxFiltros.addItem("Playas");
+			
+			P2_tipoLista = "espaciosN";
 			P2_lblLista.setText("Espacios naturales:");
 			P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		} else {
-			System.exit(0);
+			salir();
 		}
 	}
 	
 	private void actionLista(ActionEvent e) {
 		if (e.getSource() == P2_cmbxFiltros) {
-			if (P2_tipoLista.equals("espaciosN")) {
-				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
+			if (P2_tipoLista.equals("municipios")) {
+				P2_cmbxProvincias.setSelectedIndex(0);
+				P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
+			} else if (P2_tipoLista.equals("espaciosN")) {
+				if (P2_cmbxFiltros.getSelectedItem().toString().equals("Provincias")) {
+					P2_lblProvincias.setVisible(true);
+					P2_cmbxProvincias.setVisible(true);
+					P2_cmbxProvincias.setSelectedIndex(0);
 					P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
-				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
-					P2_listLista.setListData(Util.lista(arrays.get(5), P2_tipoLista));
-				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
-					P2_listLista.setListData(Util.lista(arrays.get(6), P2_tipoLista));
+				} else if (P2_cmbxFiltros.getSelectedItem().toString().equals("Playas")) {
+					P2_lblProvincias.setVisible(false);
+					P2_cmbxProvincias.setVisible(false);
+					P2_listLista.setListData(Util.lista(arrays.get(8), "Playas"));
 				}
 			}
 			
@@ -275,7 +288,7 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Menu.setVisible(true);
 			P2_tipoLista = "";
 		} else {
-			System.exit(0);
+			salir();
 		}
 	}
 	
@@ -294,4 +307,11 @@ public class AppCliente extends JFrame implements ActionListener {
 	public ArrayList<Datos> getAyDatos() {
 		return ayDatos;
 	}
+	
+	public void salir() {
+		hC.cerrar();
+		System.out.println(" [App] >> Aplicación finalizada.");
+		System.exit(0);
+	}
+	
 }
