@@ -45,10 +45,28 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "Dviengrados" : "313",
+  "H" : "95",
+  "PmBar" : "998,8",
+  "Precipitacionlm2" : "0",
+  "Rwm2" : "34,7",
+  "RUVAwm2" : "12,3",
+  "TC" : "13,4",
+  "Vvienms" : "0,35",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "Dviengrados" : "348",
+  "H" : "94",
+  "PmBar" : "998,7",
+  "Precipitacionlm2" : "0",
+  "Rwm2" : "0,6",
+  "RUVAwm2" : "1,4",
+  "TC" : "13,2",
+  "Vvienms" : "0,77",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",

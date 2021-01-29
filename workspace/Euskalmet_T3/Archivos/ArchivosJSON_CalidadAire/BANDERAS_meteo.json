@@ -45,10 +45,20 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "Dviengrados" : "130",
+  "H" : "94",
+  "TC" : "12,3",
+  "Vvienms" : "0,76",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "Dviengrados" : "275",
+  "H" : "95",
+  "TC" : "12,2",
+  "Vvienms" : "1,22",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",

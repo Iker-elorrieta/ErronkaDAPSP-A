@@ -45,10 +45,20 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "NOgm3" : "138",
+  "NO2" : "51",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "262",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "NOgm3" : "100",
+  "NO2" : "46",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "199",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",

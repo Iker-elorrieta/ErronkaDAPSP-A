@@ -1,6 +1,6 @@
 [ {
   "Name" : "3 DE MARZO",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Vitoria-Gasteiz",
   "Address" : "Plaza Tres de Marzo, s/n",
   "CoordenatesXETRS89" : "527141,4365",
@@ -18,7 +18,7 @@
   "Longitude" : "-3,0741559961978044"
 }, {
   "Name" : "AGURAIN",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Agurain/Salvatierra",
   "Address" : "C/ Fueros, 11. Subcomisaría de la Ertzaintza.",
   "CoordenatesXETRS89" : "549539,1393",
@@ -72,7 +72,7 @@
   "Longitude" : "-1,960650618338729"
 }, {
   "Name" : "AV. GASTEIZ",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Vitoria-Gasteiz",
   "Address" : "Avda. Gasteiz, 97",
   "CoordenatesXETRS89" : "526086,031",
@@ -180,7 +180,7 @@
   "Longitude" : "-1,9809008637096939"
 }, {
   "Name" : "ELCIEGO",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Elciego",
   "Address" : "C/ Gabriel Celaya, 8",
   "CoordenatesXETRS89" : "531257,1773",
@@ -207,7 +207,7 @@
   "Longitude" : "-2,902376115931137"
 }, {
   "Name" : "FARMACIA",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Vitoria-Gasteiz",
   "Address" : "Paseo Universidad, 7. Fac. Farmacia UPV",
   "CoordenatesXETRS89" : "526757,9486",
@@ -279,7 +279,7 @@
   "Longitude" : "-1,900131049811533"
 }, {
   "Name" : "LLODIO",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Laudio/Llodio",
   "Address" : "C/ Lamuza, s/n",
   "CoordenatesXETRS89" : "502977,4251",
@@ -288,7 +288,7 @@
   "Longitude" : "-2,9633852821260223"
 }, {
   "Name" : "LOS HERRAN",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Vitoria-Gasteiz",
   "Address" : "Parque Judizmendi. Bº Judizmendi",
   "CoordenatesXETRS89" : "527682,4365",
@@ -468,7 +468,7 @@
   "Longitude" : "-2,0505110667115676"
 }, {
   "Name" : "VALDEREJO",
-  "Province" : "Araba/Álava",
+  "Province" : "Araba/??lava",
   "Town" : "Valdegovía/Gaubea",
   "Address" : "Ctro. de Interpretación. Parque Natural de Valderejo",
   "CoordenatesXETRS89" : "481073,6693",

@@ -45,10 +45,24 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "PM10" : "42,63",
+  "PM10ICA" : "Regular / Erregularra",
+  "H" : "97",
+  "PmBar" : "1019,8",
+  "Rwm2" : "10,2",
+  "TC" : "13",
+  "ICAEstacion" : "Regular / Erregularra"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "PM10" : "41,75",
+  "PM10ICA" : "Regular / Erregularra",
+  "H" : "97",
+  "PmBar" : "1019,7",
+  "Rwm2" : "1,2",
+  "TC" : "12,6",
+  "ICAEstacion" : "Regular / Erregularra"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",

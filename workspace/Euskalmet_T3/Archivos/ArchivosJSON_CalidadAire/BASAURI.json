@@ -45,10 +45,38 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "NOgm3" : "87",
+  "NO2" : "36",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "169",
+  "PM10ICA" : "Sin datos / Daturik gabe",
+  "SO2" : "14",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "Dviengrados" : "126",
+  "H" : "95",
+  "PmBar" : "1007,2",
+  "Rwm2" : "59,7",
+  "TC" : "12,6",
+  "Vvienms" : "0,76",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "NOgm3" : "87",
+  "NO2" : "37",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "171",
+  "PM10ICA" : "Sin datos / Daturik gabe",
+  "SO2" : "3",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "Dviengrados" : "116",
+  "H" : "95",
+  "PmBar" : "1007,1",
+  "Rwm2" : "4,4",
+  "TC" : "12,3",
+  "Vvienms" : "0,79",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",

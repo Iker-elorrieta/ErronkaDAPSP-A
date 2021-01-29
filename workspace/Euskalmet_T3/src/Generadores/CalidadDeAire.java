@@ -88,12 +88,12 @@ public class CalidadDeAire {
 			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
 			if (hash != null) {
 				if (obtenerHash(origenStr).equals(hash.getHash())) {
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Última version de hash en vigor.");
+					System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> ÚLTIMA VERSIÓN de hash EN VIGOR.");
 				} else {
 					hash.setHash(obtenerHash(origenStr));
 					
 					sesion.save(hash); tx.commit();
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash actualizado.");
+					System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> Hash ACTUALIZADO.");
 					
 					respuesta = origenStr;
 				}
@@ -103,7 +103,7 @@ public class CalidadDeAire {
 				hash.setHash(obtenerHash(origenStr));
 				
 				sesion.save(hash); tx.commit();
-				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash creado.");
+				System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> Hash CREADO.");
 				
 				respuesta = origenStr;
 			}
@@ -178,7 +178,7 @@ public class CalidadDeAire {
 					String json = compararHash(sf, url, nombre);
 					if (!json.equals("*")) {
 						generarJSON(json, nombre);
-						System.out.println("\n"+"[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
+						System.out.println("[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
 						limpiarJSON(nombre);
 						System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
 						generarXML(nombre);

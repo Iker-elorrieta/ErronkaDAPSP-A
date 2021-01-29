@@ -52,7 +52,7 @@ public class Estaciones {
 		String datos = compararHash(sf, "https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/estaciones.json", nomArchivo);
 		if (!datos.equals("*")) {
 			generarJSON(datos, nomArchivo);
-			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO");
+			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
 			limpiarJSON(nomArchivo);
 			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 			generarXML(nomArchivo);
@@ -88,12 +88,12 @@ public class Estaciones {
 			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
 			if (hash != null) {
 				if (obtenerHash(origenStr).equals(hash.getHash())) {
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Última version de hash en vigor.");
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> ÚLTIMA VERSIÓN de hash EN VIGOR.");
 				} else {
 					hash.setHash(obtenerHash(origenStr));
 					
 					sesion.save(hash); tx.commit();
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash actualizado.");
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash ACTUALIZADO.");
 					
 					respuesta = origenStr;
 				}
@@ -103,7 +103,7 @@ public class Estaciones {
 				hash.setHash(obtenerHash(origenStr));
 				
 				sesion.save(hash); tx.commit();
-				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash creado.");
+				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash CREADO.");
 				
 				respuesta = origenStr;
 			}

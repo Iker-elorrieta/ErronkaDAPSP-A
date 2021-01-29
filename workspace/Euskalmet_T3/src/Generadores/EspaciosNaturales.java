@@ -89,12 +89,12 @@ public class EspaciosNaturales {
 			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
 			if (hash != null) {
 				if (obtenerHash(origenStr).equals(hash.getHash())) {
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Última version de hash en vigor.");
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> ÚLTIMA VERSIÓN de hash EN VIGOR.");
 				} else {
 					hash.setHash(obtenerHash(origenStr));
 					
 					sesion.save(hash); tx.commit();
-					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash actualizado.");
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash ACTUALIZADO.");
 					
 					respuesta = origenStr;
 				}
@@ -104,7 +104,7 @@ public class EspaciosNaturales {
 				hash.setHash(obtenerHash(origenStr));
 				
 				sesion.save(hash); tx.commit();
-				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash creado.");
+				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash CREADO.");
 				
 				respuesta = origenStr;
 			}

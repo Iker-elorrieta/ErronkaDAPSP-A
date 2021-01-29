@@ -45,10 +45,18 @@
   "Hour" : "10:00"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "09:00"
+  "Hour" : "09:00",
+  "O3gm3" : "36",
+  "OZONO" : "36",
+  "O3ICA" : "Muy bueno / Oso ona",
+  "O38hgm3" : "40",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "29/01/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "O3ICA" : "Sin datos / Daturik gabe",
+  "O38hgm3" : "41",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "07:00",
