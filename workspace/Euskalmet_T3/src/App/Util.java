@@ -24,6 +24,8 @@ public class Util {
 				entrada.add(espN.getNombre());
 				entrada.add(0);
 			}
+			
+			visitas.add(entrada);
 		}
 		
 		return visitas;
@@ -59,6 +61,29 @@ public class Util {
 			}
 		}
 		
+		return ayStr.toArray(new String[ayStr.size()]);
+	}
+	
+	public static String[] top(ArrayList<ArrayList<Object>> lista, String topStr) {
+		ArrayList<String> ayStr = new ArrayList<String>();
+		
+		int top = 5;
+		if (topStr.equals("TOP 5")) 
+			top = 5;
+		else if (topStr.equals("TOP 10")) 
+			top = 10;
+		else if (topStr.equals("TOP 20")) 
+			top = 20;
+		
+		for (int i = 0; i < top; i++) {
+			ArrayList<Object> entrada = lista.get(i);
+			
+			if ((int) entrada.get(1) == 0) 
+				break;
+			
+			ayStr.add("<"+(i+1)+"> "+entrada.get(0).toString()+"(Visitas: "+entrada.get(1).toString()+")"+" <"+(i+1)+">");
+		}
+
 		return ayStr.toArray(new String[ayStr.size()]);
 	}
 	

@@ -5,9 +5,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Servidor_Cliente.Cliente;
@@ -42,6 +46,13 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	private ArrayList<ArrayList<Object>> visitasMuni;
 	private ArrayList<ArrayList<Object>> visitasEspN;
+	//Comparador para ordenar por visitas
+	Comparator<ArrayList<Object>> comparador = new Comparator<ArrayList<Object>>() {
+        @Override
+        public int compare(ArrayList<Object> o1, ArrayList<Object> o2) {
+            return ((Integer) o1.get(1)).compareTo((Integer) o2.get(1));
+        }
+    };
 	
 	private JPanel JPnl_Menu;
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnTop, P1_btnSalir;
@@ -67,7 +78,7 @@ public class AppCliente extends JFrame implements ActionListener {
 				try {
 					AppCliente frame = new AppCliente();
 					frame.setVisible(true);
-					System.out.println(" [App] >> Aplicación iniciada. \n");
+					System.out.println("[App] >> Aplicación iniciada. \n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -253,6 +264,9 @@ public class AppCliente extends JFrame implements ActionListener {
 		P3_listLista = new JList<String>();
 		P3_listLista.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		P3_listLista.setBounds(45, 116, 342, 227);
+		
+		DefaultListCellRenderer renderer = (DefaultListCellRenderer) P3_listLista.getCellRenderer();
+		renderer.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JScrollPane P3_scrollPane = new JScrollPane(P3_listLista);
 		P3_scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -314,6 +328,17 @@ public class AppCliente extends JFrame implements ActionListener {
 			P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		} else if (e.getSource() == P1_btnTop) {
+			JPnl_Menu.setVisible(false);
+			JPnl_Top.setVisible(true);
+			
+			P3_cmbxFiltros.setSelectedIndex(0);
+			
+			P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
+			Collections.sort(visitasMuni, comparador);
+		    Collections.reverse(visitasMuni);
+			P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
+			P3_listLista.ensureIndexIsVisible(0);
 		} else {
 			salir();
 		}
@@ -396,21 +421,38 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	private void actionTop(ActionEvent e) {
 		if (e.getSource() == P3_cmbxFiltros) {
+			P3_cmbxTop.setSelectedIndex(0);
+			
 			if (P3_cmbxFiltros.getSelectedItem().toString().equals("Municipios")) {
-				
+				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
+			    Collections.sort(visitasMuni, comparador);
+			    Collections.reverse(visitasMuni);
+				P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
 			} else if (P3_cmbxFiltros.getSelectedItem().toString().equals("Espacios Naturales")) {
-				
+				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Espacios Naturales: ");
+				Collections.sort(visitasEspN, comparador);
+			    Collections.reverse(visitasEspN);
+				P3_listLista.setListData(Util.top(visitasEspN, P3_cmbxTop.getSelectedItem().toString()));
 			}
 
 			P3_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P3_cmbxTop) {
-			
+			if (P3_cmbxFiltros.getSelectedItem().toString().equals("Municipios")) {
+				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
+			    Collections.sort(visitasMuni, comparador);
+			    Collections.reverse(visitasMuni);
+				P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
+			} else if (P3_cmbxFiltros.getSelectedItem().toString().equals("Espacios Naturales")) {
+				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Espacios Naturales: ");
+				Collections.sort(visitasEspN, comparador);
+			    Collections.reverse(visitasEspN);
+				P3_listLista.setListData(Util.top(visitasEspN, P3_cmbxTop.getSelectedItem().toString()));
+			}
 
 			P3_listLista.ensureIndexIsVisible(0);
-		} else if (e.getSource() == P2_btnAtras) {
-			JPnl_Lista.setVisible(false);
+		} else if (e.getSource() == P3_btnAtras) {
+			JPnl_Top.setVisible(false);
 			JPnl_Menu.setVisible(true);
-			P2_tipoLista = "";
 		} else {
 			salir();
 		}
@@ -434,7 +476,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	public void salir() {
 		hC.cerrar();
-		System.out.println(" [App] >> Aplicación finalizada.");
+		System.out.println("[App] >> Aplicación finalizada.");
 		System.exit(0);
 	}
 	

@@ -25,12 +25,12 @@ public class Cliente extends Thread {
 	public boolean iniciar(){
 		try {
 			cliente = new Socket(IP, PUERTO);
-			System.out.println(" [Cliente] >> Conexion realizada con servidor. \n");
+			System.out.println("[Cliente] >> Conexion realizada con servidor. \n");
 			fentrada = new ObjectInputStream(cliente.getInputStream());
 			
 			resultado = (ArrayList<List<Object>>) fentrada.readObject();
 		} catch (Exception e) {
-			System.out.println(" [Cliente] >> Error: " + e.getMessage() + " \n");
+			System.out.println("[Cliente] >> Error: " + e.getMessage() + " \n");
 		}
 		
 		return true;
@@ -39,9 +39,9 @@ public class Cliente extends Thread {
 	public void cerrar() {
 		try {
 			cliente.close();
-			System.out.println(" [Cliente] >> Fin cliente. \n");
+			System.out.println("[Cliente] >> Fin cliente. \n");
 		} catch (Exception e) {
-			System.out.println(" [Cliente] >> Error: " + e.getMessage() + " \n");
+			System.out.println("[Cliente] >> Error: " + e.getMessage() + " \n");
 		}
 	}
 	

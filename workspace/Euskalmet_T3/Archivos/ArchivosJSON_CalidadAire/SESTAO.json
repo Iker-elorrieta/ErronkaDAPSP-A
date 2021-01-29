@@ -1,60 +1,454 @@
 [ {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "24:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "23:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "22:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "21:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "20:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "19:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "18:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "17:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "16:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "15:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "14:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "13:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "12:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "11:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "10:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "09:00"
 }, {
-  "Date" : "27/01/2021",
+  "Date" : "29/01/2021",
   "Hour" : "08:00"
 }, {
-  "Date" : "27/01/2021",
-  "Hour" : "07:00"
+  "Date" : "29/01/2021",
+  "Hour" : "07:00",
+  "NOgm3" : "60",
+  "NO2" : "37",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "129",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "06:00",
+  "NOgm3" : "37",
+  "NO2" : "35",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "91",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "05:00",
+  "NOgm3" : "21",
+  "NO2" : "33",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "65",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "04:00",
+  "NOgm3" : "15",
+  "NO2" : "33",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "56",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "03:00",
+  "NOgm3" : "12",
+  "NO2" : "33",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "51",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "02:00",
+  "NOgm3" : "17",
+  "NO2" : "35",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "62",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "01:00",
+  "NOgm3" : "10",
+  "NO2" : "37",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "52",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "24:00",
+  "NOgm3" : "9",
+  "NO2" : "34",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "47",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "23:00",
+  "NOgm3" : "6",
+  "NO2" : "27",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "36",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "22:00",
+  "NOgm3" : "10",
+  "NO2" : "40",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "55",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "21:00",
+  "NOgm3" : "10",
+  "NO2" : "32",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "47",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "20:00",
+  "NOgm3" : "17",
+  "NO2" : "45",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "71",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "19:00",
+  "NOgm3" : "38",
+  "NO2" : "52",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "110",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "18:00",
+  "NOgm3" : "39",
+  "NO2" : "56",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "116",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "17:00",
+  "NOgm3" : "35",
+  "NO2" : "51",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "104",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "16:00",
+  "NOgm3" : "18",
+  "NO2" : "35",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "63",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "15:00",
+  "NOgm3" : "42",
+  "NO2" : "42",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "107",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "14:00",
+  "NOgm3" : "75",
+  "NO2" : "47",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "162",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "13:00",
+  "NOgm3" : "37",
+  "NO2" : "34",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "91",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "12:00",
+  "NOgm3" : "76",
+  "NO2" : "39",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "155",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "11:00",
+  "NOgm3" : "117",
+  "NO2" : "41",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "221",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "10:00",
+  "NOgm3" : "109",
+  "NO2" : "38",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "206",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "09:00",
+  "NOgm3" : "105",
+  "NO2" : "42",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "203",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "08:00",
+  "NOgm3" : "94",
+  "NO2" : "45",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "188",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "07:00",
+  "NOgm3" : "39",
+  "NO2" : "42",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "101",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "06:00",
+  "NOgm3" : "11",
+  "NO2" : "28",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "45",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "05:00",
+  "NOgm3" : "6",
+  "NO2" : "24",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "33",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "04:00",
+  "NOgm3" : "8",
+  "NO2" : "28",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "40",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "03:00",
+  "NOgm3" : "4",
+  "NO2" : "13",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "19",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "02:00",
+  "NOgm3" : "3",
+  "NO2" : "8",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "13",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "28/01/2021",
+  "Hour" : "01:00",
+  "NOgm3" : "6",
+  "NO2" : "27",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "36",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "27/01/2021",
-  "Hour" : "06:00"
+  "Hour" : "24:00",
+  "NOgm3" : "5",
+  "NO2" : "37",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "44",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "23:00",
+  "NOgm3" : "5",
+  "NO2" : "30",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "37",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "22:00",
+  "NOgm3" : "5",
+  "NO2" : "26",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "34",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "21:00",
+  "NOgm3" : "18",
+  "NO2" : "43",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "72",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "20:00",
+  "NOgm3" : "17",
+  "NO2" : "53",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "79",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "19:00",
+  "NOgm3" : "11",
+  "NO2" : "44",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "61",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "18:00",
+  "NOgm3" : "12",
+  "NO2" : "47",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "65",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "17:00",
+  "NOgm3" : "17",
+  "NO2" : "46",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "72",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "16:00",
+  "NOgm3" : "25",
+  "NO2" : "50",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "88",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "15:00",
+  "NOgm3" : "30",
+  "NO2" : "46",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "92",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "14:00",
+  "NOgm3" : "26",
+  "NO2" : "40",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "79",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "13:00",
+  "NOgm3" : "19",
+  "NO2" : "35",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "64",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "12:00",
+  "NOgm3" : "47",
+  "NO2" : "53",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "125",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "11:00",
+  "NOgm3" : "35",
+  "NO2" : "51",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "106",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "10:00",
+  "NOgm3" : "35",
+  "NO2" : "54",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "107",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "09:00",
+  "NOgm3" : "41",
+  "NO2" : "59",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "122",
+  "ICAEstacion" : "Bueno / Ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "08:00",
+  "NOgm3" : "11",
+  "NO2" : "37",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "54",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "07:00",
+  "NOgm3" : "8",
+  "NO2" : "32",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "45",
+  "ICAEstacion" : "Muy bueno / Oso ona"
+}, {
+  "Date" : "27/01/2021",
+  "Hour" : "06:00",
+  "NOgm3" : "9",
+  "NO2" : "36",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "50",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "27/01/2021",
   "Hour" : "05:00",
@@ -170,8 +564,11 @@
 }, {
   "Date" : "26/01/2021",
   "Hour" : "15:00",
-  "NO2ICA" : "Sin datos / Daturik gabe",
-  "ICAEstacion" : "Sin datos / Daturik gabe"
+  "NOgm3" : "8",
+  "NO2" : "20",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "32",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "26/01/2021",
   "Hour" : "14:00",

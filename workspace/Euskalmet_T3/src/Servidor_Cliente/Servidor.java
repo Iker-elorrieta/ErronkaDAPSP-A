@@ -26,39 +26,39 @@ public class Servidor extends Thread{
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		
-		System.out.println(" [Servidor] >> Actualizando datos... \n");
+		System.out.println("[Servidor] >> Actualizando datos... \n");
 		prepararTodo();
-		System.out.println(" [Servidor] >> Datos actualizados. \n");
+		System.out.println("[Servidor] >> Datos actualizados. \n");
 		recogerDatos();
-		System.out.println(" [Servidor] >> Datos recibidos. \n");
+		System.out.println("[Servidor] >> Datos recibidos. \n");
 		
 		ServerSocket servidor = null;
 		Socket cliente = null;
 		try {
 			servidor = crearSocket();
-			System.out.println(" [Servidor] >> Esperando conexiones del cliente... \n");
+			System.out.println("[Servidor] >> Esperando conexiones del cliente... \n");
 			int conn = 0;
 			while (true) {
 				cliente = new Socket();
 				cliente = servidor.accept();
-				System.out.println(" [Servidor] >> Cliente conectado.");
+				System.out.println("[Servidor] >> Cliente conectado. \n");
 				conn++;
 				HiloServidor hilo = new HiloServidor(cliente,ayDatos);
 				hilo.setName("Hilo Nº"+conn+".");
 				hilo.start();
 			}
 		} catch (Exception e) {
-			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
+			System.out.println("[Servidor] >> Error: " + e.getMessage() + " \n");
 		} finally {
 			if (servidor != null) {
 				try {
 					servidor.close();
 				} catch (Exception e) {
-					System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
+					System.out.println("[Servidor] >> Error: " + e.getMessage() + " \n");
 				}
 			}
 			
-			System.out.println(" [Servidor] >> El servidor se ha terminado. \n");
+			System.out.println("[Servidor] >> El servidor se ha terminado. \n");
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class Servidor extends Thread{
 		Session session = sf.openSession();
 
 		//Todas las Provincias
-		List<Object> prov = session.createQuery("FROM Provincia AS p ORDER BY p.codProv").list();
+		List<Object> prov = session.createQuery("FROM Provincia ORDER BY codProv").list();
 		ayDatos.add(prov);
 
 		//Municipios por Provincia
@@ -118,7 +118,7 @@ public class Servidor extends Thread{
 		ayDatos.add(espN);
 		
 		//Todos los Municipios
-		List<Object> muni = session.createQuery("FROM Municipio AS m ORDER BY m.nombre").list();
+		List<Object> muni = session.createQuery("FROM Municipio ORDER BY nombre").list();
 		ayDatos.add(muni);
 		
 		session.close();
