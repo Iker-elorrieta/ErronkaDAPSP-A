@@ -3,29 +3,23 @@ package Generadores;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -36,7 +30,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -44,33 +37,38 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import Hibernate.Hash;
+import Hibernate.HibernateUtil;
 
 public class CalidadDeAire {
+	private static Logger log = Logger.getLogger("org.hibernate");
 	private static SessionFactory sf;
 	
-	public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-		principal();
+	public static void main(String[] args) {
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
+		principal(sf);
+		sf.close();
 	}
 	
-	public static boolean principal() throws IOException, NoSuchAlgorithmException {
+	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
 	
 		String nomArchivo = "0_CalidadAire";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/index.json", nomArchivo);
 		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
 		limpiarJSON(nomArchivo);
-		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO \n");
-		recorrerJSON(nomArchivo);
-		System.out.println("[Datos] >> CalidadAire -> FINALIZADO \n");
+		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
+		recorrerJSON(sf, nomArchivo);
+		System.out.println("\n"+"[Datos] >> CalidadAire -> FINALIZADO");
 		terminado = true;
 		
 		return terminado;
 	}
 	
-	private static void generarJSON(String urlStr, String nomArchivo) throws NoSuchAlgorithmException{
-		URL url;
+	private static String compararHash(SessionFactory sf, String urlStr, String nomArchivo) {
+		String respuesta = "*";
 		try {
-			url = new URL(urlStr);
+			URL url = new URL(urlStr);
 			URLConnection conexion = url.openConnection();
 			conexion.connect();
 
@@ -81,56 +79,89 @@ public class CalidadDeAire {
 			while((bytesRead = inputStream.read(contents))!=-1) {
 				origenStr += new String (contents, 0, bytesRead);
 			}
+			
+			inputStream.close();
 
 			Session sesion = sf.openSession();
 			Transaction tx = sesion.beginTransaction();
 			
-			File destino = new File("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json");
-			String destinoStr = Files.readString(destino.toPath());
-
-			Hash hash = new Hash();
-			hash.setNombre(nomArchivo);
-			if (obtenerHash(origenStr).equals(hash.getHash())) {
-				System.out.println("[Datos/JSON] >> "+nomArchivo+" -> JSON YA ACTUALIZADO");
-			}else {
-				hash.setHash(obtenerHash(destinoStr));
-				tx.commit();
-				sesion.save(hash);
-				FileOutputStream fileOS = new FileOutputStream(destino); 
+			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
+			if (hash != null) {
+				if (obtenerHash(origenStr).equals(hash.getHash())) {
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Última version de hash en vigor.");
+				} else {
+					hash.setHash(obtenerHash(origenStr));
+					
+					sesion.save(hash); tx.commit();
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash actualizado.");
+					
+					respuesta = origenStr;
+				}
+			} else {
+				hash = new Hash();
+				hash.setNombre(nomArchivo);
+				hash.setHash(obtenerHash(origenStr));
+				
+				sesion.save(hash); tx.commit();
+				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash creado.");
+				
+				respuesta = origenStr;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return respuesta;
+	}
+	
+	private static void generarJSON(String datos, String nomArchivo) {
+		try {
+			if (nomArchivo.equals("0_CalidadAire")) {
+				URL url = new URL(datos);
+				URLConnection conexion = url.openConnection();
+				conexion.connect();
+				
+				BufferedInputStream inputStream = new BufferedInputStream(url.openStream());
+				FileOutputStream fileOS = new FileOutputStream("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json"); 
 				byte data[] = new byte[1024];
 				int byteContent;
 				while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
 					fileOS.write(data, 0, byteContent);
 				}
+				
 				fileOS.close();
+			} else {
+				FileWriter fw = new FileWriter("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json"); 
+				fw.write(datos);
+				fw.close();
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void limpiarJSON(String nomArchivo) throws IOException {
-		BufferedReader bf = new BufferedReader(new FileReader("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json", StandardCharsets.UTF_8));
-		String texto = "";
-		String linea = bf.readLine();
-		while(linea != null) {
-            texto += "\n"+linea;
-            linea = bf.readLine();
-        }
-        bf.close();
-        
-        texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
-        
-        FileWriter fw = new FileWriter("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json");
-        fw.write(texto);
-        fw.close();
+	private static void limpiarJSON(String nomArchivo) {
+		try {
+			BufferedReader bf = new BufferedReader(new FileReader("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json", StandardCharsets.UTF_8));
+			String texto = "";
+			String linea = bf.readLine();
+			while(linea != null) {
+	            texto += "\n"+linea;
+	            linea = bf.readLine();
+	        }
+	        bf.close();
+	        
+	        texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
+	        
+	        FileWriter fw = new FileWriter("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json");
+	        fw.write(texto);
+	        fw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private static void recorrerJSON(String nomArchivo) throws IOException, NoSuchAlgorithmException {
+	private static void recorrerJSON(SessionFactory sf, String nomArchivo) {
 		try {
 			FileReader fr = new FileReader("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json", StandardCharsets.UTF_8);
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
@@ -143,20 +174,24 @@ public class CalidadDeAire {
 				
 				String url = objeto.get("url").getAsString();
 				if (url.contains("datos_indice")) {
-					generarJSON(url, nombre);
-					System.out.println("[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
-					limpiarJSON(nombre);
-					System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
-					generarXML(nombre);
-					System.out.println("[Datos/XML] >> " + nombre + " -> GENERADO XML \n");
+					
+					String json = compararHash(sf, url, nombre);
+					if (!json.equals("*")) {
+						generarJSON(json, nombre);
+						System.out.println("\n"+"[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
+						limpiarJSON(nombre);
+						System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
+						generarXML(nombre);
+						System.out.println("[Datos/XML] >> " + nombre + " -> GENERADO XML");
+					}
 				}
 			}
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private static void generarXML(String nomArchivo) throws IOException {
+	private static void generarXML(String nomArchivo) {
 		try {
 			FileReader fr = new FileReader("Archivos/ArchivosJSON_CalidadAire/"+nomArchivo+".json", StandardCharsets.UTF_8);
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
@@ -207,17 +242,7 @@ public class CalidadDeAire {
 			
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
             tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML_CalidadAire/"+nomArchivo+".xml")));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -227,11 +252,8 @@ public class CalidadDeAire {
 		byte dataBytes[] = str.getBytes();
 		md.update(dataBytes);
 		byte resum[] = md.digest();
-		String strHash = "";
-		for (byte b : resum) {
-			strHash += b;
-		}
-		return strHash;
+		
+		return new String(resum);
 	}
 	
 }

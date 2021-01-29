@@ -78,7 +78,7 @@ public class Servidor extends Thread{
 	
 	private void prepararTodo() {
 		try {
-			GenerarTodo.principal();
+			GenerarTodo.principal(sf);
 			LlenarBBDD.principal(sf);
 		} catch (Exception e) {
 			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");

@@ -3,28 +3,21 @@ package Generadores;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -40,34 +33,43 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import Hibernate.Hash;
+import Hibernate.HibernateUtil;
 
 public class EspaciosNaturales {
+	private static Logger log = Logger.getLogger("org.hibernate");
 	private static SessionFactory sf;
 
-	public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-		principal();
+	public static void main(String[] args) {
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
+		principal(sf);
+		sf.close();
 	}
 
-	public static boolean principal() throws IOException, NoSuchAlgorithmException {
+	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
 
 		String nomArchivo = "espacios_naturales";
-		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/playas_de_euskadi/opendata/espacios-naturales.json", nomArchivo);
-		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
-		limpiarJSON(nomArchivo);
-		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
-		generarXML(nomArchivo);
-		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
-		System.out.println("[Datos] >> EspaciosNaturales -> FINALIZADO \n");
+		String datos = compararHash(sf, "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/playas_de_euskadi/opendata/espacios-naturales.json", nomArchivo);
+		if (!datos.equals("*")) {
+			generarJSON(datos, nomArchivo);
+			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
+			limpiarJSON(nomArchivo);
+			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
+			generarXML(nomArchivo);
+			System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML");
+		}
+		
+		System.out.println("\n"+"[Datos] >> EspaciosNaturales -> FINALIZADO \n");
 		terminado = true;
 
 		return terminado;
 	}
-
-	private static void generarJSON(String urlStr, String nomArchivo) throws NoSuchAlgorithmException{
-		URL url;
+	
+	private static String compararHash(SessionFactory sf, String urlStr, String nomArchivo) {
+		String respuesta = "*";
 		try {
-			url = new URL(urlStr);
+			URL url = new URL(urlStr);
 			URLConnection conexion = url.openConnection();
 			conexion.connect();
 
@@ -78,80 +80,93 @@ public class EspaciosNaturales {
 			while((bytesRead = inputStream.read(contents))!=-1) {
 				origenStr += new String (contents, 0, bytesRead);
 			}
+			
+			inputStream.close();
 
 			Session sesion = sf.openSession();
 			Transaction tx = sesion.beginTransaction();
-
-
-
-			File destino = new File("Archivos/ArchivosJSON/"+nomArchivo+".json");
-			String destinoStr = Files.readString(destino.toPath());
-
-			Hash hash = new Hash();
-			hash.setNombre(nomArchivo);
-
-			if (obtenerHash(origenStr).equals(hash.getHash())) {
-				System.out.println("[Datos/JSON] >> "+nomArchivo+" -> JSON YA ACTUALIZADO");
-			}else {
-				hash.setHash(obtenerHash(destinoStr));
-				tx.commit();
-				sesion.save(hash);
-				FileOutputStream fileOS = new FileOutputStream(destino); 
-				byte data[] = new byte[1024];
-				int byteContent;
-				while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
-					fileOS.write(data, 0, byteContent);
+			
+			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
+			if (hash != null) {
+				if (obtenerHash(origenStr).equals(hash.getHash())) {
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Última version de hash en vigor.");
+				} else {
+					hash.setHash(obtenerHash(origenStr));
+					
+					sesion.save(hash); tx.commit();
+					System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash actualizado.");
+					
+					respuesta = origenStr;
 				}
-				fileOS.close();
+			} else {
+				hash = new Hash();
+				hash.setNombre(nomArchivo);
+				hash.setHash(obtenerHash(origenStr));
+				
+				sesion.save(hash); tx.commit();
+				System.out.println("[Datos/Hash] >> "+nomArchivo+" -> Hash creado.");
+				
+				respuesta = origenStr;
 			}
-
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		
+		return respuesta;
+	}
+	
+	private static void generarJSON(String datos, String nomArchivo) {
+		try {
+			FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json"); 
+			fw.write(datos);
+			fw.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void limpiarJSON(String nomArchivo) throws IOException {
-		BufferedReader bf = new BufferedReader(new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json", StandardCharsets.UTF_8));
-		String texto = ""; int knt = 1;
-		String linea = bf.readLine();
-		while(linea != null) {
-			if (linea.contains("turismDescription")) {
-				if (knt%2 != 0) {
-					linea = linea.replaceFirst("turismDescription", "documentDescription");
+	private static void limpiarJSON(String nomArchivo) {
+		try {
+			BufferedReader bf = new BufferedReader(new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json", StandardCharsets.UTF_8));
+			String texto = ""; int knt = 1;
+			String linea = bf.readLine();
+			while(linea != null) {
+				if (linea.contains("turismDescription")) {
+					if (knt%2 != 0) {
+						linea = linea.replaceFirst("turismDescription", "documentDescription");
+					}
+					knt++;
+				} else if (linea.contains("municipality\" :")) {
+					if (linea.contains("Trapagaran")) {
+						linea = linea.substring(0, 20) + "Valle_de_Trápaga-Trapagaran\",";
+					} else if (linea.contains("Donostia")) {
+						linea = linea.substring(0, 20) + "Donostia/San_Sebastián\",";
+					}
 				}
-				knt++;
-			} else if (linea.contains("municipality\" :")) {
-				if (linea.contains("Trapagaran")) {
-					linea = linea.substring(0, 20) + "Valle_de_Trápaga-Trapagaran\",";
-				} else if (linea.contains("Donostia")) {
-					linea = linea.substring(0, 20) + "Donostia/San_Sebastián\",";
-				}
+				texto += "\n"+linea;
+				linea = bf.readLine();
 			}
-			texto += "\n"+linea;
-			linea = bf.readLine();
+			bf.close();
+
+			texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
+			texto = texto.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("<strong>", "").replaceAll("</strong>", "");
+			texto = texto.replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("<ul>", "\n").replaceAll("</ul>", "");
+			texto = texto.replaceAll("<li>", "\u2022\t").replaceAll("</li>", "\n").replaceAll("</a>", "");
+			texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n");
+			texto = texto.replaceAll("&aacute ", "á").replaceAll("&Aacute ", "Á").replaceAll("&eacute ", "é").replaceAll("&Eacute ", "É");
+			texto = texto.replaceAll("&iacute ", "í").replaceAll("&Iacute ", "Í").replaceAll("&oacute ", "ó").replaceAll("&Oacute ", "Ó");
+			texto = texto.replaceAll("&uacute ", "ú").replaceAll("&Uacute ", "Ú").replaceAll("&ntilde ", "ñ");
+			texto = Pattern.compile("<a (.*?)>", Pattern.DOTALL).matcher(texto).replaceAll("");
+
+			FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json");
+			fw.write(texto);
+			fw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		bf.close();
-
-		texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
-		texto = texto.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("<strong>", "").replaceAll("</strong>", "");
-		texto = texto.replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("<ul>", "\n").replaceAll("</ul>", "");
-		texto = texto.replaceAll("<li>", "\u2022\t").replaceAll("</li>", "\n").replaceAll("</a>", "");
-		texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n");
-		texto = texto.replaceAll("&aacute ", "á").replaceAll("&Aacute ", "Á").replaceAll("&eacute ", "é").replaceAll("&Eacute ", "É");
-		texto = texto.replaceAll("&iacute ", "í").replaceAll("&Iacute ", "Í").replaceAll("&oacute ", "ó").replaceAll("&Oacute ", "Ó");
-		texto = texto.replaceAll("&uacute ", "ú").replaceAll("&Uacute ", "Ú").replaceAll("&ntilde ", "ñ");
-		texto = Pattern.compile("<a (.*?)>", Pattern.DOTALL).matcher(texto).replaceAll("");
-
-		FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json");
-		fw.write(texto);
-		fw.close();
 	}
 
-	private static void generarXML(String nomArchivo) throws IOException {
+	private static void generarXML(String nomArchivo) {
 		try {
 			FileReader fr = new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json");
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
@@ -193,15 +208,7 @@ public class EspaciosNaturales {
 
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
 			tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -211,10 +218,8 @@ public class EspaciosNaturales {
 		byte dataBytes[] = str.getBytes();
 		md.update(dataBytes);
 		byte resum[] = md.digest();
-		String strHash = "";
-		for (byte b : resum) {
-			strHash += b;
-		}
-		return strHash;
+		
+		return new String(resum);
 	}
+	
 }

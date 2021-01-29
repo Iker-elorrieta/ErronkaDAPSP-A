@@ -11,8 +11,6 @@
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 </type-mapping>
-
-
 <table-filter match-name="calidad_aire"
 		match-catalog="euskomet_db">
 	</table-filter>
@@ -83,7 +81,6 @@
 		<column name="nombre"></column>
 	</table>
 	<table catalog="euskomet_db" name="hash">
-		<column name="cod_hash"></column>
 		<column name="nombre"></column>
 		<column name="hash"></column>
 	</table>

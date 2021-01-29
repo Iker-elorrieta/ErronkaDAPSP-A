@@ -41,6 +41,7 @@ public class ImportarCertificado {
 					    localCertIn.close();
 					    return;
 					}
+					
 					localCertIn.close();
 					System.out.println("[Certificado] >> Certificado installado. \n");
 				} else {
@@ -50,11 +51,11 @@ public class ImportarCertificado {
 				break;
 			} catch (FileNotFoundException e) {
 				if (!e.getMessage().contains("denied")) {
-					e.printStackTrace();
+					System.out.println("[Certificado] >> ERROR: "+e.getMessage());
 					System.exit(1);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("[Certificado] >> ERROR: "+e.getMessage());
 				System.exit(1);
 			}
 		}
@@ -80,7 +81,7 @@ public class ImportarCertificado {
 			}}, new SecureRandom());
 			HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("[Certificado] >> ERROR: "+e.getMessage());
 		}
 	}
 

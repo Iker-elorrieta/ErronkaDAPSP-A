@@ -1,18 +1,12 @@
 package Generadores;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -20,7 +14,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -29,21 +22,23 @@ import com.google.gson.JsonParser;
 
 public class MuniEspacios {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		principal();
 	}
 	
-	public static boolean principal() throws IOException {
+	public static boolean principal() {
 		boolean terminado=false;
+		
 		String nomArchivo = "muni_espacios";
 		generarXML(nomArchivo);
 		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
 		System.out.println("[Datos] >> MuniEspacios -> FINALIZADO \n");
 		terminado = true;
+		
 		return terminado;
 	}
 	
-	private static void generarXML(String nomArchivo) throws IOException {
+	private static void generarXML(String nomArchivo) {
 		try {
 			FileReader fr = new FileReader("Archivos/ArchivosJSON/espacios_naturales.json");
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
@@ -133,17 +128,7 @@ public class MuniEspacios {
 			
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
             tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
