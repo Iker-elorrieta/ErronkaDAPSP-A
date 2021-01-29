@@ -12,6 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,6 +27,9 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -32,13 +38,16 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import Hibernate.Hash;
+
 public class Estaciones {
+	private static SessionFactory sf;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 		principal();
 	}
  
-	public static boolean principal() throws IOException {
+	public static boolean principal() throws IOException, NoSuchAlgorithmException {
 		boolean terminado=false;
 		String nomArchivo = "estaciones";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/estaciones.json", nomArchivo);
@@ -52,7 +61,7 @@ public class Estaciones {
 		return terminado;
 	}
 	
-	private static void generarJSON(String urlStr, String nomArchivo){
+	private static void generarJSON(String urlStr, String nomArchivo) throws NoSuchAlgorithmException{
 		URL url;
 		try {
 			url = new URL(urlStr);
@@ -60,14 +69,36 @@ public class Estaciones {
 			conexion.connect();
 
 			BufferedInputStream inputStream = new BufferedInputStream(url.openStream());
-
-			FileOutputStream fileOS = new FileOutputStream("Archivos/ArchivosJSON/"+nomArchivo+".json"); 
-			byte data[] = new byte[1024];
-			int byteContent;
-			while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
-				fileOS.write(data, 0, byteContent);
+			byte[] contents = new byte[1024];
+			int bytesRead = 0;
+			String origenStr="";
+			while((bytesRead = inputStream.read(contents))!=-1) {
+				origenStr += new String (contents, 0, bytesRead);
 			}
-			fileOS.close();
+
+			Session sesion = sf.openSession();
+			Transaction tx = sesion.beginTransaction();
+			
+			File destino = new File("Archivos/ArchivosJSON/"+nomArchivo+".json");
+			String destinoStr = Files.readString(destino.toPath());
+			
+			Hash hash = new Hash();
+			hash.setNombre(nomArchivo);
+			
+			if (obtenerHash(origenStr).equals(hash.getHash())) {
+				System.out.println("[Datos/JSON] >> "+nomArchivo+" -> JSON YA ACTUALIZADO");
+			}else {
+				hash.setHash(obtenerHash(destinoStr));
+				tx.commit();
+				sesion.save(hash);
+				FileOutputStream fileOS = new FileOutputStream(destino); 
+				byte data[] = new byte[1024];
+				int byteContent;
+				while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
+					fileOS.write(data, 0, byteContent);
+				}
+				fileOS.close();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
@@ -176,4 +207,15 @@ public class Estaciones {
 		}
 	}
 	
+	private static String obtenerHash(String str) throws NoSuchAlgorithmException {
+		MessageDigest md = MessageDigest.getInstance("SHA");
+		byte dataBytes[] = str.getBytes();
+		md.update(dataBytes);
+		byte resum[] = md.digest();
+		String strHash = "";
+		for (byte b : resum) {
+			strHash += b;
+		}
+		return strHash;
+	}
 }

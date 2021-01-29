@@ -12,6 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
@@ -25,6 +28,9 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -33,15 +39,18 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import Hibernate.Hash;
+
 public class EspaciosNaturales {
-	
-	public static void main(String[] args) throws IOException {
+	private static SessionFactory sf;
+
+	public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
 		principal();
 	}
-	
-	public static boolean principal() throws IOException {
+
+	public static boolean principal() throws IOException, NoSuchAlgorithmException {
 		boolean terminado=false;
-		
+
 		String nomArchivo = "espacios_naturales";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/playas_de_euskadi/opendata/espacios-naturales.json", nomArchivo);
 		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
@@ -51,11 +60,11 @@ public class EspaciosNaturales {
 		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
 		System.out.println("[Datos] >> EspaciosNaturales -> FINALIZADO \n");
 		terminado = true;
-		
+
 		return terminado;
 	}
-	
-	private static void generarJSON(String urlStr, String nomArchivo){
+
+	private static void generarJSON(String urlStr, String nomArchivo) throws NoSuchAlgorithmException{
 		URL url;
 		try {
 			url = new URL(urlStr);
@@ -63,14 +72,39 @@ public class EspaciosNaturales {
 			conexion.connect();
 
 			BufferedInputStream inputStream = new BufferedInputStream(url.openStream());
-
-			FileOutputStream fileOS = new FileOutputStream("Archivos/ArchivosJSON/"+nomArchivo+".json"); 
-			byte data[] = new byte[1024];
-			int byteContent;
-			while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
-				fileOS.write(data, 0, byteContent);
+			byte[] contents = new byte[1024];
+			int bytesRead = 0;
+			String origenStr="";
+			while((bytesRead = inputStream.read(contents))!=-1) {
+				origenStr += new String (contents, 0, bytesRead);
 			}
-			fileOS.close();
+
+			Session sesion = sf.openSession();
+			Transaction tx = sesion.beginTransaction();
+
+
+
+			File destino = new File("Archivos/ArchivosJSON/"+nomArchivo+".json");
+			String destinoStr = Files.readString(destino.toPath());
+
+			Hash hash = new Hash();
+			hash.setNombre(nomArchivo);
+
+			if (obtenerHash(origenStr).equals(hash.getHash())) {
+				System.out.println("[Datos/JSON] >> "+nomArchivo+" -> JSON YA ACTUALIZADO");
+			}else {
+				hash.setHash(obtenerHash(destinoStr));
+				tx.commit();
+				sesion.save(hash);
+				FileOutputStream fileOS = new FileOutputStream(destino); 
+				byte data[] = new byte[1024];
+				int byteContent;
+				while ((byteContent = inputStream.read(data, 0, 1024)) != -1) {
+					fileOS.write(data, 0, byteContent);
+				}
+				fileOS.close();
+			}
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
@@ -86,79 +120,79 @@ public class EspaciosNaturales {
 		String linea = bf.readLine();
 		while(linea != null) {
 			if (linea.contains("turismDescription")) {
-            	if (knt%2 != 0) {
-            		linea = linea.replaceFirst("turismDescription", "documentDescription");
-    			}
-            	knt++;
-            } else if (linea.contains("municipality\" :")) {
-        		if (linea.contains("Trapagaran")) {
+				if (knt%2 != 0) {
+					linea = linea.replaceFirst("turismDescription", "documentDescription");
+				}
+				knt++;
+			} else if (linea.contains("municipality\" :")) {
+				if (linea.contains("Trapagaran")) {
 					linea = linea.substring(0, 20) + "Valle_de_Trápaga-Trapagaran\",";
 				} else if (linea.contains("Donostia")) {
 					linea = linea.substring(0, 20) + "Donostia/San_Sebastián\",";
 				}
-            }
-            texto += "\n"+linea;
-            linea = bf.readLine();
-        }
-        bf.close();
-        
-        texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
-        texto = texto.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("<strong>", "").replaceAll("</strong>", "");
-        texto = texto.replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("<ul>", "\n").replaceAll("</ul>", "");
-        texto = texto.replaceAll("<li>", "\u2022\t").replaceAll("</li>", "\n").replaceAll("</a>", "");
-        texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n");
-        texto = texto.replaceAll("&aacute ", "á").replaceAll("&Aacute ", "Á").replaceAll("&eacute ", "é").replaceAll("&Eacute ", "É");
-        texto = texto.replaceAll("&iacute ", "í").replaceAll("&Iacute ", "Í").replaceAll("&oacute ", "ó").replaceAll("&Oacute ", "Ó");
-        texto = texto.replaceAll("&uacute ", "ú").replaceAll("&Uacute ", "Ú").replaceAll("&ntilde ", "ñ");
-        texto = Pattern.compile("<a (.*?)>", Pattern.DOTALL).matcher(texto).replaceAll("");
-        
-        FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json");
-        fw.write(texto);
-        fw.close();
+			}
+			texto += "\n"+linea;
+			linea = bf.readLine();
+		}
+		bf.close();
+
+		texto = texto.substring(texto.indexOf("["), texto.indexOf("]")+1);
+		texto = texto.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("<strong>", "").replaceAll("</strong>", "");
+		texto = texto.replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("<ul>", "\n").replaceAll("</ul>", "");
+		texto = texto.replaceAll("<li>", "\u2022\t").replaceAll("</li>", "\n").replaceAll("</a>", "");
+		texto = texto.replaceAll("<br />", "\n").replaceAll("&nbsp", "\t").replaceAll("<br/>", "\n");
+		texto = texto.replaceAll("&aacute ", "á").replaceAll("&Aacute ", "Á").replaceAll("&eacute ", "é").replaceAll("&Eacute ", "É");
+		texto = texto.replaceAll("&iacute ", "í").replaceAll("&Iacute ", "Í").replaceAll("&oacute ", "ó").replaceAll("&Oacute ", "Ó");
+		texto = texto.replaceAll("&uacute ", "ú").replaceAll("&Uacute ", "Ú").replaceAll("&ntilde ", "ñ");
+		texto = Pattern.compile("<a (.*?)>", Pattern.DOTALL).matcher(texto).replaceAll("");
+
+		FileWriter fw = new FileWriter("Archivos/ArchivosJSON/"+nomArchivo+".json");
+		fw.write(texto);
+		fw.close();
 	}
-	
+
 	private static void generarXML(String nomArchivo) throws IOException {
 		try {
 			FileReader fr = new FileReader("Archivos/ArchivosJSON/"+nomArchivo+".json");
 			JsonArray datos = JsonParser.parseReader(fr).getAsJsonArray();
-			
+
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 			Element espacios_naturales = doc.createElement("espacios_naturales"); doc.appendChild(espacios_naturales);
-			
+
 			Iterator<JsonElement> iter = datos.iterator(); int knt=1;
 			while (iter.hasNext()) {
 				JsonObject entrada = iter.next().getAsJsonObject();
-				
+
 				Element espacio_natural = doc.createElement("espacio_natural"); espacios_naturales.appendChild(espacio_natural); espacio_natural.setAttribute("id", ""+knt+"");
-				
+
 				Element cod_enatural = doc.createElement("cod_enatural"); espacio_natural.appendChild(cod_enatural);
 				cod_enatural.appendChild(doc.createTextNode(String.valueOf(knt)));
-				
+
 				Element nombre = doc.createElement("nombre"); espacio_natural.appendChild(nombre);
 				String nombreStr = entrada.get("documentName").getAsString();
 				nombre.appendChild(doc.createTextNode(nombreStr));
-				
+
 				Element descripcion = doc.createElement("descripcion"); espacio_natural.appendChild(descripcion);
 				String descripcionStr = entrada.get("turismDescription").getAsString();
 				descripcion.appendChild(doc.createTextNode(descripcionStr));
-				
+
 				Element tipo = doc.createElement("tipo"); espacio_natural.appendChild(tipo);
 				String tipoStr = entrada.get("templateType").getAsString();
 				tipo.appendChild(doc.createTextNode(tipoStr));
-				
+
 				Element latitud = doc.createElement("latitud"); espacio_natural.appendChild(latitud);
 				String latitudStr = entrada.get("latwgs84").getAsString();
 				latitud.appendChild(doc.createTextNode(latitudStr));
-				
+
 				Element longitud = doc.createElement("longitud"); espacio_natural.appendChild(longitud);
 				String longitudStr = entrada.get("lonwgs84").getAsString();
 				longitud.appendChild(doc.createTextNode(longitudStr));
-				
+
 				knt++;
 			}
-			
+
 			Transformer tf = TransformerFactory.newInstance().newTransformer();
-            tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
+			tf.transform(new DOMSource(doc), new StreamResult(new File("Archivos/ArchivosXML/"+nomArchivo+".xml")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
@@ -171,5 +205,16 @@ public class EspaciosNaturales {
 			e.printStackTrace();
 		}
 	}
-	
+
+	private static String obtenerHash(String str) throws NoSuchAlgorithmException {
+		MessageDigest md = MessageDigest.getInstance("SHA");
+		byte dataBytes[] = str.getBytes();
+		md.update(dataBytes);
+		byte resum[] = md.digest();
+		String strHash = "";
+		for (byte b : resum) {
+			strHash += b;
+		}
+		return strHash;
+	}
 }

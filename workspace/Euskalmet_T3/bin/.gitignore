@@ -1,4 +1,9 @@
-/Servidor_Cliente/
 /App/
 /Generadores/
 /Hibernate/
+/Inserts/
+/PruebasDA/
+/PruebasPSP/
+/Servidor_Cliente/
+/hibernate.cfg.xml
+/hibernate.reveng.xml
