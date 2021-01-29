@@ -11,12 +11,20 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -52,7 +60,8 @@ public class CalidadDeAire {
 	
 	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
-	
+		
+		trustEveryone();
 		String nomArchivo = "0_CalidadAire";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/index.json", nomArchivo);
 		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
@@ -254,6 +263,30 @@ public class CalidadDeAire {
 		byte resum[] = md.digest();
 		
 		return new String(resum);
+	}
+	
+	private static void trustEveryone() {
+		try {
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String arg0, SSLSession arg1) {
+					return false;
+				}
+			});
+			SSLContext context = SSLContext.getInstance("TLS");
+			context.init(null, new X509TrustManager[] {new X509TrustManager() {
+				public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				@Override
+				public X509Certificate[] getAcceptedIssuers() {
+					return new X509Certificate[0];
+				}
+			}}, new SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+		} catch (Exception e) {
+			System.out.println("[Certificado] >> ERROR: "+e.getMessage());
+		}
 	}
 	
 }

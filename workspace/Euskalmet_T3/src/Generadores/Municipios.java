@@ -11,11 +11,19 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -50,6 +58,7 @@ public class Municipios {
 	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
 		
+		trustEveryone();
 		String nomArchivo = "municipios";
 		String datos = compararHash(sf, "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/pueblos_euskadi_turismo/opendata/herriak.json", nomArchivo);
 		if (!datos.equals("*")) {
@@ -223,6 +232,30 @@ public class Municipios {
 		byte resum[] = md.digest();
 		
 		return new String(resum);
+	}
+	
+	private static void trustEveryone() {
+		try {
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String arg0, SSLSession arg1) {
+					return false;
+				}
+			});
+			SSLContext context = SSLContext.getInstance("TLS");
+			context.init(null, new X509TrustManager[] {new X509TrustManager() {
+				public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+				}
+				@Override
+				public X509Certificate[] getAcceptedIssuers() {
+					return new X509Certificate[0];
+				}
+			}}, new SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+		} catch (Exception e) {
+			System.out.println("[Certificado] >> ERROR: "+e.getMessage());
+		}
 	}
 	
 }
