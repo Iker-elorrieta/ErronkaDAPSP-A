@@ -22,7 +22,6 @@ public class Servidor extends Thread{
 	private SessionFactory sf;
 	private Logger log = Logger.getLogger("org.hibernate");
 	
-	@SuppressWarnings("unchecked")
 	public void run() {
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
@@ -30,37 +29,8 @@ public class Servidor extends Thread{
 		System.out.println(" [Servidor] >> Actualizando datos... \n");
 		prepararTodo();
 		System.out.println(" [Servidor] >> Datos actualizados. \n");
-		
-		Session session = sf.openSession();
-		
-		//Municipios por Provincia
-		List<Object> prov = session.createQuery("SELECT DISTINCT p FROM Provincia AS p").list();
-		ayDatos.add(prov);
-		List<Object> muniBizkaia = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Bizkaia' ORDER BY m.nombre").list();
-		ayDatos.add(muniBizkaia);
-		List<Object> muniGipuzkoa = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Gipuzkoa' ORDER BY m.nombre").list();
-		ayDatos.add(muniGipuzkoa);
-		List<Object> muniAraba = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Araba' ORDER BY m.nombre").list();
-		ayDatos.add(muniAraba);
-		
-		//Espacios Naturales por Provincia
-		List<Object> espNBizkaia = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Bizkaia' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
-		ayDatos.add(espNBizkaia);
-		List<Object> espNGipuzkoa = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Gipuzkoa' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
-		ayDatos.add(espNGipuzkoa);
-		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
-		ayDatos.add(espNAraba);
-		
-		//Calidad de Aire por Municipio
-		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
-		ayDatos.add(muniCAire);
-		
-		//Todos los Espacios Naturales
-		List<Object> espN = session.createQuery("FROM EspaciosNaturales ORDER BY nombre").list();
-		ayDatos.add(espN);
-		
-		session.close();
-		sf.close();
+		recogerDatos();
+		System.out.println(" [Servidor] >> Datos recibidos. \n");
 		
 		ServerSocket servidor = null;
 		Socket cliente = null;
@@ -106,7 +76,6 @@ public class Servidor extends Thread{
 		mainServer();
 	}
 	
-	@SuppressWarnings("unused")
 	private void prepararTodo() {
 		try {
 			GenerarTodo.principal();
@@ -114,6 +83,46 @@ public class Servidor extends Thread{
 		} catch (Exception e) {
 			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void recogerDatos() {
+		Session session = sf.openSession();
+
+		//Todas las Provincias
+		List<Object> prov = session.createQuery("FROM Provincia AS p ORDER BY p.codProv").list();
+		ayDatos.add(prov);
+
+		//Municipios por Provincia
+		List<Object> muniBizkaia = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Bizkaia' ORDER BY m.nombre").list();
+		ayDatos.add(muniBizkaia);
+		List<Object> muniGipuzkoa = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Gipuzkoa' ORDER BY m.nombre").list();
+		ayDatos.add(muniGipuzkoa);
+		List<Object> muniAraba = session.createQuery("SELECT DISTINCT m FROM Municipio AS m WHERE m.provincia.nombre = 'Araba' ORDER BY m.nombre").list();
+		ayDatos.add(muniAraba);
+
+		//Espacios Naturales por Provincia
+		List<Object> espNBizkaia = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Bizkaia' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
+		ayDatos.add(espNBizkaia);
+		List<Object> espNGipuzkoa = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Gipuzkoa' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
+		ayDatos.add(espNGipuzkoa);
+		List<Object> espNAraba = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me WHERE me.municipio.provincia.nombre = 'Araba' ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
+		ayDatos.add(espNAraba);
+		
+		//Calidad de Aire por Municipio
+		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
+		ayDatos.add(muniCAire);
+		
+		//Todos los Espacios Naturales
+		List<Object> espN = session.createQuery("FROM EspaciosNaturales ORDER BY nombre").list();
+		ayDatos.add(espN);
+		
+		//Todos los Municipios
+		List<Object> muni = session.createQuery("FROM Municipio AS m ORDER BY m.nombre").list();
+		ayDatos.add(muni);
+		
+		session.close();
+		sf.close();
 	}
 	
 }

@@ -2,17 +2,18 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<type-mapping>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
-	</type-mapping>
+<type-mapping>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+</type-mapping>
 
 
-	<table-filter match-name="calidad_aire"
+<table-filter match-name="calidad_aire"
 		match-catalog="euskomet_db">
 	</table-filter>
 	<table-filter match-name="espacios_naturales"
@@ -25,8 +26,7 @@
 	<table-filter match-name="fav_municipio" match-catalog="euskomet_db"
 		exclude="true">
 	</table-filter>
-	<table-filter match-name="hash" match-catalog="euskomet_db"
-		exclude="true">
+	<table-filter match-name="hash" match-catalog="euskomet_db">
 	</table-filter>
 	<table-filter match-name="muni_espacios"
 		match-catalog="euskomet_db">
@@ -81,5 +81,10 @@
 	<table catalog="euskomet_db" name="provincia">
 		<column name="cod_prov"></column>
 		<column name="nombre"></column>
+	</table>
+	<table catalog="euskomet_db" name="hash">
+		<column name="cod_hash"></column>
+		<column name="nombre"></column>
+		<column name="hash"></column>
 	</table>
 </hibernate-reverse-engineering>

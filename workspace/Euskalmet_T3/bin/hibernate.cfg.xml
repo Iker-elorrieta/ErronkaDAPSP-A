@@ -12,6 +12,7 @@
         <mapping resource="Hibernate/EspaciosNaturales.hbm.xml"/>
         <mapping resource="Hibernate/Municipio.hbm.xml"/>
         <mapping resource="Hibernate/CalidadAire.hbm.xml"/>
+        <mapping resource="Hibernate/Hash.hbm.xml"/>
         <mapping resource="Hibernate/MuniEspacios.hbm.xml"/>
         <mapping resource="Hibernate/Estaciones.hbm.xml"/>
         <mapping resource="Hibernate/Provincia.hbm.xml"/>

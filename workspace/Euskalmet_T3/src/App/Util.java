@@ -9,6 +9,26 @@ import Hibernate.Provincia;
 
 public class Util {
 	
+	public static ArrayList<ArrayList<Object>> visitas(List<Object> lista, String tipo) {
+		ArrayList<ArrayList<Object>> visitas = new ArrayList<ArrayList<Object>>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			ArrayList<Object> entrada = new ArrayList<Object>();
+			
+			if (tipo.equals("municipios")) {
+				Municipio muni = (Municipio) lista.get(i);
+				entrada.add(muni.getNombre());
+				entrada.add(0);
+			} else if (tipo.equals("espaciosN")) {
+				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
+				entrada.add(espN.getNombre());
+				entrada.add(0);
+			}
+		}
+		
+		return visitas;
+	}
+	
 	public static String[] cmbxProvincias(List<Object> lista) {
 		ArrayList<String> ayProv = new ArrayList<String>();
 		
