@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 29 ene. 2021 12:58:21 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 1 feb. 2021 9:01:43 by Hibernate Tools 5.4.21.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="euskomet_db" dynamic-insert="false" dynamic-update="false" mutable="true" name="Hibernate.CalidadAire" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="calidad_aire">
         <composite-id class="Hibernate.CalidadAireId" mapped="false" name="id" unsaved-value="undefined">
@@ -15,6 +15,24 @@
         </many-to-one>
         <property generated="never" lazy="false" name="calidad" optimistic-lock="true" type="string" unique="false">
             <column length="40" name="calidad"/>
+        </property>
+        <property generated="never" lazy="false" name="pm25" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="PM25" precision="5"/>
+        </property>
+        <property generated="never" lazy="false" name="pm10" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="PM10" precision="5"/>
+        </property>
+        <property generated="never" lazy="false" name="so2" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="SO2" precision="5"/>
+        </property>
+        <property generated="never" lazy="false" name="no2" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="NO2" precision="5"/>
+        </property>
+        <property generated="never" lazy="false" name="o3" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="O3" precision="5"/>
+        </property>
+        <property generated="never" lazy="false" name="co" optimistic-lock="true" type="java.lang.Double" unique="false">
+            <column name="CO" precision="5"/>
         </property>
     </class>
 </hibernate-mapping>

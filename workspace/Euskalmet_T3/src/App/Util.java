@@ -1,8 +1,9 @@
 package App;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import Hibernate.CalidadAire;
 import Hibernate.EspaciosNaturales;
 import Hibernate.Municipio;
 import Hibernate.Provincia;
@@ -125,8 +126,8 @@ public class Util {
 		
 		for (int i = 0; i < lista.size(); i++) {
 			Object[] est = (Object[]) lista.get(i);
-			if (municipios.contains(est[3].toString())) {
-				String direccion = est[2].toString();
+			if (municipios.contains(est[2].toString())) {
+				String direccion = est[1].toString();
 				if (!ayEst.contains(direccion)) 
 					ayEst.add(direccion);
 			}
@@ -140,12 +141,38 @@ public class Util {
 		
 		for (int i = 0; i < lista.size(); i++) {
 			Object[] est = (Object[]) lista.get(i);
-			if (((String) est[2]).equals(direccion)) {
-				String fechaHora = ((Timestamp) est[0]).toString();
-				String calidad = (String) est[1];
+			if (((String) est[1]).equals(direccion)) {
+				String fechaHora = ((CalidadAire) est[0]).getId().getFechaHora().toString();
+				String calidad = ((CalidadAire) est[0]).getCalidad();
 				if (calidad.length() != 0) {
-					if (!calidad.contains("datos")) 
-						historico += ">> " + fechaHora + " >> " + calidad + ". \n\n";
+					if (!calidad.contains("datos")) {
+						historico += ">> " + fechaHora + " >> " + calidad + ". \n";
+						historico += "\t >> ";
+								
+						Object[][] ayCA = {
+								{"PM2.5",((CalidadAire) est[0]).getPm25()},
+								{"PM10",((CalidadAire) est[0]).getPm10()},
+								{"SO2",((CalidadAire) est[0]).getSo2()},
+								{"NO2",((CalidadAire) est[0]).getNo2()},
+								{"O3",((CalidadAire) est[0]).getO3()},
+								{"CO",((CalidadAire) est[0]).getCo()}
+							};
+						
+						int entrada = 0;
+						for (int j = 0; j < ayCA.length; j++) {
+							if (ayCA[j][1] != null) {
+								if (entrada == 0) {
+									historico += " | " + ayCA[j][0].toString() + ": " + ayCA[j][1].toString().replaceAll("\\.", "\\,") + " | ";
+								} else {
+									historico += ayCA[j][0].toString() + ": " + ayCA[j][1].toString().replaceAll("\\.", "\\,") + " | ";
+								}
+								
+								entrada++;
+							}
+						}
+						
+						historico += "\n\n";
+					}
 				}
 			}
 		}

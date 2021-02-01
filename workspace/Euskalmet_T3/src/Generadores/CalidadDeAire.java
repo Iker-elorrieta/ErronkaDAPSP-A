@@ -226,8 +226,40 @@ public class CalidadDeAire {
 					calidadStr = objeto.get("ICAEstacion").getAsString();
 					//EUSKARA: calidadStr = calidadStr.substring(calidadStr.indexOf("/")+1);
 					calidadStr = calidadStr.substring(0, calidadStr.indexOf("/")-1);
+				} else {
+					//EUSKARA: calidadStr = "Daturik gabe";
+					calidadStr = "Sin datos";
 				}
 				calidad.appendChild(doc.createTextNode(calidadStr));
+				
+				Element PM25 = doc.createElement("PM25"); entrada.appendChild(PM25);
+				Element PM10 = doc.createElement("PM10"); entrada.appendChild(PM10);
+				Element SO2 = doc.createElement("SO2"); entrada.appendChild(SO2);
+				Element NO2 = doc.createElement("NO2"); entrada.appendChild(NO2);
+				Element O3 = doc.createElement("O3"); entrada.appendChild(O3);
+				Element CO = doc.createElement("CO"); entrada.appendChild(CO);
+				
+				String[] ayCAire = {"PM25","PM10","SO2","NO2","OZONO","COmgm3"};
+				for (int i = 0; i < ayCAire.length; i++) {
+					String dato = null;
+					if (objeto.has(ayCAire[i])) {
+						dato = objeto.get(ayCAire[i]).getAsString();
+						
+						if (i == 0) {
+							PM25.appendChild(doc.createTextNode(dato));
+						} else if (i == 1) {
+							PM10.appendChild(doc.createTextNode(dato));
+						} else if (i == 2) {
+							SO2.appendChild(doc.createTextNode(dato));
+						} else if (i == 3) {
+							NO2.appendChild(doc.createTextNode(dato));
+						} else if (i == 4) {
+							O3.appendChild(doc.createTextNode(dato));
+						} else {
+							CO.appendChild(doc.createTextNode(dato));
+						}
+					}
+				}
 				
 				Element cod_estacion = doc.createElement("cod_estacion"); entrada.appendChild(cod_estacion);
 				File archivoOrigen = new File("Archivos/ArchivosXML/estaciones.xml");

@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2021 a las 10:17:40
+-- Tiempo de generación: 01-02-2021 a las 08:57:00
 -- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.11
+-- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+01:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,6 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `calidad_aire` (
   `fecha_hora` datetime NOT NULL,
   `calidad` varchar(40) DEFAULT NULL,
+  `PM25` double(5,2) DEFAULT NULL,
+  `PM10` double(5,2) DEFAULT NULL,
+  `SO2` double(5,2) DEFAULT NULL,
+  `NO2` double(5,2) DEFAULT NULL,
+  `O3` double(5,2) DEFAULT NULL,
+  `CO` double(5,2) DEFAULT NULL,
   `cod_estacion` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -45,8 +51,7 @@ CREATE TABLE `espacios_naturales` (
   `descripcion` varchar(10000) DEFAULT NULL,
   `tipo` varchar(100) DEFAULT NULL,
   `latitud` double DEFAULT NULL,
-  `longitud` double DEFAULT NULL,
-  `foto` varchar(1000) DEFAULT NULL
+  `longitud` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,14 +96,38 @@ CREATE TABLE `fav_municipio` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `foto_espacios`
+--
+
+CREATE TABLE `foto_espacios` (
+  `cod_foto_e` int(20) NOT NULL,
+  `imagen_e` longblob DEFAULT NULL,
+  `cod_enatural` int(20) NOT NULL,
+  `cod_usuario` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `foto_municipio`
+--
+
+CREATE TABLE `foto_municipio` (
+  `cod_foto` int(20) NOT NULL,
+  `imagen` longblob DEFAULT NULL,
+  `cod_usuario` int(20) NOT NULL,
+  `cod_muni` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `hash`
 --
 
 CREATE TABLE `hash` (
-  `cod_hash` int(20) NOT NULL,
-  `nombre` varchar(40) DEFAULT NULL,
-  `hash` varchar(1000) DEFAULT NULL,
-  `url` varchar(1000) DEFAULT NULL
+  `nombre` varchar(40) NOT NULL,
+  `hash` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -112,7 +141,6 @@ CREATE TABLE `municipio` (
   `nombre` varchar(40) DEFAULT NULL,
   `descripcion` varchar(10000) DEFAULT NULL,
   `cod_prov` int(20) NOT NULL,
-  `foto` varchar(1000) DEFAULT NULL,
   `longitud` double DEFAULT NULL,
   `latitud` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -192,10 +220,26 @@ ALTER TABLE `fav_municipio`
   ADD KEY `FK_USUARIO_FAVMUNI` (`cod_usuario`);
 
 --
+-- Indices de la tabla `foto_espacios`
+--
+ALTER TABLE `foto_espacios`
+  ADD PRIMARY KEY (`cod_foto_e`),
+  ADD KEY `cod_enatural_foto` (`cod_enatural`),
+  ADD KEY `cod_usuario_foto_espacio` (`cod_usuario`);
+
+--
+-- Indices de la tabla `foto_municipio`
+--
+ALTER TABLE `foto_municipio`
+  ADD PRIMARY KEY (`cod_foto`),
+  ADD KEY `cod_usuario_foto_muni` (`cod_usuario`),
+  ADD KEY `cod_muni_foto` (`cod_muni`);
+
+--
 -- Indices de la tabla `hash`
 --
 ALTER TABLE `hash`
-  ADD PRIMARY KEY (`cod_hash`);
+  ADD PRIMARY KEY (`nombre`);
 
 --
 -- Indices de la tabla `municipio`
@@ -227,6 +271,18 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `foto_espacios`
+--
+ALTER TABLE `foto_espacios`
+  MODIFY `cod_foto_e` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `foto_municipio`
+--
+ALTER TABLE `foto_municipio`
+  MODIFY `cod_foto` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -263,6 +319,13 @@ ALTER TABLE `fav_espacios`
 ALTER TABLE `fav_municipio`
   ADD CONSTRAINT `FK_MUNI_FAV` FOREIGN KEY (`cod_muni`) REFERENCES `municipio` (`cod_muni`),
   ADD CONSTRAINT `FK_USUARIO_FAVMUNI` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`cod_usuario`);
+
+--
+-- Filtros para la tabla `foto_municipio`
+--
+ALTER TABLE `foto_municipio`
+  ADD CONSTRAINT `cod_muni_foto` FOREIGN KEY (`cod_muni`) REFERENCES `municipio` (`cod_muni`),
+  ADD CONSTRAINT `cod_usuario_foto_muni` FOREIGN KEY (`cod_usuario`) REFERENCES `usuario` (`cod_usuario`);
 
 --
 -- Filtros para la tabla `municipio`

@@ -79,6 +79,7 @@ public class Servidor extends Thread{
 	private void prepararTodo() {
 		try {
 			GenerarTodo.principal(sf);
+			System.out.println("");
 			LlenarBBDD.principal(sf);
 		} catch (Exception e) {
 			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
@@ -110,7 +111,7 @@ public class Servidor extends Thread{
 		ayDatos.add(espNAraba);
 		
 		//Calidad de Aire por Municipio
-		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca.id.fechaHora, ca.calidad, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
+		List<Object> muniCAire = session.createQuery("SELECT DISTINCT ca, ca.estaciones.direccion, ca.estaciones.municipio.nombre FROM CalidadAire AS ca ORDER BY ca.estaciones.municipio.nombre ASC, ca.estaciones.nombre ASC, ca.id.fechaHora DESC").list();
 		ayDatos.add(muniCAire);
 		
 		//Todos los Espacios Naturales

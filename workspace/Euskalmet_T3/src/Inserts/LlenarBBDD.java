@@ -423,12 +423,20 @@ public class LlenarBBDD {
 					Session sesion = sf.openSession();
 					Transaction tx = sesion.beginTransaction();
 					
-//					sql = "INSERT INTO calidad_aire(fecha_hora,calidad,cod_estacion) VALUES(?,?,?)";
+//					sql = "INSERT INTO calidad_aire(fecha_hora,calidad,PM25,PM10,SO2,NO2,03,CO,cod_estacion) VALUES(?,?,?,?,?,?,?,?)";
 //					
 //					query = conexion.prepareStatement(sql);
 //					query.setString(1, calidad_aire.get(i).get(0));
 //					query.setString(2, calidad_aire.get(i).get(1));
-//					query.setInt(3, Integer.parseInt(calidad_aire.get(i).get(2)));
+//					for (int j = 2; j < 8; j++) {
+//						String dato = calidad_aire.get(i).get(j).replaceAll("\\,", "\\.");
+//						if (dato.length() != 0) {
+//							query.setDouble(j+1, Double.parseDouble(dato));
+//						} else {
+//							query.setNull(j+1, Types.NULL);
+//						}
+//					}
+//					query.setInt(3, Integer.parseInt(calidad_aire.get(i).get(8)));
 //					
 //					lineas += query.executeUpdate();
 //					query.close();
@@ -436,10 +444,28 @@ public class LlenarBBDD {
 					CalidadAire cAire = new CalidadAire();
 					CalidadAireId cAireID = new CalidadAireId();
 						cAireID.setFechaHora(Timestamp.valueOf(calidad_aire.get(i).get(0)));
-						cAireID.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(2)));
+						cAireID.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(8)));
 					cAire.setId(cAireID);
 					cAire.setCalidad(calidad_aire.get(i).get(1));
-					Estaciones estacion = sesion.get(Estaciones.class, Integer.parseInt(calidad_aire.get(i).get(2)));
+					for (int j = 2; j < 8; j++) {
+						String dato = calidad_aire.get(i).get(j).replaceAll("\\,", "\\.");
+						if (dato.length() != 0) {
+							if (j == 2) {
+								cAire.setPm25(Double.parseDouble(dato));
+							} else if (j == 3) {
+								cAire.setPm10(Double.parseDouble(dato));
+							} else if (j == 4) {
+								cAire.setSo2(Double.parseDouble(dato));
+							} else if (j == 5) {
+								cAire.setNo2(Double.parseDouble(dato));
+							} else if (j == 6) {
+								cAire.setO3(Double.parseDouble(dato));
+							} else if (j == 7) {
+								cAire.setCo(Double.parseDouble(dato));
+							}
+						}
+					}
+					Estaciones estacion = sesion.get(Estaciones.class, Integer.parseInt(calidad_aire.get(i).get(8)));
 					cAire.setEstaciones(estacion);
 					
 					sesion.save(cAire); tx.commit(); lineas++;

@@ -1,48 +1,684 @@
 [ {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "24:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "23:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "22:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "21:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "20:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "19:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "18:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "17:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "16:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "15:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "14:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "13:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "12:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "11:00"
 }, {
-  "Date" : "29/01/2021",
+  "Date" : "01/02/2021",
   "Hour" : "10:00"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "09:00"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "08:00"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "299",
+  "H" : "58",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,9",
+  "Vvienms" : "8,57",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "299",
+  "H" : "56",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,3",
+  "Vvienms" : "7,7",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "297",
+  "H" : "59",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,1",
+  "Vvienms" : "8,13",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "295",
+  "H" : "60",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,1",
+  "Vvienms" : "9,16",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "298",
+  "H" : "63",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,8",
+  "Vvienms" : "7,68",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "298",
+  "H" : "63",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,8",
+  "Vvienms" : "8,22",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "01/02/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "292",
+  "H" : "62",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,1",
+  "Vvienms" : "7,58",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "301",
+  "H" : "59",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,8",
+  "Vvienms" : "9,71",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "294",
+  "H" : "53",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,8",
+  "Vvienms" : "7,42",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "297",
+  "H" : "62",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,4",
+  "Vvienms" : "6,07",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "294",
+  "H" : "77",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,8",
+  "Vvienms" : "5,37",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "292",
+  "H" : "79",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,6",
+  "Vvienms" : "2,71",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "285",
+  "H" : "74",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,5",
+  "Vvienms" : "0,82",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "153",
+  "H" : "71",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,3",
+  "Vvienms" : "1,14",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "163",
+  "H" : "67",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,7",
+  "Vvienms" : "1,47",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "172",
+  "H" : "65",
+  "Precipitacionlm2" : "0",
+  "TC" : "17,2",
+  "Vvienms" : "0,89",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "117",
+  "H" : "67",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,2",
+  "Vvienms" : "0,61",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "173",
+  "H" : "71",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,7",
+  "Vvienms" : "1,08",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "181",
+  "H" : "76",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,7",
+  "Vvienms" : "3,2",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "187",
+  "H" : "80",
+  "Precipitacionlm2" : "0",
+  "TC" : "11,3",
+  "Vvienms" : "3,03",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "193",
+  "H" : "76",
+  "Precipitacionlm2" : "0,2",
+  "TC" : "10,9",
+  "Vvienms" : "1,92",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "208",
+  "H" : "70",
+  "Precipitacionlm2" : "1,8",
+  "TC" : "11,9",
+  "Vvienms" : "1,21",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "255",
+  "H" : "61",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "13,7",
+  "Vvienms" : "0,84",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "300",
+  "H" : "58",
+  "Precipitacionlm2" : "0",
+  "TC" : "14",
+  "Vvienms" : "4,56",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "289",
+  "H" : "50",
+  "Precipitacionlm2" : "0",
+  "TC" : "14",
+  "Vvienms" : "8,74",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "291",
+  "H" : "56",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,4",
+  "Vvienms" : "9,16",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "295",
+  "H" : "64",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,6",
+  "Vvienms" : "9,58",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "296",
+  "H" : "67",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,2",
+  "Vvienms" : "11,35",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "295",
+  "H" : "65",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,6",
+  "Vvienms" : "13,69",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "293",
+  "H" : "61",
+  "Precipitacionlm2" : "0",
+  "TC" : "13",
+  "Vvienms" : "11,43",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "31/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "289",
+  "H" : "63",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,7",
+  "Vvienms" : "10,45",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "289",
+  "H" : "62",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,7",
+  "Vvienms" : "9,09",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "287",
+  "H" : "56",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,2",
+  "Vvienms" : "9,68",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "292",
+  "H" : "53",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,3",
+  "Vvienms" : "7,65",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "284",
+  "H" : "53",
+  "Precipitacionlm2" : "0",
+  "TC" : "13",
+  "Vvienms" : "5,4",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "288",
+  "H" : "53",
+  "Precipitacionlm2" : "0",
+  "TC" : "13",
+  "Vvienms" : "4,03",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "291",
+  "H" : "50",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,3",
+  "Vvienms" : "4,48",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "283",
+  "H" : "51",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,5",
+  "Vvienms" : "3,89",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "280",
+  "H" : "55",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "13,4",
+  "Vvienms" : "3,74",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "266",
+  "H" : "63",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,4",
+  "Vvienms" : "2,44",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "203",
+  "H" : "66",
+  "Precipitacionlm2" : "0",
+  "TC" : "12,8",
+  "Vvienms" : "1,61",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "266",
+  "H" : "69",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "12",
+  "Vvienms" : "1,98",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "291",
+  "H" : "72",
+  "Precipitacionlm2" : "2",
+  "TC" : "12",
+  "Vvienms" : "2,71",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "313",
+  "H" : "72",
+  "Precipitacionlm2" : "0,8",
+  "TC" : "13,7",
+  "Vvienms" : "2,23",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "294",
+  "H" : "72",
+  "Precipitacionlm2" : "0",
+  "TC" : "14,6",
+  "Vvienms" : "0,61",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "320",
+  "H" : "76",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,2",
+  "Vvienms" : "2,85",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "09:00",
+  "Dviengrados" : "243",
+  "H" : "82",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,8",
+  "Vvienms" : "0,21",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "08:00",
+  "Dviengrados" : "226",
+  "H" : "86",
+  "Precipitacionlm2" : "0",
+  "TC" : "13,5",
+  "Vvienms" : "0,5",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "07:00",
+  "Dviengrados" : "73",
+  "H" : "87",
+  "Precipitacionlm2" : "1,3",
+  "TC" : "13,6",
+  "Vvienms" : "0,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "06:00",
+  "Dviengrados" : "308",
+  "H" : "85",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "14",
+  "Vvienms" : "3,84",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "05:00",
+  "Dviengrados" : "136",
+  "H" : "83",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "14,6",
+  "Vvienms" : "1,83",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "04:00",
+  "Dviengrados" : "341",
+  "H" : "75",
+  "Precipitacionlm2" : "0,4",
+  "TC" : "15,2",
+  "Vvienms" : "2,09",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "03:00",
+  "Dviengrados" : "281",
+  "H" : "53",
+  "Precipitacionlm2" : "0",
+  "TC" : "18,2",
+  "Vvienms" : "2,25",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "02:00",
+  "Dviengrados" : "188",
+  "H" : "50",
+  "Precipitacionlm2" : "0",
+  "TC" : "18,8",
+  "Vvienms" : "3,84",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "30/01/2021",
+  "Hour" : "01:00",
+  "Dviengrados" : "196",
+  "H" : "50",
+  "Precipitacionlm2" : "0",
+  "TC" : "19,3",
+  "Vvienms" : "4,71",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "24:00",
+  "Dviengrados" : "182",
+  "H" : "49",
+  "Precipitacionlm2" : "0",
+  "TC" : "20",
+  "Vvienms" : "6,45",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "23:00",
+  "Dviengrados" : "182",
+  "H" : "49",
+  "Precipitacionlm2" : "0",
+  "TC" : "20,1",
+  "Vvienms" : "5,37",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "22:00",
+  "Dviengrados" : "178",
+  "H" : "52",
+  "Precipitacionlm2" : "0",
+  "TC" : "19,9",
+  "Vvienms" : "5,63",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "21:00",
+  "Dviengrados" : "173",
+  "H" : "60",
+  "Precipitacionlm2" : "0",
+  "TC" : "19",
+  "Vvienms" : "4,13",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "20:00",
+  "Dviengrados" : "129",
+  "H" : "76",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,8",
+  "Vvienms" : "2,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "19:00",
+  "Dviengrados" : "140",
+  "H" : "82",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,5",
+  "Vvienms" : "2,38",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "18:00",
+  "Dviengrados" : "126",
+  "H" : "82",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,2",
+  "Vvienms" : "0,1",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "17:00",
+  "Dviengrados" : "292",
+  "H" : "82",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,1",
+  "Vvienms" : "1,44",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "16:00",
+  "Dviengrados" : "302",
+  "H" : "81",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,5",
+  "Vvienms" : "2,59",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "15:00",
+  "Dviengrados" : "293",
+  "H" : "80",
+  "Precipitacionlm2" : "0",
+  "TC" : "17,6",
+  "Vvienms" : "2,98",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "14:00",
+  "Dviengrados" : "302",
+  "H" : "79",
+  "Precipitacionlm2" : "0",
+  "TC" : "17,9",
+  "Vvienms" : "1,78",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "13:00",
+  "Dviengrados" : "106",
+  "H" : "84",
+  "Precipitacionlm2" : "0",
+  "TC" : "17,3",
+  "Vvienms" : "0,51",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "12:00",
+  "Dviengrados" : "165",
+  "H" : "88",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "15,9",
+  "Vvienms" : "0,28",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "11:00",
+  "Dviengrados" : "129",
+  "H" : "89",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,1",
+  "Vvienms" : "0,77",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
+}, {
+  "Date" : "29/01/2021",
+  "Hour" : "10:00",
+  "Dviengrados" : "126",
+  "H" : "90",
+  "Precipitacionlm2" : "0,1",
+  "TC" : "14,1",
+  "Vvienms" : "1,59",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "29/01/2021",
   "Hour" : "09:00",
