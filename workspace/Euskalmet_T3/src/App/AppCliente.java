@@ -475,7 +475,7 @@ public class AppCliente extends JFrame implements ActionListener {
 				ayDatos.add(datos);
 			} else if (tipoLista.equals("espaciosN")) {
 				for (int j = 0; j < visitasEspN.size(); j++) {
-					if (((String) visitasEspN.get(j).get(0)).contains(nombre)) {
+					if (((String) visitasEspN.get(j).get(0)).equals(nombre)) {
 						visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
 						break;
 					}
