@@ -58,7 +58,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JButton P1_btnMunicipios, P1_btnEspaciosN, P1_btnTop, P1_btnSalir;
 	
 	private JPanel JPnl_Lista;
-	private String P2_tipoLista = "municipios";
+	private String tipoLista = "municipios";
 	private JLabel P2_lblProvincias, P2_lblLista;
 	private JComboBox<String> P2_cmbxFiltros, P2_cmbxProvincias;
 	private JList<String> P2_listLista;
@@ -70,7 +70,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	private JLabel P3_lblLista;
 	private JComboBox<String> P3_cmbxFiltros, P3_cmbxTop;
 	private JList<String> P3_listLista;
-	private JButton P3_btnAtras, P3_btnSalir;
+	private JButton P3_btnAceptar, P3_btnAtras, P3_btnSalir;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -278,6 +278,12 @@ public class AppCliente extends JFrame implements ActionListener {
 		P3_btnAtras.setBounds(45, 364, 94, 25);
 		P3_btnAtras.addActionListener(this);
 		JPnl_Top.add(P3_btnAtras);
+		
+		P3_btnAceptar = new JButton("ACEPTAR");
+		P3_btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		P3_btnAceptar.setBounds(161, 361, 110, 31);
+		P3_btnAceptar.addActionListener(this);
+		JPnl_Top.add(P3_btnAceptar);
 
 		P3_btnSalir = new JButton("SALIR");
 		P3_btnSalir.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -308,9 +314,9 @@ public class AppCliente extends JFrame implements ActionListener {
 
 			P2_cmbxProvincias.setSelectedIndex(0);
 
-			P2_tipoLista = "municipios";
+			tipoLista = "municipios";
 			P2_lblLista.setText("Municipios:");
-			P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
+			P2_listLista.setListData(Util.lista(arrays.get(1), tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		} else if (e.getSource() == P1_btnEspaciosN) {
@@ -323,9 +329,9 @@ public class AppCliente extends JFrame implements ActionListener {
 
 			P2_cmbxProvincias.setSelectedIndex(0);
 
-			P2_tipoLista = "espaciosN";
+			tipoLista = "espaciosN";
 			P2_lblLista.setText("Espacios naturales:");
-			P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
+			P2_listLista.setListData(Util.lista(arrays.get(4), tipoLista));
 			P2_listLista.ensureIndexIsVisible(0);
 			P2_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		} else if (e.getSource() == P1_btnTop) {
@@ -346,15 +352,15 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	private void actionLista(ActionEvent e) {
 		if (e.getSource() == P2_cmbxFiltros) {
-			if (P2_tipoLista.equals("municipios")) {
+			if (tipoLista.equals("municipios")) {
 				P2_cmbxProvincias.setSelectedIndex(0);
-				P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
-			} else if (P2_tipoLista.equals("espaciosN")) {
+				P2_listLista.setListData(Util.lista(arrays.get(1), tipoLista));
+			} else if (tipoLista.equals("espaciosN")) {
 				if (P2_cmbxFiltros.getSelectedItem().toString().equals("Provincias")) {
 					P2_lblProvincias.setVisible(true);
 					P2_cmbxProvincias.setVisible(true);
 					P2_cmbxProvincias.setSelectedIndex(0);
-					P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(4), tipoLista));
 				} else if (P2_cmbxFiltros.getSelectedItem().toString().equals("Playas")) {
 					P2_lblProvincias.setVisible(false);
 					P2_cmbxProvincias.setVisible(false);
@@ -364,21 +370,21 @@ public class AppCliente extends JFrame implements ActionListener {
 
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_cmbxProvincias) {
-			if (P2_tipoLista.equals("municipios")) {
+			if (tipoLista.equals("municipios")) {
 				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
-					P2_listLista.setListData(Util.lista(arrays.get(1), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(1), tipoLista));
 				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
-					P2_listLista.setListData(Util.lista(arrays.get(2), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(2), tipoLista));
 				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
-					P2_listLista.setListData(Util.lista(arrays.get(3), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(3), tipoLista));
 				}
-			} else if (P2_tipoLista.equals("espaciosN")) {
+			} else if (tipoLista.equals("espaciosN")) {
 				if (P2_cmbxProvincias.getSelectedItem().toString().equals("Bizkaia")) {
-					P2_listLista.setListData(Util.lista(arrays.get(4), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(4), tipoLista));
 				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Gipuzkoa")) {
-					P2_listLista.setListData(Util.lista(arrays.get(5), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(5), tipoLista));
 				} else if (P2_cmbxProvincias.getSelectedItem().toString().equals("Araba")) {
-					P2_listLista.setListData(Util.lista(arrays.get(6), P2_tipoLista));
+					P2_listLista.setListData(Util.lista(arrays.get(6), tipoLista));
 				}
 			}
 
@@ -386,7 +392,7 @@ public class AppCliente extends JFrame implements ActionListener {
 		} else if (e.getSource() == P2_btnAceptar) {
 			this.setVisible(false);
 
-			if (P2_tipoLista.equals("municipios")) {
+			if (tipoLista.equals("municipios")) {
 				List<String> lMuni = P2_listLista.getSelectedValuesList();
 				for (int i = 0; i < lMuni.size(); i++) {
 					for (int j = 0; j < visitasMuni.size(); j++) {
@@ -399,7 +405,7 @@ public class AppCliente extends JFrame implements ActionListener {
 					datos.setVisible(true);
 					ayDatos.add(datos);
 				}
-			} else if (P2_tipoLista.equals("espaciosN")) {
+			} else if (tipoLista.equals("espaciosN")) {
 				for (int j = 0; j < visitasEspN.size(); j++) {
 					if (((String) visitasEspN.get(j).get(0)).equals(P2_listLista.getSelectedValue())) {
 						visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
@@ -413,7 +419,7 @@ public class AppCliente extends JFrame implements ActionListener {
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
 			JPnl_Menu.setVisible(true);
-			P2_tipoLista = "";
+			tipoLista = "";
 		} else {
 			salir();
 		}
@@ -424,11 +430,13 @@ public class AppCliente extends JFrame implements ActionListener {
 			P3_cmbxTop.setSelectedIndex(0);
 			
 			if (P3_cmbxFiltros.getSelectedItem().toString().equals("Municipios")) {
+				tipoLista = "municipios";
 				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
 			    Collections.sort(visitasMuni, comparador);
 			    Collections.reverse(visitasMuni);
 				P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
 			} else if (P3_cmbxFiltros.getSelectedItem().toString().equals("Espacios Naturales")) {
+				tipoLista = "espaciosN";
 				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Espacios Naturales: ");
 				Collections.sort(visitasEspN, comparador);
 			    Collections.reverse(visitasEspN);
@@ -450,6 +458,32 @@ public class AppCliente extends JFrame implements ActionListener {
 			}
 
 			P3_listLista.ensureIndexIsVisible(0);
+		} else if (e.getSource() == P3_btnAceptar) {
+			this.setVisible(false);
+			
+			String nombre = P3_listLista.getSelectedValue();
+			nombre = nombre.substring(nombre.indexOf(">")+2,nombre.indexOf("(")-1);
+			if (tipoLista.equals("municipios")) {
+				for (int j = 0; j < visitasMuni.size(); j++) {
+					if (((String) visitasMuni.get(j).get(0)).equals(nombre)) {
+						visitasMuni.get(j).set(1, ((int) visitasMuni.get(j).get(1)) + 1);
+						break;
+					}
+				}
+				Datos datos = new Datos(this, nombre);
+				datos.setVisible(true);
+				ayDatos.add(datos);
+			} else if (tipoLista.equals("espaciosN")) {
+				for (int j = 0; j < visitasEspN.size(); j++) {
+					if (((String) visitasEspN.get(j).get(0)).contains(nombre)) {
+						visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
+						break;
+					}
+				}
+				Datos datos = new Datos(this, nombre);
+				datos.setVisible(true);
+				ayDatos.add(datos);
+			}
 		} else if (e.getSource() == P3_btnAtras) {
 			JPnl_Top.setVisible(false);
 			JPnl_Menu.setVisible(true);
@@ -463,7 +497,7 @@ public class AppCliente extends JFrame implements ActionListener {
 	}
 	
 	public String getTipo() {
-		return P2_tipoLista;
+		return tipoLista;
 	}
 	
 	public String getProv() {

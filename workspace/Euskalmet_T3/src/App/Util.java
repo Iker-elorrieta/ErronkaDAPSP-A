@@ -82,7 +82,7 @@ public class Util {
 			if ((int) entrada.get(1) == 0) 
 				break;
 			
-			ayStr.add("<"+(i+1)+"> "+entrada.get(0).toString()+"(Visitas: "+entrada.get(1).toString()+")"+" <"+(i+1)+">");
+			ayStr.add("<"+(i+1)+"> "+entrada.get(0).toString()+" (Visitas: "+entrada.get(1).toString()+")"+" <"+(i+1)+">");
 		}
 
 		return ayStr.toArray(new String[ayStr.size()]);

@@ -27,7 +27,7 @@ public class Servidor extends Thread{
 		sf = HibernateUtil.getSessionFactory();
 		
 		System.out.println("[Servidor] >> Actualizando datos... \n");
-		prepararTodo();
+//		prepararTdoo();
 		System.out.println("[Servidor] >> Datos actualizados. \n");
 		recogerDatos();
 		System.out.println("[Servidor] >> Datos recibidos. \n");
