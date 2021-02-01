@@ -11,9 +11,7 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import Generadores.GenerarTodo;
 import Hibernate.HibernateUtil;
-import Inserts.LlenarBBDD;
 
 public class Servidor extends Thread{
 	
@@ -79,8 +77,6 @@ public class Servidor extends Thread{
 	private void prepararTodo() {
 		try {
 			GenerarTodo.principal(sf);
-			System.out.println("");
-			LlenarBBDD.principal(sf);
 		} catch (Exception e) {
 			System.out.println(" [Servidor] >> Error: " + e.getMessage() + " \n");
 		}

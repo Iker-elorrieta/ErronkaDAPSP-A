@@ -341,9 +341,11 @@ public class AppCliente extends JFrame implements ActionListener {
 			P3_cmbxFiltros.setSelectedIndex(0);
 			
 			P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
+			tipoLista = "municipios";
 			Collections.sort(visitasMuni, comparador);
 		    Collections.reverse(visitasMuni);
 			P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
+			P3_listLista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			P3_listLista.ensureIndexIsVisible(0);
 		} else {
 			salir();
@@ -445,19 +447,7 @@ public class AppCliente extends JFrame implements ActionListener {
 
 			P3_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P3_cmbxTop) {
-			if (P3_cmbxFiltros.getSelectedItem().toString().equals("Municipios")) {
-				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
-			    Collections.sort(visitasMuni, comparador);
-			    Collections.reverse(visitasMuni);
-				P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
-			} else if (P3_cmbxFiltros.getSelectedItem().toString().equals("Espacios Naturales")) {
-				P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Espacios Naturales: ");
-				Collections.sort(visitasEspN, comparador);
-			    Collections.reverse(visitasEspN);
-				P3_listLista.setListData(Util.top(visitasEspN, P3_cmbxTop.getSelectedItem().toString()));
-			}
-
-			P3_listLista.ensureIndexIsVisible(0);
+			actualizarTop();
 		} else if (e.getSource() == P3_btnAceptar) {
 			this.setVisible(false);
 			
@@ -512,6 +502,24 @@ public class AppCliente extends JFrame implements ActionListener {
 		hC.cerrar();
 		System.out.println("[App] >> Aplicación finalizada.");
 		System.exit(0);
+	}
+	
+	public void actualizarTop() {
+		if (P3_cmbxFiltros.getSelectedItem().toString().equals("Municipios")) {
+			P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
+			tipoLista = "municipios";
+		    Collections.sort(visitasMuni, comparador);
+		    Collections.reverse(visitasMuni);
+			P3_listLista.setListData(Util.top(visitasMuni, P3_cmbxTop.getSelectedItem().toString()));
+		} else if (P3_cmbxFiltros.getSelectedItem().toString().equals("Espacios Naturales")) {
+			P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Espacios Naturales: ");
+			tipoLista = "espaciosN";
+			Collections.sort(visitasEspN, comparador);
+		    Collections.reverse(visitasEspN);
+			P3_listLista.setListData(Util.top(visitasEspN, P3_cmbxTop.getSelectedItem().toString()));
+		}
+
+		P3_listLista.ensureIndexIsVisible(0);
 	}
 	
 }

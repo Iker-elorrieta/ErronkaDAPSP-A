@@ -39,10 +39,36 @@
   "Hour" : "12:00"
 }, {
   "Date" : "01/02/2021",
-  "Hour" : "11:00"
+  "Hour" : "11:00",
+  "COmgm3" : "0,24",
+  "CO8hmgm3" : "0,34",
+  "NOgm3" : "5",
+  "NO2" : "16",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "24",
+  "PM10" : "6,79",
+  "PM10ICA" : "Muy bueno / Oso ona",
+  "PM25" : "4,21",
+  "PM25ICA" : "Muy bueno / Oso ona",
+  "SO2" : "4",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "01/02/2021",
-  "Hour" : "10:00"
+  "Hour" : "10:00",
+  "COmgm3" : "0,33",
+  "CO8hmgm3" : "0,35",
+  "NOgm3" : "8",
+  "NO2" : "27",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "39",
+  "PM10" : "6,33",
+  "PM10ICA" : "Muy bueno / Oso ona",
+  "PM25" : "4,04",
+  "PM25ICA" : "Muy bueno / Oso ona",
+  "SO2" : "4",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "01/02/2021",
   "Hour" : "09:00",

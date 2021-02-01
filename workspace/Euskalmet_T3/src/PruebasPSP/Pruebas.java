@@ -29,7 +29,6 @@ class Pruebas {
 		assertTrue(conexion);
 	}
 	
-	
 	/* estos tests con ExecutorService hacen que el metodo que se prueba entre a una excepcion,
 	 * es util para testear las exceptiones de los runs de los hilos ya que no se pueden convertir a boolean
 	 */

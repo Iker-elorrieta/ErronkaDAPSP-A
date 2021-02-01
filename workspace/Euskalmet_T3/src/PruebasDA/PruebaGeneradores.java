@@ -39,7 +39,7 @@ class PruebaGeneradores {
 	
 	@Test
 	public void principalPruebaMuniEspacios() {
-		assertTrue(MuniEspacios.principal());
+		assertTrue(MuniEspacios.principal(sf));
 	}
 	
 	@Test

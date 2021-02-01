@@ -194,6 +194,7 @@ public class Datos extends JFrame implements ActionListener {
 			if (App.getAyDatos().size() == 0) {
 				App.setVisible(true);
 			}
+			App.actualizarTop();
 			this.dispose();
 		} else {
 			App.salir();
@@ -212,6 +213,7 @@ public class Datos extends JFrame implements ActionListener {
 			if (App.getAyDatos().size() == 0) {
 				App.setVisible(true);
 			}
+			App.actualizarTop();
 			this.dispose();
 		} else {
 			App.salir();

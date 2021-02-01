@@ -24,7 +24,7 @@ public class ImportarCertificado {
 	public static void principal() {
 		for (int i = 1; i <= 2; i++) {
 			try {
-				System.out.println("[Certificado] >> Importando certificado... \n");
+				System.out.println("[Certificado] >> Importando certificado...");
 				if (i == 1) {
 					InputStream certIn = ClassLoader.class.getResourceAsStream("Archivos/euskadi.cer");
 					

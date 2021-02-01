@@ -65,11 +65,11 @@ public class CalidadDeAire {
 		trustEveryone();
 		String nomArchivo = "0_CalidadAire";
 		generarJSON("https://opendata.euskadi.eus/contenidos/ds_informes_estudios/calidad_aire_2021/es_def/adjuntos/index.json", nomArchivo);
-		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> GENERADO JSON");
+		System.out.println("[Datos/JSON] >> calidad_aire -> GENERADO JSON");
 		limpiarJSON(nomArchivo);
-		System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
+		System.out.println("[Datos/JSON] >> calidad_aire -> LIMPIADO");
 		recorrerJSON(sf, nomArchivo);
-		System.out.println("\n"+"[Datos] >> CalidadAire -> FINALIZADO");
+		System.out.println("\n"+"[Datos] >> CalidadAire -> FINALIZADO \n");
 		terminado = true;
 		
 		return terminado;
@@ -98,12 +98,12 @@ public class CalidadDeAire {
 			Hash hash = (Hash) sesion.createQuery("FROM Hash WHERE nombre = '"+nomArchivo+"'").uniqueResult();
 			if (hash != null) {
 				if (obtenerHash(origenStr).equals(hash.getHash())) {
-					System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> ÚLTIMA VERSIÓN de hash EN VIGOR.");
+					System.out.println("\n"+"[Datos/Hash] >> calidad_aire ("+nomArchivo+") -> ÚLTIMA VERSIÓN de hash EN VIGOR.");
 				} else {
 					hash.setHash(obtenerHash(origenStr));
 					
 					sesion.save(hash); tx.commit();
-					System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> Hash ACTUALIZADO.");
+					System.out.println("\n"+"[Datos/Hash] >> calidad_aire ("+nomArchivo+") -> Hash ACTUALIZADO.");
 					
 					respuesta = origenStr;
 				}
@@ -113,7 +113,7 @@ public class CalidadDeAire {
 				hash.setHash(obtenerHash(origenStr));
 				
 				sesion.save(hash); tx.commit();
-				System.out.println("\n"+"[Datos/Hash] >> "+nomArchivo+" -> Hash CREADO.");
+				System.out.println("\n"+"[Datos/Hash] >> calidad_aire ("+nomArchivo+") -> Hash CREADO.");
 				
 				respuesta = origenStr;
 			}
@@ -188,13 +188,13 @@ public class CalidadDeAire {
 					String json = compararHash(sf, url, nombre);
 					if (!json.equals("*")) {
 						generarJSON(json, nombre);
-						System.out.println("[Datos/JSON] >> " + nombre + " -> GENERADO JSON");
+						System.out.println("[Datos/JSON] >> calidad_aire (" + nombre + ") -> GENERADO JSON");
 						limpiarJSON(nombre);
-						System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
+						System.out.println("[Datos/JSON] >> calidad_aire (" + nombre + ") -> LIMPIADO");
 						generarXML(nombre);
-						System.out.println("[Datos/XML] >> " + nombre + " -> GENERADO XML");
+						System.out.println("[Datos/XML] >> calidad_aire (" + nombre + ") -> GENERADO XML");
 						LlenarBBDD.calidad_aire(sf, nombre);
-						System.out.println("[Datos/BBDD] >> " + nombre + " -> DATOS ACTUALIZADOS");
+						System.out.println("[Datos/BBDD] >> calidad_aire (" + nombre + ") -> DATOS ACTUALIZADOS");
 					}
 				}
 			}

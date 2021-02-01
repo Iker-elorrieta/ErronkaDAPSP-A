@@ -42,10 +42,10 @@ public class MuniEspacios {
 		
 		String nomArchivo = "muni_espacios";
 		generarXML(nomArchivo);
-		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
+		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML");
 		LlenarBBDD.muni_espacios(sf);
 		System.out.println("[Datos/BBDD] >> " + nomArchivo + " -> DATOS ACTUALIZADOS");
-		System.out.println("[Datos] >> MuniEspacios -> FINALIZADO \n");
+		System.out.println("\n"+"[Datos] >> MuniEspacios -> FINALIZADO \n");
 		terminado = true;
 		
 		return terminado;
