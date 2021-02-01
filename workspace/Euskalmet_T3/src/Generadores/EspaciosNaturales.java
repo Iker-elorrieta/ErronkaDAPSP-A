@@ -42,6 +42,7 @@ import com.google.gson.JsonParser;
 
 import Hibernate.Hash;
 import Hibernate.HibernateUtil;
+import Inserts.LlenarBBDD;
 
 public class EspaciosNaturales {
 	private static Logger log = Logger.getLogger("org.hibernate");
@@ -67,6 +68,8 @@ public class EspaciosNaturales {
 			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 			generarXML(nomArchivo);
 			System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML");
+			LlenarBBDD.espacios_naturales(sf);
+			System.out.println("[Datos/BBDD] >> " + nomArchivo + " -> DATOS ACTUALIZADOS");
 		}
 		
 		System.out.println("\n"+"[Datos] >> EspaciosNaturales -> FINALIZADO \n");

@@ -22,7 +22,7 @@ public class GenerarTodo {
 		ImportarCertificado.principal();
 		Municipios.principal(sf);
 		EspaciosNaturales.principal(sf);
-		MuniEspacios.principal();
+		MuniEspacios.principal(sf);
 		Estaciones.principal(sf);
 		CalidadDeAire.principal(sf);
 	}

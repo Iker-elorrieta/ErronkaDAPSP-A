@@ -3,6 +3,8 @@ package Generadores;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -10,6 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.hibernate.SessionFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,18 +23,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import Hibernate.HibernateUtil;
+import Inserts.LlenarBBDD;
+
 public class MuniEspacios {
+	private static Logger log = Logger.getLogger("org.hibernate");
+	private static SessionFactory sf;	
 	
 	public static void main(String[] args) {
-		principal();
+		log.setLevel(Level.OFF);
+		sf = HibernateUtil.getSessionFactory();
+		principal(sf);
+		sf.close();
 	}
 	
-	public static boolean principal() {
+	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
 		
 		String nomArchivo = "muni_espacios";
 		generarXML(nomArchivo);
 		System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML \n");
+		LlenarBBDD.muni_espacios(sf);
+		System.out.println("[Datos/BBDD] >> " + nomArchivo + " -> DATOS ACTUALIZADOS");
 		System.out.println("[Datos] >> MuniEspacios -> FINALIZADO \n");
 		terminado = true;
 		

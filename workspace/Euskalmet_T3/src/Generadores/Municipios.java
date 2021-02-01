@@ -43,6 +43,7 @@ import com.google.gson.JsonParser;
 
 import Hibernate.Hash;
 import Hibernate.HibernateUtil;
+import Inserts.LlenarBBDD;
 
 public class Municipios {
 	private static Logger log = Logger.getLogger("org.hibernate");
@@ -68,6 +69,8 @@ public class Municipios {
 			System.out.println("[Datos/JSON] >> " + nomArchivo + " -> LIMPIADO");
 			generarXML(nomArchivo);
 			System.out.println("[Datos/XML] >> " + nomArchivo + " -> GENERADO XML");
+			LlenarBBDD.municipios(sf);
+			System.out.println("[Datos/BBDD] >> " + nomArchivo + " -> DATOS ACTUALIZADOS");
 		}
 		
 		System.out.println("\n"+"[Datos] >> Municipios -> FINALIZADO \n");

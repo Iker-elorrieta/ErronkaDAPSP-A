@@ -2,7 +2,6 @@ package Inserts;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,30 +34,30 @@ public class LlenarBBDD {
 	private static SessionFactory sf;
 	private static Logger log = Logger.getLogger("org.hibernate");
 	
-	public static void main(String[] args) throws SQLException, IOException {
+	public static void main(String[] args) {
 		log.setLevel(Level.OFF);
 		sf = HibernateUtil.getSessionFactory();
 		principal(sf);
 		sf.close();
 	}
 	
-	public static boolean principal(SessionFactory sf) throws IOException, SQLException {
+	public static boolean principal(SessionFactory sf) {
 		boolean terminado=false;
 //		Connection conexion = conn.conectar();
 		LlenarBBDD.sf = sf;
 		
-		provincias(/*conexion*/);
-		System.out.println("provincia -> COMPLETADO \n");
-		municipios(/*conexion*/);
-		System.out.println("municipio -> COMPLETADO \n");
-		ArrayList<String> nomEstaciones = estaciones(/*conexion*/);
-		System.out.println("estaciones -> COMPLETADO \n");
-		espacios_naturales(/*conexion*/);
-		System.out.println("espacios_naturales -> COMPLETADO \n");
-		muni_espacios(/*conexion, */);
-		System.out.println("muni_espacios -> COMPLETADO \n");
+		provincias(/*conexion*/sf);
+		System.out.println("[Datos/BBDD] >> provincia -> COMPLETADO \n");
+		municipios(/*conexion*/sf);
+		System.out.println("[Datos/BBDD] >> municipio -> COMPLETADO \n");
+		ArrayList<String> nomEstaciones = estaciones(/*conexion*/sf);
+		System.out.println("[Datos/BBDD] >> estaciones -> COMPLETADO \n");
+		espacios_naturales(/*conexion*/sf);
+		System.out.println("[Datos/BBDD] >> espacios_naturales -> COMPLETADO \n");
+		muni_espacios(/*conexion, */sf);
+		System.out.println("[Datos/BBDD] >> muni_espacios -> COMPLETADO \n");
 		calidad_aire(/*conexion, */nomEstaciones);
-		System.out.println("calidad_aire -> COMPLETADO \n");
+		System.out.println("[Datos/BBDD] >> calidad_aire -> COMPLETADO \n");
 		System.out.println("-> FINALIZADO <- \n");
 		
 //		conexion.close(); conn.desconectar();
@@ -108,7 +107,7 @@ public class LlenarBBDD {
 		return mtDatos;
 	}
 	
-	private static void provincias(/*Connection conexion*/) {
+	public static void provincias(/*Connection conexion*/SessionFactory sf) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -152,10 +151,10 @@ public class LlenarBBDD {
 			}
 		}
 		
-		System.out.println("provincias -> Lineas afectadas: " + lineas);
+		System.out.println("[Datos/BBDD] >> provincias -> Lineas afectadas: " + lineas);
 	}
 	
-	private static void municipios(/*Connection conexion*/) {
+	public static void municipios(/*Connection conexion*/SessionFactory sf) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -218,10 +217,10 @@ public class LlenarBBDD {
 			}
 		}
 		
-		System.out.println("municipio -> Lineas afectadas: " + lineas);
+		System.out.println("[Datos/BBDD] >> municipio -> Lineas afectadas: " + lineas);
 	}
 	
-	private static ArrayList<String> estaciones(/*Connection conexion*/) {
+	public static ArrayList<String> estaciones(/*Connection conexion*/SessionFactory sf) {
 		ArrayList<String> nomEstaciones = new ArrayList<String>();
 //		PreparedStatement query;
 //		String sql;
@@ -291,12 +290,12 @@ public class LlenarBBDD {
 			nomEstaciones.add(estaciones.get(i).get(1));
 		}
 		
-		System.out.println("estaciones -> Lineas afectadas: " + lineas);
+		System.out.println("[Datos/BBDD] >> estaciones -> Lineas afectadas: " + lineas);
 		
 		return nomEstaciones;
 	}
 	
-	private static void espacios_naturales(/*Connection conexion*/) {
+	public static void espacios_naturales(/*Connection conexion*/SessionFactory sf) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -359,10 +358,10 @@ public class LlenarBBDD {
 			}
 		}
 		
-		System.out.println("espacios_naturales -> Lineas afectadas: " + lineas);
+		System.out.println("[Datos/BBDD] >> espacios_naturales -> Lineas afectadas: " + lineas);
 	}
 	
-	private static void muni_espacios(/*Connection conexion, */) {
+	public static void muni_espacios(/*Connection conexion, */SessionFactory sf) {
 //		PreparedStatement query;
 //		String sql;
 		
@@ -407,7 +406,7 @@ public class LlenarBBDD {
 			}
 		}
 		
-		System.out.println("muni_espacios -> Lineas afectadas: " + lineas);
+		System.out.println("[Datos/BBDD] >> muni_espacios -> Lineas afectadas: " + lineas);
 	}
 	
 	private static void calidad_aire(/*Connection conexion, */ArrayList<String> nomEstaciones) {
@@ -484,8 +483,83 @@ public class LlenarBBDD {
 				}
 			}
 			
-			System.out.println("calidad_aire ("+nomEstaciones.get(kntEstacion)+") -> Lineas afectadas: " + lineas);
+			System.out.println("[Datos/BBDD] >> calidad_aire ("+nomEstaciones.get(kntEstacion)+") -> Lineas afectadas: " + lineas);
 		}
+	}
+	
+	public static void calidad_aire(/*Connection conexion, */SessionFactory sf, String nombre) {
+//		PreparedStatement query;
+//		String sql;
+		ArrayList<ArrayList<String>> calidad_aire = recorrerXML("ArchivosXML_CalidadAire",nombre);
+		
+		int lineas = 0;
+		for (int i = 0; i < calidad_aire.size(); i++) {
+			try {
+				Session sesion = sf.openSession();
+				Transaction tx = sesion.beginTransaction();
+				
+//					sql = "INSERT INTO calidad_aire(fecha_hora,calidad,PM25,PM10,SO2,NO2,03,CO,cod_estacion) VALUES(?,?,?,?,?,?,?,?)";
+//					
+//					query = conexion.prepareStatement(sql);
+//					query.setString(1, calidad_aire.get(i).get(0));
+//					query.setString(2, calidad_aire.get(i).get(1));
+//					for (int j = 2; j < 8; j++) {
+//						String dato = calidad_aire.get(i).get(j).replaceAll("\\,", "\\.");
+//						if (dato.length() != 0) {
+//							query.setDouble(j+1, Double.parseDouble(dato));
+//						} else {
+//							query.setNull(j+1, Types.NULL);
+//						}
+//					}
+//					query.setInt(3, Integer.parseInt(calidad_aire.get(i).get(8)));
+//					
+//					lineas += query.executeUpdate();
+//					query.close();
+				
+				CalidadAire cAire = new CalidadAire();
+				CalidadAireId cAireID = new CalidadAireId();
+					cAireID.setFechaHora(Timestamp.valueOf(calidad_aire.get(i).get(0)));
+					cAireID.setCodEstacion(Integer.parseInt(calidad_aire.get(i).get(8)));
+				cAire.setId(cAireID);
+				cAire.setCalidad(calidad_aire.get(i).get(1));
+				for (int j = 2; j < 8; j++) {
+					String dato = calidad_aire.get(i).get(j).replaceAll("\\,", "\\.");
+					if (dato.length() != 0) {
+						if (j == 2) {
+							cAire.setPm25(Double.parseDouble(dato));
+						} else if (j == 3) {
+							cAire.setPm10(Double.parseDouble(dato));
+						} else if (j == 4) {
+							cAire.setSo2(Double.parseDouble(dato));
+						} else if (j == 5) {
+							cAire.setNo2(Double.parseDouble(dato));
+						} else if (j == 6) {
+							cAire.setO3(Double.parseDouble(dato));
+						} else if (j == 7) {
+							cAire.setCo(Double.parseDouble(dato));
+						}
+					}
+				}
+				Estaciones estacion = sesion.get(Estaciones.class, Integer.parseInt(calidad_aire.get(i).get(8)));
+				cAire.setEstaciones(estacion);
+				
+				sesion.save(cAire); tx.commit(); lineas++;
+				
+				sesion.close();
+//					} catch (SQLException e) {
+//					if (e.getErrorCode() != 1062) {
+//						e.printStackTrace();
+//					}
+			} catch (ConstraintViolationException e) {
+				if (e.getErrorCode() != 1062) {
+					e.printStackTrace();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("[Datos/BBDD] >> calidad_aire ("+nombre+") -> Lineas afectadas: " + lineas);
 	}
 	
 }

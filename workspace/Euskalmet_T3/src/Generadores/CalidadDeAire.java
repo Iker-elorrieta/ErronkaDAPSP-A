@@ -46,6 +46,7 @@ import com.google.gson.JsonParser;
 
 import Hibernate.Hash;
 import Hibernate.HibernateUtil;
+import Inserts.LlenarBBDD;
 
 public class CalidadDeAire {
 	private static Logger log = Logger.getLogger("org.hibernate");
@@ -192,6 +193,8 @@ public class CalidadDeAire {
 						System.out.println("[Datos/JSON] >> " + nombre + " -> LIMPIADO");
 						generarXML(nombre);
 						System.out.println("[Datos/XML] >> " + nombre + " -> GENERADO XML");
+						LlenarBBDD.calidad_aire(sf, nombre);
+						System.out.println("[Datos/BBDD] >> " + nombre + " -> DATOS ACTUALIZADOS");
 					}
 				}
 			}
