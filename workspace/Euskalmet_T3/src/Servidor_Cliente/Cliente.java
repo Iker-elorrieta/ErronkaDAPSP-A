@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cliente extends Thread {
 	
-	private final int PUERTO = 5000;
+	private final int PUERTO = 4000;
 //	private final String IP = "192.168.106.28";
 	private final String IP = "127.0.0.1";
 	

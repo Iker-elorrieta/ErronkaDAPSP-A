@@ -15,7 +15,7 @@ import Hibernate.HibernateUtil;
 
 public class Servidor extends Thread{
 	
-	private final int PUERTO = 5000;
+	private final int PUERTO = 4000;
 	private ArrayList<List<Object>> ayDatos = new ArrayList<List<Object>>();
 	private SessionFactory sf;
 	private Logger log = Logger.getLogger("org.hibernate");
