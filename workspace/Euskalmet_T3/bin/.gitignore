@@ -1,5 +1,9 @@
-/PruebasDA/
-/Generadores/
-/Servidor_Cliente/
-/PruebasPSP/
 /App/
+/Generadores/
+/Hibernate/
+/Inserts/
+/PruebasDA/
+/PruebasPSP/
+/Servidor_Cliente/
+/hibernate.cfg.xml
+/hibernate.reveng.xml
