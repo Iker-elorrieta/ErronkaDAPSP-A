@@ -244,11 +244,11 @@
   "SO2ICA" : "Muy bueno / Oso ona",
   "Toluenogm3" : "8,88",
   "Dviengrados" : "327",
-  "H" : "93",
+  "H" : "90",
   "PmBar" : "990,8",
   "Precipitacionlm2" : "0,1",
   "Rwm2" : "0",
-  "TC" : "11,3",
+  "TC" : "11,4",
   "Vvienms" : "0,09",
   "ICAEstacion" : "Regular / Erregularra"
 }, {
@@ -269,11 +269,11 @@
   "SO2ICA" : "Muy bueno / Oso ona",
   "Toluenogm3" : "4,89",
   "Dviengrados" : "186",
-  "H" : "95",
+  "H" : "93",
   "PmBar" : "990,7",
   "Precipitacionlm2" : "0",
   "Rwm2" : "0",
-  "TC" : "11,2",
+  "TC" : "11,1",
   "Vvienms" : "0,55",
   "ICAEstacion" : "Regular / Erregularra"
 }, {
@@ -419,11 +419,11 @@
   "SO2ICA" : "Muy bueno / Oso ona",
   "Toluenogm3" : "1,58",
   "Dviengrados" : "355",
-  "H" : "76",
+  "H" : "74",
   "PmBar" : "990,2",
   "Precipitacionlm2" : "0",
   "Rwm2" : "1,2",
-  "TC" : "15,4",
+  "TC" : "14",
   "Vvienms" : "0,5",
   "ICAEstacion" : "Bueno / Ona"
 }, {
@@ -777,11 +777,11 @@
   "SO2ICA" : "Muy bueno / Oso ona",
   "Toluenogm3" : "1,04",
   "Dviengrados" : "192",
-  "H" : "68",
+  "H" : "65",
   "PmBar" : "983,5",
   "Precipitacionlm2" : "0",
   "Rwm2" : "0",
-  "TC" : "13,3",
+  "TC" : "13,4",
   "Vvienms" : "1,25",
   "ICAEstacion" : "Muy bueno / Oso ona"
 }, {

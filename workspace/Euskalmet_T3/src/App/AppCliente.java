@@ -392,31 +392,48 @@ public class AppCliente extends JFrame implements ActionListener {
 
 			P2_listLista.ensureIndexIsVisible(0);
 		} else if (e.getSource() == P2_btnAceptar) {
-			this.setVisible(false);
-
 			if (tipoLista.equals("municipios")) {
 				List<String> lMuni = P2_listLista.getSelectedValuesList();
-				for (int i = 0; i < lMuni.size(); i++) {
-					for (int j = 0; j < visitasMuni.size(); j++) {
-						if (((String) visitasMuni.get(j).get(0)).equals(lMuni.get(i))) {
-							visitasMuni.get(j).set(1, ((int) visitasMuni.get(j).get(1)) + 1);
+				if (lMuni.size() != 0) {
+					for (int i = 0; i < lMuni.size(); i++) {
+						for (int j = 0; j < visitasMuni.size(); j++) {
+							String n = (String) visitasEspN.get(j).get(0);
+							if (n.equals(lMuni.get(i))) {
+								this.setVisible(false);
+								
+								visitasMuni.get(j).set(1, ((int) visitasMuni.get(j).get(1)) + 1);
+								
+								Datos datos = new Datos(this, lMuni.get(i), false);
+								datos.setVisible(true);
+								ayDatos.add(datos);
+								
+								break;
+							}
+						}
+					}
+					
+					P2_listLista.setSelectedValue(null, false);
+				}
+			} else if (tipoLista.equals("espaciosN")) {
+				String nombre = P2_listLista.getSelectedValue();
+				if (nombre != null) {
+					for (int j = 0; j < visitasEspN.size(); j++) {
+						String n = (String) visitasEspN.get(j).get(0);
+						if (n.equals(nombre)) {
+							this.setVisible(false);
+							
+							visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
+							
+							Datos datos = new Datos(this, nombre, false);
+							datos.setVisible(true);
+							ayDatos.add(datos);
+							
 							break;
 						}
 					}
-					Datos datos = new Datos(this, lMuni.get(i));
-					datos.setVisible(true);
-					ayDatos.add(datos);
+					
+					P2_listLista.setSelectedValue(null, false);
 				}
-			} else if (tipoLista.equals("espaciosN")) {
-				for (int j = 0; j < visitasEspN.size(); j++) {
-					if (((String) visitasEspN.get(j).get(0)).equals(P2_listLista.getSelectedValue())) {
-						visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
-						break;
-					}
-				}
-				Datos datos = new Datos(this, P2_listLista.getSelectedValue());
-				datos.setVisible(true);
-				ayDatos.add(datos);
 			}
 		} else if (e.getSource() == P2_btnAtras) {
 			JPnl_Lista.setVisible(false);
@@ -449,30 +466,42 @@ public class AppCliente extends JFrame implements ActionListener {
 		} else if (e.getSource() == P3_cmbxTop) {
 			actualizarTop();
 		} else if (e.getSource() == P3_btnAceptar) {
-			this.setVisible(false);
-			
 			String nombre = P3_listLista.getSelectedValue();
-			nombre = nombre.substring(nombre.indexOf(">")+2,nombre.indexOf("(")-1);
-			if (tipoLista.equals("municipios")) {
-				for (int j = 0; j < visitasMuni.size(); j++) {
-					if (((String) visitasMuni.get(j).get(0)).equals(nombre)) {
-						visitasMuni.get(j).set(1, ((int) visitasMuni.get(j).get(1)) + 1);
-						break;
+			if (nombre != null) {
+				nombre = nombre.substring(nombre.indexOf(">")+2,nombre.indexOf("(")-1);
+				if (tipoLista.equals("municipios")) {
+					for (int j = 0; j < visitasMuni.size(); j++) {
+						String n = (String) visitasEspN.get(j).get(0);
+						if (n.equals(nombre)) {
+							this.setVisible(false);
+							
+							visitasMuni.get(j).set(1, ((int) visitasMuni.get(j).get(1)) + 1);
+							
+							Datos datos = new Datos(this, nombre, true);
+							datos.setVisible(true);
+							ayDatos.add(datos);
+							
+							break;
+						}
+					}
+				} else if (tipoLista.equals("espaciosN")) {
+					for (int j = 0; j < visitasEspN.size(); j++) {
+						String n = (String) visitasEspN.get(j).get(0);
+						if (n.equals(nombre)) {
+							this.setVisible(false);
+							
+							visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
+							
+							Datos datos = new Datos(this, nombre, true);
+							datos.setVisible(true);
+							ayDatos.add(datos);
+							
+							break;
+						}
 					}
 				}
-				Datos datos = new Datos(this, nombre);
-				datos.setVisible(true);
-				ayDatos.add(datos);
-			} else if (tipoLista.equals("espaciosN")) {
-				for (int j = 0; j < visitasEspN.size(); j++) {
-					if (((String) visitasEspN.get(j).get(0)).equals(nombre)) {
-						visitasEspN.get(j).set(1, ((int) visitasEspN.get(j).get(1)) + 1);
-						break;
-					}
-				}
-				Datos datos = new Datos(this, nombre);
-				datos.setVisible(true);
-				ayDatos.add(datos);
+				
+				P3_listLista.setSelectedValue(null, false);
 			}
 		} else if (e.getSource() == P3_btnAtras) {
 			JPnl_Top.setVisible(false);
@@ -488,10 +517,6 @@ public class AppCliente extends JFrame implements ActionListener {
 	
 	public String getTipo() {
 		return tipoLista;
-	}
-	
-	public String getProv() {
-		return P2_cmbxProvincias.getSelectedItem().toString();
 	}
 	
 	public ArrayList<Datos> getAyDatos() {

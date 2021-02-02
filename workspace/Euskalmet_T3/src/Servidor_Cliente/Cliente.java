@@ -31,6 +31,7 @@ public class Cliente extends Thread {
 			resultado = (ArrayList<List<Object>>) fentrada.readObject();
 		} catch (Exception e) {
 			System.out.println("[Cliente] >> Error: " + e.getMessage() + " \n");
+			System.exit(1);
 		}
 		
 		return true;
@@ -42,6 +43,7 @@ public class Cliente extends Thread {
 			System.out.println("[Cliente] >> Fin cliente. \n");
 		} catch (Exception e) {
 			System.out.println("[Cliente] >> Error: " + e.getMessage() + " \n");
+			System.exit(1);
 		}
 	}
 	

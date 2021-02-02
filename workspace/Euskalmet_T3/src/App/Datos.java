@@ -27,7 +27,7 @@ public class Datos extends JFrame implements ActionListener {
 	private List<List<Object>> arrays;
 	
 	private JPanel JPnl_Info;
-	private String P1_dato, tipo, prov;
+	private String nombre, tipo;
 	private ArrayList<String> municipios = new ArrayList<String>();
 	private JLabel P1_lblNombre, P1_lblMsg;
 	private JTextArea P1_txtInfo;
@@ -38,12 +38,14 @@ public class Datos extends JFrame implements ActionListener {
 	private JTextArea P2_txtHistorico;
 	private JButton P2_btnAtras, P2_btnCerrar, P2_btnSalir;
 	
-	public Datos(AppCliente App, String P1_dato) {
+	private boolean top, listo = false;
+	
+	public Datos(AppCliente App, String nombre, boolean top) {
 		this.App = App;
 		this.arrays = App.getArrays();
-		this.P1_dato = P1_dato;
+		this.nombre = nombre;
 		this.tipo = App.getTipo();
-		this.prov = App.getProv();
+		this.top = top;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -70,7 +72,7 @@ public class Datos extends JFrame implements ActionListener {
 	}
 	
 	private void info() {
-		P1_lblNombre = new JLabel(P1_dato);
+		P1_lblNombre = new JLabel(nombre);
 		P1_lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		P1_lblNombre.setFont(new Font("Tahoma", Font.BOLD, 24));
 		P1_lblNombre.setBounds(53, 11, 572, 29);
@@ -126,7 +128,7 @@ public class Datos extends JFrame implements ActionListener {
 	}
 	
 	private void historico() {
-		P2_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.get(7), municipios));
+		P2_cmbxEstaciones = new JComboBox<String>(Util.cmbxEstaciones(arrays.get(7), municipios, this));
 		if (P2_cmbxEstaciones.getItemCount() != 0) {
 			P2_cmbxEstaciones.setSelectedIndex(0);
 		}
@@ -139,7 +141,6 @@ public class Datos extends JFrame implements ActionListener {
 		P2_txtHistorico.setWrapStyleWord(true);
 		P2_txtHistorico.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		P2_txtHistorico.setBounds(45, 66, 342, 248);
-		setTxtInfo();
 		
 		JScrollPane P2_scrollPane = new JScrollPane(P2_txtHistorico);
 		P2_scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -177,24 +178,35 @@ public class Datos extends JFrame implements ActionListener {
 	
 	private void actionInfo(ActionEvent e) {
 		if (e.getSource() == P1_btnHistorico) {
-			if (P2_cmbxEstaciones.getItemCount() != 0) {
-				JPnl_Info.setVisible(false);
-				JPnl_Historico.setVisible(true);
-				P2_txtHistorico.setText(Util.historico(arrays.get(7), P2_cmbxEstaciones.getSelectedItem().toString()));
-				P2_txtHistorico.setCaretPosition(0);
+			if (listo) {
+				if (P2_cmbxEstaciones.getItemCount() != 0) {
+					JPnl_Info.setVisible(false);
+					JPnl_Historico.setVisible(true);
+					P2_txtHistorico.setText(Util.historico(arrays.get(7), P2_cmbxEstaciones.getSelectedItem().toString()));
+					P2_txtHistorico.setCaretPosition(0);
+				} else {
+					P1_lblMsg.setText(">> Histórico no disponible <<");
+					new Timer(1000, new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							P1_lblMsg.setVisible(false);
+						}}).start();
+				}
 			} else {
-				P1_lblMsg.setText(">> Histórico no disponible <<");
-				new Timer(5000, new ActionListener() {
+				P1_lblMsg.setText(">> Datos aún no cargados <<");
+				new Timer(1000, new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						P1_lblMsg.setVisible(false);
 					}}).start();
 			}
 		} else if (e.getSource() == P1_btnCerrar) {
+			if (top) {
+				App.actualizarTop();
+			}
 			App.getAyDatos().remove(this);
 			if (App.getAyDatos().size() == 0) {
 				App.setVisible(true);
 			}
-			App.actualizarTop();
+			
 			this.dispose();
 		} else {
 			App.salir();
@@ -209,11 +221,14 @@ public class Datos extends JFrame implements ActionListener {
 			JPnl_Info.setVisible(true);
 			JPnl_Historico.setVisible(false);
 		} else if (e.getSource() == P2_btnCerrar) {
+			if (top) {
+				App.actualizarTop();
+			}
 			App.getAyDatos().remove(this);
 			if (App.getAyDatos().size() == 0) {
 				App.setVisible(true);
 			}
-			App.actualizarTop();
+			
 			this.dispose();
 		} else {
 			App.salir();
@@ -222,29 +237,18 @@ public class Datos extends JFrame implements ActionListener {
 	
 	private void setTxtInfo() {
 		if (tipo.equals("municipios")) {
-			if (prov.equals("Bizkaia")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(1), tipo));
-			} else if (prov.equals("Gipuzkoa")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(2), tipo));
-			} else if (prov.equals("Araba")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(3), tipo));
-			}
-			
-			municipios.add(P1_dato);
+			P1_txtInfo.setText(Util.texto(arrays.get(9), tipo, nombre));
+			municipios.add(nombre);
 		} else if (tipo.equals("espaciosN")) {
-			if (prov.equals("Bizkaia")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(4), tipo));
-				municipios = Util.muniEspN(arrays.get(4), P1_dato);
-			} else if (prov.equals("Gipuzkoa")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(5), tipo));
-				municipios = Util.muniEspN(arrays.get(5), P1_dato);
-			} else if (prov.equals("Araba")) {
-				P1_txtInfo.setText(Util.texto(arrays.get(6), tipo));
-				municipios = Util.muniEspN(arrays.get(6), P1_dato);
-			}
+			P1_txtInfo.setText(Util.texto(arrays.get(8), tipo, nombre));
+			municipios = Util.muniEspN(arrays.get(8), nombre);
 		}
 		
 		P1_txtInfo.setCaretPosition(0);
+	}
+	
+	public void listo() {
+		listo = true;
 	}
 	
 }

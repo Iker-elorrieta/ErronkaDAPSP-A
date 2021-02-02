@@ -21,7 +21,8 @@ public class Util {
 				entrada.add(muni.getNombre());
 				entrada.add(0);
 			} else if (tipo.equals("espaciosN")) {
-				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
+				Object[] lEspN = (Object[]) lista.get(i);
+				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
 				entrada.add(espN.getNombre());
 				entrada.add(0);
 			}
@@ -56,7 +57,8 @@ public class Util {
 				if (!ayStr.contains(espN.getNombre())) 
 					ayStr.add(espN.getNombre());
 			} else if (tipoLista.equals("Playas")) {
-				EspaciosNaturales espN = (EspaciosNaturales) lista.get(i);
+				Object[] lEspN = (Object[]) lista.get(i);
+				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
 				if (espN.getNombre().contains("Playa")) 
 					ayStr.add(espN.getNombre());
 			}
@@ -88,19 +90,23 @@ public class Util {
 		return ayStr.toArray(new String[ayStr.size()]);
 	}
 	
-	public static String texto(List<Object> lista, String tipoDato) {
+	public static String texto(List<Object> lista, String tipoDato, String nombre) {
 		String texto = "";
 		
 		for (int i = 0; i < lista.size(); i++) {
 			if (tipoDato.equals("municipios")) {
 				Municipio muni = (Municipio) lista.get(i);
-				texto = muni.getDescripcion();
-				break;
+				if (muni.getNombre().equals(nombre)) {
+					texto = muni.getDescripcion();
+					break;
+				}
 			} else if (tipoDato.equals("espaciosN")) {
 				Object[] lEspN = (Object[]) lista.get(i);
 				EspaciosNaturales espN = (EspaciosNaturales) lEspN[0];
-				texto = espN.getDescripcion();
-				break;
+				if (espN.getNombre().equals(nombre)) {
+					texto = espN.getDescripcion();
+					break;
+				}
 			}
 		}
 		
@@ -121,7 +127,7 @@ public class Util {
 		return municipios;
 	}
 	
-	public static String[] cmbxEstaciones(List<Object> lista, ArrayList<String> municipios) {
+	public static String[] cmbxEstaciones(List<Object> lista, ArrayList<String> municipios, Datos frame) {
 		ArrayList<String> ayEst = new ArrayList<String>();
 		
 		for (int i = 0; i < lista.size(); i++) {
@@ -132,6 +138,8 @@ public class Util {
 					ayEst.add(direccion);
 			}
 		}
+		
+		frame.listo();
 		
 		return ayEst.toArray(new String[ayEst.size()]);
 	}

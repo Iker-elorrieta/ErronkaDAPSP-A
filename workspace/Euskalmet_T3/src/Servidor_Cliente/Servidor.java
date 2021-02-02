@@ -111,7 +111,7 @@ public class Servidor extends Thread{
 		ayDatos.add(muniCAire);
 		
 		//Todos los Espacios Naturales
-		List<Object> espN = session.createQuery("FROM EspaciosNaturales ORDER BY nombre").list();
+		List<Object> espN = session.createQuery("SELECT DISTINCT me.espaciosNaturales, me.municipio.nombre FROM MuniEspacios AS me ORDER BY me.espaciosNaturales.nombre, me.municipio.nombre").list();
 		ayDatos.add(espN);
 		
 		//Todos los Municipios
