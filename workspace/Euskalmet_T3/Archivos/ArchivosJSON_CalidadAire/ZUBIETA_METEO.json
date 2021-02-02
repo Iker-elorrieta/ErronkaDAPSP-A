@@ -48,13 +48,40 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "Dviengrados" : "154",
+  "H" : "57",
+  "PmBar" : "990,6",
+  "Precipitacionlm2" : "0",
+  "Rwm2" : "8,2",
+  "RUVAwm2" : "3,5",
+  "TC" : "16,6",
+  "Vvienms" : "1,73",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "Dviengrados" : "165",
+  "H" : "63",
+  "PmBar" : "990,9",
+  "Precipitacionlm2" : "0",
+  "Rwm2" : "0",
+  "RUVAwm2" : "0,2",
+  "TC" : "15,4",
+  "Vvienms" : "1,19",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "Dviengrados" : "249",
+  "H" : "67",
+  "PmBar" : "991,7",
+  "Precipitacionlm2" : "0",
+  "Rwm2" : "0",
+  "RUVAwm2" : "0,3",
+  "TC" : "14,5",
+  "Vvienms" : "1,59",
+  "ICAEstacion" : "Sin datos / Daturik gabe"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",

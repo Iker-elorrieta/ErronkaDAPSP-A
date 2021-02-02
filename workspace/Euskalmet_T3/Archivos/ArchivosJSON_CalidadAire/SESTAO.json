@@ -48,13 +48,28 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "NOgm3" : "6",
+  "NO2" : "11",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "20",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "NOgm3" : "6",
+  "NO2" : "11",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "20",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "NOgm3" : "6",
+  "NO2" : "10",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "18",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",

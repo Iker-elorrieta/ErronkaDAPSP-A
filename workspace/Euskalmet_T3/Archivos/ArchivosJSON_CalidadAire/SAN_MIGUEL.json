@@ -48,13 +48,22 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "PM10" : "25,79",
+  "PM10ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "PM10" : "26,92",
+  "PM10ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "PM10" : "27,75",
+  "PM10ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",

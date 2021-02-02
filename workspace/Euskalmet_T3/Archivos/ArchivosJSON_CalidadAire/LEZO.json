@@ -48,13 +48,34 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "PM10" : "25,58",
+  "PM10ICA" : "Bueno / Ona",
+  "H" : "96",
+  "PmBar" : "1011,5",
+  "Rwm2" : "6,8",
+  "TC" : "10,2",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "PM10" : "27,29",
+  "PM10ICA" : "Bueno / Ona",
+  "H" : "97",
+  "PmBar" : "1011,7",
+  "Rwm2" : "0,5",
+  "TC" : "9,1",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "PM10" : "28,79",
+  "PM10ICA" : "Bueno / Ona",
+  "H" : "96",
+  "PmBar" : "1012,4",
+  "Rwm2" : "0,5",
+  "TC" : "9,7",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",

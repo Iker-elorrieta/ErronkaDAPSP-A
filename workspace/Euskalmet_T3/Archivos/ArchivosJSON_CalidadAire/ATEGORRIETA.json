@@ -48,13 +48,46 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "COmgm3" : "0,5",
+  "CO8hmgm3" : "0,41",
+  "NOgm3" : "16",
+  "NO2" : "45",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "70",
+  "PM10" : "54,46",
+  "PM10ICA" : "Malo / Txarra",
+  "PM25" : "11,13",
+  "PM25ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Malo / Txarra"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "COmgm3" : "0,45",
+  "CO8hmgm3" : "0,4",
+  "NOgm3" : "13",
+  "NO2" : "44",
+  "NO2ICA" : "Bueno / Ona",
+  "NOXgm3" : "63",
+  "PM10" : "56,75",
+  "PM10ICA" : "Malo / Txarra",
+  "PM25" : "11,5",
+  "PM25ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Malo / Txarra"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "COmgm3" : "0,43",
+  "CO8hmgm3" : "0,4",
+  "NOgm3" : "11",
+  "NO2" : "33",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "50",
+  "PM10" : "59,13",
+  "PM10ICA" : "Malo / Txarra",
+  "PM25" : "11,88",
+  "PM25ICA" : "Bueno / Ona",
+  "ICAEstacion" : "Malo / Txarra"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",
@@ -143,7 +176,7 @@
   "Date" : "01/02/2021",
   "Hour" : "23:00",
   "COmgm3" : "0,4",
-  "CO8hmgm3" : "0,53",
+  "CO8hmgm3" : "0,52",
   "NOgm3" : "2",
   "NO2" : "26",
   "NO2ICA" : "Muy bueno / Oso ona",

@@ -48,13 +48,54 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "COmgm3" : "0,18",
+  "CO8hmgm3" : "0,19",
+  "NOgm3" : "2",
+  "NO2" : "5",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "9",
+  "PM10ICA" : "Sin datos / Daturik gabe",
+  "Dviengrados" : "182",
+  "H" : "56",
+  "PmBar" : "1010,7",
+  "TC" : "17,5",
+  "Vvienms" : "4,14",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "COmgm3" : "0,18",
+  "CO8hmgm3" : "0,2",
+  "NOgm3" : "2",
+  "NO2" : "4",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "6",
+  "PM10" : "22,04",
+  "PM10ICA" : "Bueno / Ona",
+  "Dviengrados" : "175",
+  "H" : "60",
+  "PmBar" : "1010,7",
+  "TC" : "17",
+  "Vvienms" : "3,59",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "COmgm3" : "0,19",
+  "CO8hmgm3" : "0,2",
+  "NOgm3" : "3",
+  "NO2" : "14",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "17",
+  "PM10" : "23,58",
+  "PM10ICA" : "Bueno / Ona",
+  "Dviengrados" : "165",
+  "H" : "73",
+  "PmBar" : "1011,4",
+  "TC" : "14,1",
+  "Vvienms" : "1,73",
+  "ICAEstacion" : "Bueno / Ona"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",

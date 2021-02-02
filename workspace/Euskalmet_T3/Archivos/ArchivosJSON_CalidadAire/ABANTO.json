@@ -48,13 +48,55 @@
   "Hour" : "09:00"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "08:00"
+  "Hour" : "08:00",
+  "NOgm3" : "2",
+  "NO2" : "6",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "9",
+  "PM10" : "12,86",
+  "PM10ICA" : "Muy bueno / Oso ona",
+  "SO2" : "5",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "Dviengrados" : "199",
+  "H" : "57",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,8",
+  "Vvienms" : "4,73",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "07:00"
+  "Hour" : "07:00",
+  "NOgm3" : "2",
+  "NO2" : "5",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "7",
+  "PM10" : "14,05",
+  "PM10ICA" : "Muy bueno / Oso ona",
+  "SO2" : "6",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "Dviengrados" : "212",
+  "H" : "57",
+  "Precipitacionlm2" : "0",
+  "TC" : "16,6",
+  "Vvienms" : "3,6",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
-  "Hour" : "06:00"
+  "Hour" : "06:00",
+  "NOgm3" : "1",
+  "NO2" : "3",
+  "NO2ICA" : "Muy bueno / Oso ona",
+  "NOXgm3" : "5",
+  "PM10" : "14,86",
+  "PM10ICA" : "Muy bueno / Oso ona",
+  "SO2" : "7",
+  "SO2ICA" : "Muy bueno / Oso ona",
+  "Dviengrados" : "221",
+  "H" : "61",
+  "Precipitacionlm2" : "0",
+  "TC" : "15,7",
+  "Vvienms" : "2,75",
+  "ICAEstacion" : "Muy bueno / Oso ona"
 }, {
   "Date" : "02/02/2021",
   "Hour" : "05:00",
