@@ -118,8 +118,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < provincias.length; i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //				sql = "INSERT INTO provincia(cod_prov,nombre) VALUES(?,?)";
@@ -149,6 +150,8 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
 		}
 		
 		System.out.println("[Datos/BBDD] >> provincias -> Lineas afectadas: " + lineas);
@@ -162,8 +165,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < municipios.size(); i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //				sql = "INSERT INTO municipio(cod_muni,nombre,descripcion,cod_prov,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
@@ -215,6 +219,8 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
 		}
 		
 		System.out.println("[Datos/BBDD] >> municipio -> Lineas afectadas: " + lineas);
@@ -229,8 +235,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < estaciones.size(); i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //				sql = "INSERT INTO estaciones(cod_estacion,nombre,direccion,coord_x,coord_y,latitud,longitud,cod_muni) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -287,6 +294,9 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
+			
 			nomEstaciones.add(estaciones.get(i).get(1));
 		}
 		
@@ -303,8 +313,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < espacios_naturales.size(); i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //				sql = "INSERT INTO espacios_naturales(cod_enatural,nombre,descripcion,tipo,latitud,longitud) VALUES(?,?,?,?,?,?,?)";
@@ -356,6 +367,8 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
 		}
 		
 		System.out.println("[Datos/BBDD] >> espacios_naturales -> Lineas afectadas: " + lineas);
@@ -369,8 +382,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < muni_espacios.size(); i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //				sql = "INSERT INTO muni_espacios(cod_muni,cod_enatural,cod_muni_espacios) VALUES(?,?,?)";
@@ -404,6 +418,8 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
 		}
 		
 		System.out.println("[Datos/BBDD] >> muni_espacios -> Lineas afectadas: " + lineas);
@@ -418,8 +434,9 @@ public class LlenarBBDD {
 			
 			int lineas = 0;
 			for (int i = 0; i < calidad_aire.size(); i++) {
+				Session sesion = null;
 				try {
-					Session sesion = sf.openSession();
+					sesion = sf.openSession();
 					Transaction tx = sesion.beginTransaction();
 					
 //					sql = "INSERT INTO calidad_aire(fecha_hora,calidad,PM25,PM10,SO2,NO2,03,CO,cod_estacion) VALUES(?,?,?,?,?,?,?,?)";
@@ -481,6 +498,8 @@ public class LlenarBBDD {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				if (sesion.isOpen()) sesion.close();
 			}
 			
 			System.out.println("[Datos/BBDD] >> calidad_aire ("+nomEstaciones.get(kntEstacion)+") -> Lineas afectadas: " + lineas);
@@ -494,8 +513,9 @@ public class LlenarBBDD {
 		
 		int lineas = 0;
 		for (int i = 0; i < calidad_aire.size(); i++) {
+			Session sesion = null;
 			try {
-				Session sesion = sf.openSession();
+				sesion = sf.openSession();
 				Transaction tx = sesion.beginTransaction();
 				
 //					sql = "INSERT INTO calidad_aire(fecha_hora,calidad,PM25,PM10,SO2,NO2,03,CO,cod_estacion) VALUES(?,?,?,?,?,?,?,?)";
@@ -546,10 +566,10 @@ public class LlenarBBDD {
 				sesion.save(cAire); tx.commit(); lineas++;
 				
 				sesion.close();
-//					} catch (SQLException e) {
-//					if (e.getErrorCode() != 1062) {
-//						e.printStackTrace();
-//					}
+//			} catch (SQLException e) {
+//				if (e.getErrorCode() != 1062) {
+//					e.printStackTrace();
+//				}
 			} catch (ConstraintViolationException e) {
 				if (e.getErrorCode() != 1062) {
 					e.printStackTrace();
@@ -557,6 +577,8 @@ public class LlenarBBDD {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			if (sesion.isOpen()) sesion.close();
 		}
 		
 		System.out.println("[Datos/BBDD] >> calidad_aire ("+nombre+") -> Lineas afectadas: " + lineas);

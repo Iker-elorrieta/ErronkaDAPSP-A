@@ -118,7 +118,7 @@ public class Servidor extends Thread{
 		List<Object> muni = session.createQuery("FROM Municipio ORDER BY nombre").list();
 		ayDatos.add(muni);
 		
-		session.close();
+		while (session.isOpen()) session.close();
 		sf.close();
 	}
 	
