@@ -311,7 +311,9 @@ public class AppCliente extends JFrame implements ActionListener {
 			String[] filtros = {"Provincias"};
 			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
 			P2_cmbxFiltros.setSelectedIndex(0);
-
+			
+			P2_lblProvincias.setVisible(true);
+			P2_cmbxProvincias.setVisible(true);
 			P2_cmbxProvincias.setSelectedIndex(0);
 
 			tipoLista = "municipios";
@@ -326,7 +328,9 @@ public class AppCliente extends JFrame implements ActionListener {
 			String[] filtros = {"Provincias","Playas"};
 			P2_cmbxFiltros.setModel(new DefaultComboBoxModel<String>(filtros));
 			P2_cmbxFiltros.setSelectedIndex(0);
-
+			
+			P2_lblProvincias.setVisible(true);
+			P2_cmbxProvincias.setVisible(true);
 			P2_cmbxProvincias.setSelectedIndex(0);
 
 			tipoLista = "espaciosN";
@@ -338,6 +342,8 @@ public class AppCliente extends JFrame implements ActionListener {
 			JPnl_Menu.setVisible(false);
 			JPnl_Top.setVisible(true);
 			
+			P2_lblProvincias.setVisible(true);
+			P2_cmbxProvincias.setVisible(true);
 			P3_cmbxFiltros.setSelectedIndex(0);
 			
 			P3_lblLista.setText(P3_cmbxTop.getSelectedItem().toString()+" Municipios: ");
@@ -355,6 +361,8 @@ public class AppCliente extends JFrame implements ActionListener {
 	private void actionLista(ActionEvent e) {
 		if (e.getSource() == P2_cmbxFiltros) {
 			if (tipoLista.equals("municipios")) {
+				P2_lblProvincias.setVisible(true);
+				P2_cmbxProvincias.setVisible(true);
 				P2_cmbxProvincias.setSelectedIndex(0);
 				P2_listLista.setListData(Util.lista(arrays.get(1), tipoLista));
 			} else if (tipoLista.equals("espaciosN")) {
@@ -397,7 +405,7 @@ public class AppCliente extends JFrame implements ActionListener {
 				if (lMuni.size() != 0) {
 					for (int i = 0; i < lMuni.size(); i++) {
 						for (int j = 0; j < visitasMuni.size(); j++) {
-							String n = (String) visitasEspN.get(j).get(0);
+							String n = (String) visitasMuni.get(j).get(0);
 							if (n.equals(lMuni.get(i))) {
 								this.setVisible(false);
 								
