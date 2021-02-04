@@ -479,7 +479,7 @@ public class AppCliente extends JFrame implements ActionListener {
 				nombre = nombre.substring(nombre.indexOf(">")+2,nombre.indexOf("(")-1);
 				if (tipoLista.equals("municipios")) {
 					for (int j = 0; j < visitasMuni.size(); j++) {
-						String n = (String) visitasEspN.get(j).get(0);
+						String n = (String) visitasMuni.get(j).get(0);
 						if (n.equals(nombre)) {
 							this.setVisible(false);
 							
